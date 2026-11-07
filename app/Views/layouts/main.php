@@ -17,8 +17,8 @@
     <!-- vis-timeline CSS -->
     <link href="https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
     
-    <!-- TraceLab Custom Cyber-Forensic Theme -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- TraceLab Custom Cyber-Forensic Theme (with Cache Buster) -->
+    <link rel="stylesheet" href="/assets/css/style.css?v=<?= time() ?>">
 </head>
 <body>
 

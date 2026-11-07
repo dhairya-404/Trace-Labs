@@ -1,3 +1,7 @@
+<?php
+$flaggedCount = count(array_filter($events, fn($e) => !empty($e['is_flagged'])));
+?>
+
 <!-- Ingestion Confirmation Alert (Step 2 in Demo Flow) -->
 <?php if (!empty($importedSha256)): ?>
     <div class="alert alert-success border-success bg-dark text-light d-flex align-items-center justify-content-between p-3 mb-4 shadow" role="alert">
@@ -15,14 +19,39 @@
 <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
     <div>
         <h3 class="fw-bold mb-1"><i class="bi bi-clock-history text-info me-2"></i>Unified Chronological Timeline</h3>
-        <p class="text-secondary small mb-0">Interactive <code>vis-timeline</code> engine consolidating messy multi-source logs into a singular, synchronized time sequence.</p>
+        <p class="text-secondary small mb-0">Interactive <code>vis-timeline</code> engine consolidating multi-source logs into a singular, synchronized time sequence.</p>
     </div>
     <div class="d-flex gap-2">
+        <a href="/investigations/<?= $investigation['id'] ?>/detections" class="btn btn-outline-danger btn-sm font-mono fw-bold">
+            <i class="bi bi-shield-exclamation"></i> View Anomaly Deck (<?= $flaggedCount ?>) &rarr;
+        </a>
         <a href="/investigations/<?= $investigation['id'] ?>/graph" class="btn btn-outline-warning btn-sm font-mono">
-            <i class="bi bi-diagram-3"></i> View Entity Graph &rarr;
+            <i class="bi bi-diagram-3"></i> Entity Graph &rarr;
         </a>
     </div>
 </div>
+
+<!-- Prominent Active Security Threat Alert Banner -->
+<?php if ($flaggedCount > 0): ?>
+    <div class="alert alert-danger bg-danger bg-opacity-10 border-danger d-flex align-items-center justify-content-between p-3 mb-4 shadow-sm rounded flex-wrap gap-3">
+        <div class="d-flex align-items-center gap-3">
+            <div class="p-2 bg-danger bg-opacity-25 rounded border border-danger text-danger fs-3">
+                <i class="bi bi-shield-fill-exclamation"></i>
+            </div>
+            <div>
+                <strong class="text-danger font-mono d-block fs-6">🚨 <?= $flaggedCount ?> CRITICAL SECURITY THREAT ALERTS ON TIMELINE</strong>
+                <span class="text-secondary small font-mono">
+                    Incident window active on <strong class="text-light">Saturday 7 Nov (Today's Threat Window) &bull; 02:14 &ndash; 03:25 UTC</strong>: Credential stuffing, outbound exfiltration & shadow copy deletion.
+                </span>
+            </div>
+        </div>
+        <div class="d-flex gap-2">
+            <button type="button" class="btn btn-danger btn-sm font-mono fw-bold px-3 shadow" onclick="showTodaysAlerts()">
+                <i class="bi bi-crosshair me-1"></i> Jump Directly to Today's Alerts &rarr;
+            </button>
+        </div>
+    </div>
+<?php endif; ?>
 
 <!-- vis-timeline Visualization Box with Controls -->
 <div class="card mb-4 shadow">
@@ -43,8 +72,11 @@
         <!-- Zoom & Focus Presets -->
         <div class="d-flex align-items-center gap-2 flex-wrap">
             <div class="btn-group btn-group-sm">
-                <button type="button" class="btn btn-xs btn-outline-danger font-mono fw-bold" onclick="focusAttackWindow()" title="Zoom directly into attack burst">
-                    <i class="bi bi-crosshair text-danger"></i> Focus Incident
+                <button type="button" class="btn btn-xs btn-danger font-mono fw-bold" onclick="showTodaysAlerts()" title="Jump directly to Today's Alerts (Sat Nov 7)">
+                    <i class="bi bi-shield-fill-exclamation me-1"></i> Today's Alerts (<?= $flaggedCount ?>)
+                </button>
+                <button type="button" class="btn btn-xs btn-outline-danger font-mono" onclick="focusAttackWindow()" title="Focus Attack Burst Window">
+                    <i class="bi bi-crosshair"></i> Focus Window
                 </button>
                 <button type="button" class="btn btn-xs btn-outline-secondary font-mono" onclick="zoomPreset(1)" title="1 Hour Span">1h</button>
                 <button type="button" class="btn btn-xs btn-outline-secondary font-mono" onclick="zoomPreset(24)" title="24 Hour Span">24h</button>
@@ -96,11 +128,13 @@
         <!-- Quick 1-Click Filter Preset Chips -->
         <div class="col-lg-6 d-flex align-items-center justify-content-lg-end gap-1 flex-wrap">
             <span class="text-secondary small font-mono me-1 d-none d-md-inline">Quick:</span>
+            <button type="button" class="btn btn-xs btn-danger font-mono py-1 px-2 fw-bold" id="flaggedOnlyBtn" onclick="showTodaysAlerts()" title="Jump to Today's Alerts (Sat Nov 7)">
+                <i class="bi bi-shield-fill-exclamation me-1"></i> Today's Alerts (<?= $flaggedCount ?>)
+            </button>
             <button type="button" class="btn btn-xs btn-outline-secondary font-mono py-1 px-2" onclick="setQuickSearch('alice')">alice</button>
             <button type="button" class="btn btn-xs btn-outline-secondary font-mono py-1 px-2" onclick="setQuickSearch('admin.finance')">admin.finance</button>
             <button type="button" class="btn btn-xs btn-outline-secondary font-mono py-1 px-2" onclick="setQuickSearch('198.51')">198.51.x</button>
             <button type="button" class="btn btn-xs btn-outline-secondary font-mono py-1 px-2" onclick="setQuickSearch('login_failed')">failed_logins</button>
-            <button type="button" class="btn btn-xs btn-outline-danger font-mono py-1 px-2" id="flaggedOnlyBtn" onclick="toggleFlaggedOnly()">⚠️ Flagged Only</button>
             <button type="button" class="btn btn-xs btn-outline-info font-mono py-1 px-2" onclick="clearLiveSearch()">Reset</button>
         </div>
     </div>
@@ -286,8 +320,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                // Auto-fit with smooth transition
-                timelineInstance.fit({ animation: { duration: 400, easingFunction: 'easeInOutQuad' } });
+                // Auto-fit or focus alerts if requested
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('focus') === 'alerts' || urlParams.get('filter') === 'flagged') {
+                    setTimeout(showTodaysAlerts, 250);
+                } else {
+                    timelineInstance.fit({ animation: { duration: 400, easingFunction: 'easeInOutQuad' } });
+                }
             })
             .catch(err => console.error('Timeline error:', err));
     }
@@ -326,6 +365,29 @@ function switchTimelineMode(mode) {
     }
 }
 
+// 🎯 Jump straight to Today's Active Security Alerts (Saturday 7 Nov)
+function showTodaysAlerts() {
+    // 1. Clear any conflicting search query (such as 'alice') that would filter out the Saturday threats
+    const searchInput = document.getElementById('liveSearchInput');
+    if (searchInput) {
+        searchInput.value = '';
+    }
+    
+    // 2. Activate flagged-only mode
+    filterFlaggedOnly = true;
+    const btn = document.getElementById('flaggedOnlyBtn');
+    if (btn) {
+        btn.classList.add('btn-danger', 'text-light');
+        btn.classList.remove('btn-outline-danger');
+    }
+
+    // 3. Re-filter both table and vis-timeline
+    performLiveFilter();
+
+    // 4. Smoothly pan and zoom directly into the Saturday 7 Nov attack window
+    focusAttackWindow();
+}
+
 // 🎯 Focus directly into the anomaly/attack burst window (eliminates stacking & spreading events cleanly)
 function focusAttackWindow() {
     if (!timelineInstance || rawTimelineItems.length === 0) return;
@@ -336,8 +398,8 @@ function focusAttackWindow() {
         const times = flagged.map(i => new Date(i.start).getTime());
         const minTime = Math.min(...times);
         const maxTime = Math.max(...times);
-        // Add 8-minute padding before and after so rapid bursts spread out across the viewport
-        const pad = 1000 * 60 * 8;
+        // Add 15-minute padding before and after so rapid bursts spread out across the viewport
+        const pad = 1000 * 60 * 15;
         timelineInstance.setWindow(new Date(minTime - pad), new Date(maxTime + pad), {
             animation: { duration: 600, easingFunction: 'easeInOutQuad' }
         });
@@ -371,6 +433,7 @@ function performLiveFilter() {
     clearBtn.style.display = (query.length > 0 || filterFlaggedOnly) ? 'inline-block' : 'none';
 
     let visibleCount = 0;
+    let flaggedInResults = 0;
     const rows = document.querySelectorAll('.event-row');
 
     rows.forEach(row => {
@@ -395,6 +458,7 @@ function performLiveFilter() {
         if (matchesQuery && matchesFlagged) {
             row.style.display = '';
             visibleCount++;
+            if (isFlagged) flaggedInResults++;
         } else {
             row.style.display = 'none';
         }
@@ -405,11 +469,19 @@ function performLiveFilter() {
         noMatchRow.style.display = (visibleCount === 0) ? '' : 'none';
     }
 
-    // Update Counter Feedback
-    if (query || filterFlaggedOnly) {
-        counterText.innerHTML = `Showing <strong class="text-warning">${visibleCount}</strong> of ${totalEventsCount} events ${query ? `matching "<span class="text-info">${escapeHtml(query)}</span>"` : ''} ${filterFlaggedOnly ? '<span class="badge bg-danger ms-1">Flagged Only</span>' : ''}`;
+    const totalAlertsCount = rawTimelineItems.filter(i => i.is_flagged).length;
+
+    // Update Counter Feedback with Smart Guidance
+    if (query) {
+        if (visibleCount > 0 && flaggedInResults === 0) {
+            counterText.innerHTML = `Showing <strong class="text-warning">${visibleCount}</strong> events for "<span class="text-info">${escapeHtml(query)}</span>" <span class="badge bg-secondary-subtle text-secondary ms-1">0 Security Alerts</span> &bull; <button type="button" class="btn btn-link btn-xs p-0 text-danger font-mono fw-bold text-decoration-none" onclick="showTodaysAlerts()"><i class="bi bi-shield-fill-exclamation text-danger me-1"></i>View Today's ${totalAlertsCount} Alerts (Sat Nov 7) &rarr;</button>`;
+        } else {
+            counterText.innerHTML = `Showing <strong class="text-warning">${visibleCount}</strong> of ${totalEventsCount} events matching "<span class="text-info">${escapeHtml(query)}</span>" ${flaggedInResults > 0 ? `<span class="badge bg-danger ms-1">⚠️ ${flaggedInResults} Alerts</span>` : ''}`;
+        }
+    } else if (filterFlaggedOnly) {
+        counterText.innerHTML = `Showing all <strong class="text-danger">${visibleCount}</strong> Security Alerts on <strong class="text-light font-mono">Saturday 7 Nov 2026 (Today's Incident)</strong> &bull; <button type="button" class="btn btn-link btn-xs p-0 text-info font-mono" onclick="clearLiveSearch()">Reset to All Events</button>`;
     } else {
-        counterText.innerHTML = `Showing all <strong class="text-info">${totalEventsCount}</strong> events`;
+        counterText.innerHTML = `Showing all <strong class="text-info">${totalEventsCount}</strong> events across timeline &bull; <button type="button" class="btn btn-link btn-xs p-0 text-danger font-mono fw-bold text-decoration-none" onclick="showTodaysAlerts()"><i class="bi bi-shield-fill-exclamation text-danger me-1"></i>Jump to Today's ${totalAlertsCount} Alerts (Sat Nov 7) &rarr;</button>`;
     }
 
     // 3. Synchronize with vis-timeline visualization dynamically
@@ -446,6 +518,12 @@ function performLiveFilter() {
 // Quick Preset Filter setter
 function setQuickSearch(val) {
     const input = document.getElementById('liveSearchInput');
+    filterFlaggedOnly = false;
+    const btn = document.getElementById('flaggedOnlyBtn');
+    if (btn) {
+        btn.classList.remove('btn-danger', 'text-light');
+        btn.classList.add('btn-outline-danger');
+    }
     input.value = val;
     input.focus();
     performLiveFilter();
@@ -455,20 +533,34 @@ function setQuickSearch(val) {
 function toggleFlaggedOnly() {
     filterFlaggedOnly = !filterFlaggedOnly;
     const btn = document.getElementById('flaggedOnlyBtn');
-    if (filterFlaggedOnly) {
-        btn.classList.remove('btn-outline-danger');
-        btn.classList.add('btn-danger', 'text-light');
-    } else {
-        btn.classList.remove('btn-danger', 'text-light');
-        btn.classList.add('btn-outline-danger');
+    const searchInput = document.getElementById('liveSearchInput');
+    
+    // If activating flagged only and current search has no alerts, clear the text so alerts show up!
+    if (filterFlaggedOnly && searchInput && searchInput.value) {
+        searchInput.value = '';
     }
-    performLiveFilter();
+
+    if (filterFlaggedOnly) {
+        if (btn) {
+            btn.classList.remove('btn-outline-danger');
+            btn.classList.add('btn-danger', 'text-light');
+        }
+        performLiveFilter();
+        focusAttackWindow();
+    } else {
+        if (btn) {
+            btn.classList.remove('btn-danger', 'text-light');
+            btn.classList.add('btn-outline-danger');
+        }
+        performLiveFilter();
+        timelineFit();
+    }
 }
 
 // Reset / Clear Live Search
 function clearLiveSearch() {
     const input = document.getElementById('liveSearchInput');
-    input.value = '';
+    if (input) input.value = '';
     filterFlaggedOnly = false;
     const btn = document.getElementById('flaggedOnlyBtn');
     if (btn) {
@@ -476,7 +568,8 @@ function clearLiveSearch() {
         btn.classList.add('btn-outline-danger');
     }
     performLiveFilter();
-    input.focus();
+    if (input) input.focus();
+    timelineFit();
 }
 
 function escapeHtml(text) {

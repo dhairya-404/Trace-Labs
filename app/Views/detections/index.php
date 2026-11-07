@@ -4,6 +4,9 @@
         <p class="text-secondary small mb-0">Deterministic explainable detection rules paired with an unsupervised <strong>Isolation Forest</strong> machine learning triage model.</p>
     </div>
     <div class="d-flex gap-2">
+        <a href="/investigations/<?= $investigation['id'] ?>/timeline?focus=alerts" class="btn btn-outline-danger btn-sm font-mono fw-bold">
+            <i class="bi bi-clock-history me-1"></i> View Alerts on Timeline (<?= $ruleCount + $mlCount ?>) &rarr;
+        </a>
         <form action="/investigations/<?= $investigation['id'] ?>/detections/rerun" method="POST">
             <button type="submit" class="btn btn-outline-primary btn-sm font-mono">
                 <i class="bi bi-arrow-repeat"></i> Re-Run Detection Pipeline

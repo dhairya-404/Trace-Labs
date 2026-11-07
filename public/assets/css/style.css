@@ -202,21 +202,78 @@ body {
 
 /* Eliminate Intrusive Barcode Stem Lines & Dots */
 .vis-item .vis-line,
-.vis-item.vis-line {
-    display: none !important;
-}
-
+.vis-item.vis-line,
 .vis-item .vis-dot,
 .vis-item.vis-dot {
     display: none !important;
 }
 
-/* Remove default heavy box borders - let the chip container handle clean styling */
+/* Solid, High-Contrast SIEM Event Items (Vivid Visibility on Dark Grid) */
 .vis-item.vis-box {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
     border-radius: 6px !important;
+    padding: 3px 8px !important;
+    font-family: var(--font-mono) !important;
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7) !important;
+    transition: transform 0.12s ease, border-color 0.12s ease !important;
+}
+
+.vis-item.vis-box:hover {
+    transform: translateY(-1px) !important;
+    z-index: 9999 !important;
+}
+
+.vis-item.vis-pill-auth,
+.vis-item.vis-item-normal.vis-pill-auth {
+    background-color: #0d2247 !important;
+    border: 1px solid #3b82f6 !important;
+    color: #dbeafe !important;
+}
+
+.vis-item.vis-pill-auth:hover {
+    border-color: #60a5fa !important;
+    background-color: #123063 !important;
+}
+
+.vis-item.vis-pill-danger,
+.vis-item.vis-item-anomaly,
+.vis-item.vis-pill-danger.vis-box {
+    background-color: #450a0a !important;
+    border: 1px solid #ef4444 !important;
+    color: #fee2e2 !important;
+    font-weight: 600 !important;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.35) !important;
+}
+
+.vis-item.vis-pill-danger:hover {
+    border-color: #f87171 !important;
+    background-color: #5c0f0f !important;
+}
+
+.vis-item.vis-pill-network,
+.vis-item.vis-item-normal.vis-pill-network {
+    background-color: #3b2207 !important;
+    border: 1px solid #f59e0b !important;
+    color: #fef9c3 !important;
+}
+
+.vis-item.vis-pill-network:hover {
+    border-color: #fbbf24 !important;
+    background-color: #4d2d09 !important;
+}
+
+.vis-item.vis-pill-system,
+.vis-item.vis-item-normal.vis-pill-system {
+    background-color: #06312d !important;
+    border: 1px solid #14b8a6 !important;
+    color: #ccfbf1 !important;
+}
+
+.vis-item.vis-pill-system:hover {
+    border-color: #2dd4bf !important;
+    background-color: #09443e !important;
 }
 
 .vis-item .vis-item-content {
