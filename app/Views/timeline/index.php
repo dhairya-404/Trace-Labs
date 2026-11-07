@@ -63,7 +63,7 @@
                 <input type="text" 
                        id="liveSearchInput" 
                        class="form-control bg-dark text-light border-secondary font-mono" 
-                       placeholder="Dynamic search by account (e.g. 'alice'), IP, action, or device..." 
+                       placeholder="Search events by user (e.g. 'alice'), IP, or action..." 
                        autocomplete="off">
                 <button class="btn btn-outline-secondary border-secondary" type="button" id="clearSearchBtn" onclick="clearLiveSearch()" style="display: none;" title="Clear search (Esc)">
                     <i class="bi bi-x-lg"></i>
