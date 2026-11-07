@@ -183,8 +183,8 @@ TraceLabs comes bundled with 4 realistic synthetic forensic datasets in `sample_
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/dhairya-404/TraceLabs.git
-cd TraceLabs
+git clone https://github.com/dhairya-404/Trace-Labs.git
+cd Trace-Labs
 ```
 
 ### Step 2: Start the Python Machine Learning Microservice
