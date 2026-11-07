@@ -1,0 +1,56 @@
+[
+  {
+    "timestamp": "2026-11-06T08:30:00Z",
+    "account": "system_dns",
+    "ip_address": "10.0.1.1",
+    "device_id": "FW-CORE-01",
+    "action": "firewall_allowed",
+    "status": "success",
+    "details": "Outbound DNS query resolved to internal resolver 10.0.0.2"
+  },
+  {
+    "timestamp": "2026-11-06T12:00:00Z",
+    "account": "alice.miller",
+    "ip_address": "10.0.1.45",
+    "device_id": "FW-CORE-01",
+    "action": "firewall_allowed",
+    "status": "success",
+    "details": "HTTPS web traffic to corporate wiki (port 443, 240 KB)"
+  },
+  {
+    "timestamp": "2026-11-06T15:45:00Z",
+    "account": "bob.chen",
+    "ip_address": "10.0.1.72",
+    "device_id": "FW-CORE-01",
+    "action": "firewall_allowed",
+    "status": "success",
+    "details": "Git sync to internal git server (port 22, 12 MB)"
+  },
+  {
+    "timestamp": "2026-11-07T02:14:00Z",
+    "account": "anonymous",
+    "ip_address": "198.51.100.44",
+    "device_id": "FW-PERIMETER-02",
+    "action": "firewall_allowed",
+    "status": "success",
+    "details": "Inbound TCP handshake on SSL VPN interface (port 443)"
+  },
+  {
+    "timestamp": "2026-11-07T03:10:00Z",
+    "account": "admin.finance",
+    "ip_address": "198.51.100.44",
+    "device_id": "FW-CORE-01",
+    "action": "data_export",
+    "status": "success",
+    "details": "Encrypted outbound TLS session to external IP 203.0.113.88 (Volume: 4.8 GB transferred)"
+  },
+  {
+    "timestamp": "2026-11-07T03:25:00Z",
+    "account": "admin.finance",
+    "ip_address": "198.51.100.44",
+    "device_id": "FW-CORE-01",
+    "action": "shadow_copy_delete",
+    "status": "success",
+    "details": "VSS snapshot deletion command detected on file server FS01"
+  }
+]
