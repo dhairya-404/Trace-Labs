@@ -43,7 +43,29 @@ class TimelineController extends Controller
     {
         $id = (int)$params['id'];
         $items = Event::getVisTimelineItems($id);
-        $this->json($items);
+
+        $groups = [
+            [
+                'id' => 'AUTH',
+                'content' => '<div class="tl-group-header"><i class="bi bi-person-badge text-primary me-2"></i><strong>Authentication</strong><div class="tl-group-sub">Logins, Sessions & Access</div></div>',
+                'order' => 1
+            ],
+            [
+                'id' => 'NETWORK',
+                'content' => '<div class="tl-group-header"><i class="bi bi-hdd-network text-warning me-2"></i><strong>Network Flows</strong><div class="tl-group-sub">Firewall & Perimeter Egress</div></div>',
+                'order' => 2
+            ],
+            [
+                'id' => 'SYSTEM',
+                'content' => '<div class="tl-group-header"><i class="bi bi-terminal text-info me-2"></i><strong>Host & Files</strong><div class="tl-group-sub">File Access & Operations</div></div>',
+                'order' => 3
+            ]
+        ];
+
+        $this->json([
+            'items' => $items,
+            'groups' => $groups
+        ]);
     }
 
     public function eventDetails(Request $request, array $params): void

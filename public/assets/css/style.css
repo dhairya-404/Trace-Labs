@@ -190,46 +190,187 @@ body {
     color: var(--text-muted);
 }
 
-/* vis-timeline Minimalist Styling (No Slop) */
+/* vis-timeline Forensic SIEM Swimlane & Pill Styling (Zero Clutter) */
 .vis-timeline {
     border: 1px solid var(--border-color) !important;
-    background-color: #090d16 !important;
+    background-color: #080c14 !important;
     font-family: var(--font-mono) !important;
     font-size: 11px !important;
     border-radius: 6px;
+    overflow: hidden;
 }
 
-.vis-item {
-    border-radius: 3px !important;
-    font-size: 11px !important;
-    padding: 2px 6px !important;
-    cursor: pointer !important;
-    box-shadow: none !important;
+/* Eliminate Intrusive Barcode Stem Lines & Dots */
+.vis-item .vis-line,
+.vis-item.vis-line {
+    display: none !important;
 }
 
-.vis-item.vis-item-normal {
-    background-color: #1e293b !important;
-    border-color: #475569 !important;
-    color: #e2e8f0 !important;
+.vis-item .vis-dot,
+.vis-item.vis-dot {
+    display: none !important;
 }
 
-.vis-item.vis-item-anomaly {
-    background-color: #7f1d1d !important;
+/* Remove default heavy box borders - let the chip container handle clean styling */
+.vis-item.vis-box {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 6px !important;
+}
+
+.vis-item .vis-item-content {
+    padding: 0 !important;
+}
+
+/* Left Swimlane Group Headers */
+.vis-panel.vis-left {
+    background-color: #0b0f19 !important;
+    border-right: 1px solid #1f2937 !important;
+    width: 170px !important;
+}
+
+.vis-labelset .vis-label {
+    border-bottom: 1px solid #1f2937 !important;
+    color: #cbd5e1 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.vis-group {
+    border-bottom: 1px solid #1f2937 !important;
+}
+
+.vis-group:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.012) !important;
+}
+
+.tl-group-header {
+    padding: 8px 12px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    line-height: 1.25;
+}
+
+.tl-group-header strong {
+    color: #f1f5f9;
+}
+
+.tl-group-sub {
+    font-size: 10px;
+    color: #64748b;
+    font-family: var(--font-mono);
+    margin-top: 2px;
+}
+
+/* Forensic Chip Badges (Clean, Compact, High-Legibility) */
+.tl-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.2;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    transition: transform 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
+}
+
+.tl-chip:hover {
+    transform: translateY(-1px);
+    z-index: 999;
+}
+
+.tl-chip-danger {
+    background-color: #1a0b0e !important;
+    border: 1px solid #dc2626 !important;
+    color: #fca5a5 !important;
+}
+
+.tl-chip-danger:hover {
+    background-color: #2b0f14 !important;
     border-color: #ef4444 !important;
-    color: #fecaca !important;
-    font-weight: 600 !important;
+}
+
+.tl-chip-auth {
+    background-color: #0b1526 !important;
+    border: 1px solid #1d4ed8 !important;
+    color: #bfdbfe !important;
+}
+
+.tl-chip-auth:hover {
+    background-color: #12213b !important;
+    border-color: #3b82f6 !important;
+}
+
+.tl-chip-network {
+    background-color: #191407 !important;
+    border: 1px solid #b45309 !important;
+    color: #fde68a !important;
+}
+
+.tl-chip-network:hover {
+    background-color: #261f0a !important;
+    border-color: #d97706 !important;
+}
+
+.tl-chip-system {
+    background-color: #071718 !important;
+    border: 1px solid #0f766e !important;
+    color: #99f6e4 !important;
+}
+
+.tl-chip-system:hover {
+    background-color: #0d2526 !important;
+    border-color: #14b8a6 !important;
+}
+
+.tl-act {
+    font-weight: 600;
+}
+
+.tl-sep {
+    opacity: 0.35;
+    margin: 0 1px;
+}
+
+.tl-who {
+    opacity: 0.85;
+    font-size: 10px;
+}
+
+/* Selected Focus State */
+.vis-item.vis-selected .tl-chip {
+    outline: 2px solid #38bdf8 !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3) !important;
+}
+
+/* Time Axis Grids */
+.vis-time-axis {
+    background-color: #090d16 !important;
 }
 
 .vis-time-axis .vis-text {
-    color: var(--text-muted) !important;
+    color: #94a3b8 !important;
+    font-family: var(--font-mono) !important;
+    font-size: 10.5px !important;
 }
 
 .vis-time-axis .vis-grid.vis-minor {
-    border-color: #131b2e !important;
+    border-color: #121927 !important;
 }
 
 .vis-time-axis .vis-grid.vis-major {
-    border-color: var(--border-color) !important;
+    border-color: #1e293b !important;
+}
+
+.vis-current-time {
+    background-color: #ef4444 !important;
 }
 
 /* Modals */

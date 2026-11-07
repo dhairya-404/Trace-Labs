@@ -27,27 +27,49 @@
 <!-- vis-timeline Visualization Box with Controls -->
 <div class="card mb-4 shadow">
     <div class="card-header d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
-        <div class="d-flex align-items-center gap-2 small">
-            <span class="badge bg-primary text-dark font-mono fw-bold">vis-timeline</span>
-            <span class="text-secondary">Scroll to zoom &bull; Drag to pan &bull; Click event to inspect provenance</span>
-        </div>
-        <!-- Timeline Navigation Controls -->
+        <!-- View Mode Switcher -->
         <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-primary text-dark font-mono fw-bold">vis-timeline</span>
+            <div class="btn-group btn-group-sm ms-1" role="group" aria-label="Timeline View Mode">
+                <button type="button" class="btn btn-xs btn-outline-primary active" id="modeSwimlanesBtn" onclick="switchTimelineMode('swimlanes')" title="Categorized Domain Swimlanes">
+                    <i class="bi bi-distribute-vertical"></i> Swimlanes
+                </button>
+                <button type="button" class="btn btn-xs btn-outline-secondary" id="modeUnifiedBtn" onclick="switchTimelineMode('unified')" title="Flat Unified Stream">
+                    <i class="bi bi-water"></i> Flat Stream
+                </button>
+            </div>
+        </div>
+
+        <!-- Zoom & Focus Presets -->
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+            <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-xs btn-outline-danger font-mono fw-bold" onclick="focusAttackWindow()" title="Zoom directly into attack burst">
+                    <i class="bi bi-crosshair text-danger"></i> Focus Incident
+                </button>
+                <button type="button" class="btn btn-xs btn-outline-secondary font-mono" onclick="zoomPreset(1)" title="1 Hour Span">1h</button>
+                <button type="button" class="btn btn-xs btn-outline-secondary font-mono" onclick="zoomPreset(24)" title="24 Hour Span">24h</button>
+                <button type="button" class="btn btn-xs btn-outline-secondary font-mono" onclick="timelineFit()" title="Fit all events"><i class="bi bi-arrows-angle-expand"></i> Fit</button>
+            </div>
+
+            <!-- Navigation Controls -->
             <div class="btn-group btn-group-sm">
                 <button type="button" class="btn btn-outline-secondary" onclick="timelineMove(-0.3)" title="Pan Left"><i class="bi bi-chevron-left"></i></button>
                 <button type="button" class="btn btn-outline-secondary" onclick="timelineZoom(0.5)" title="Zoom In"><i class="bi bi-zoom-in"></i></button>
                 <button type="button" class="btn btn-outline-secondary" onclick="timelineZoom(-0.5)" title="Zoom Out"><i class="bi bi-zoom-out"></i></button>
-                <button type="button" class="btn btn-outline-secondary" onclick="timelineFit()" title="Fit All Events"><i class="bi bi-arrows-angle-expand"></i> Fit</button>
                 <button type="button" class="btn btn-outline-secondary" onclick="timelineMove(0.3)" title="Pan Right"><i class="bi bi-chevron-right"></i></button>
             </div>
-            <div class="d-flex align-items-center gap-3 ms-2 small font-mono">
-                <span><span class="badge bg-info p-1 me-1"></span> Normal</span>
-                <span><span class="badge bg-danger p-1 me-1"></span> Flagged (⚠️)</span>
+
+            <!-- Color Legend Strip -->
+            <div class="d-flex align-items-center gap-2 ms-1 small font-mono d-none d-lg-flex">
+                <span class="badge border border-primary text-info bg-dark py-1 px-2" style="font-size: 0.68rem;"><i class="bi bi-person-badge me-1"></i>Auth</span>
+                <span class="badge border border-warning text-warning bg-dark py-1 px-2" style="font-size: 0.68rem;"><i class="bi bi-hdd-network me-1"></i>Network</span>
+                <span class="badge border bg-dark py-1 px-2" style="font-size: 0.68rem; color: #2dd4bf; border-color: #0f766e;"><i class="bi bi-terminal me-1"></i>System</span>
+                <span class="badge border border-danger text-danger bg-dark py-1 px-2" style="font-size: 0.68rem;"><i class="bi bi-shield-x me-1"></i>Anomaly</span>
             </div>
         </div>
     </div>
     <div class="card-body p-2 bg-black">
-        <div id="visualization" style="height: 280px; width: 100%;"></div>
+        <div id="visualization" style="height: 350px; width: 100%;"></div>
     </div>
 </div>
 
@@ -209,42 +231,63 @@
 <script>
 let timelineInstance = null;
 let timelineDataSet = null;
+let timelineGroupsDataSet = null;
 let rawTimelineItems = [];
+let rawTimelineGroups = [];
+let currentViewMode = 'swimlanes';
 const totalEventsCount = <?= count($events) ?>;
 let filterFlaggedOnly = false;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Initialize vis-timeline
+    // 1. Initialize vis-timeline with Swimlanes & Chips
     const container = document.getElementById('visualization');
     if (container) {
         fetch('/investigations/<?= $investigation['id'] ?>/timeline/data')
             .then(res => res.json())
             .then(data => {
-                if (data.length === 0) {
+                let items = [];
+                let groups = [];
+                if (Array.isArray(data)) {
+                    items = data;
+                } else if (data && data.items) {
+                    items = data.items;
+                    groups = data.groups || [];
+                }
+
+                if (items.length === 0) {
                     container.innerHTML = '<div class="text-center py-5 text-secondary">No timeline events recorded yet.</div>';
                     return;
                 }
 
-                rawTimelineItems = data;
-                timelineDataSet = new vis.DataSet(data);
+                rawTimelineItems = items;
+                rawTimelineGroups = groups;
+                timelineDataSet = new vis.DataSet(items);
+                timelineGroupsDataSet = new vis.DataSet(groups);
                 
                 const options = {
-                    height: '270px',
+                    height: '350px',
                     stack: true,
                     showCurrentTime: false,
-                    zoomMin: 1000 * 60, // 1 minute
-                    zoomMax: 1000 * 60 * 60 * 24 * 31, // 1 month
-                    margin: { item: 10, axis: 5 },
-                    orientation: 'top'
+                    zoomMin: 1000 * 10, // 10 seconds
+                    zoomMax: 1000 * 60 * 60 * 24 * 60, // 60 days
+                    margin: { item: { horizontal: 6, vertical: 8 }, axis: 8 },
+                    orientation: 'top',
+                    groupHeightMode: 'auto',
+                    selectable: true,
+                    multiselect: false
                 };
 
-                timelineInstance = new vis.Timeline(container, timelineDataSet, options);
+                // Initialize with swimlane groups
+                timelineInstance = new vis.Timeline(container, timelineDataSet, timelineGroupsDataSet, options);
                 
                 timelineInstance.on('select', function(properties) {
                     if (properties.items.length > 0) {
                         openEventModal(properties.items[0]);
                     }
                 });
+
+                // Auto-fit with smooth transition
+                timelineInstance.fit({ animation: { duration: 400, easingFunction: 'easeInOutQuad' } });
             })
             .catch(err => console.error('Timeline error:', err));
     }
@@ -264,6 +307,57 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Switch between Categorized Swimlanes and Flat Stream
+function switchTimelineMode(mode) {
+    if (!timelineInstance) return;
+    currentViewMode = mode;
+    const swimBtn = document.getElementById('modeSwimlanesBtn');
+    const uniBtn = document.getElementById('modeUnifiedBtn');
+
+    if (mode === 'swimlanes') {
+        timelineInstance.setGroups(timelineGroupsDataSet);
+        if (swimBtn) { swimBtn.classList.add('active', 'btn-outline-primary'); swimBtn.classList.remove('btn-outline-secondary'); }
+        if (uniBtn) { uniBtn.classList.remove('active', 'btn-outline-primary'); uniBtn.classList.add('btn-outline-secondary'); }
+    } else {
+        timelineInstance.setGroups(null);
+        if (uniBtn) { uniBtn.classList.add('active', 'btn-outline-primary'); uniBtn.classList.remove('btn-outline-secondary'); }
+        if (swimBtn) { swimBtn.classList.remove('active', 'btn-outline-primary'); swimBtn.classList.add('btn-outline-secondary'); }
+    }
+}
+
+// 🎯 Focus directly into the anomaly/attack burst window (eliminates stacking & spreading events cleanly)
+function focusAttackWindow() {
+    if (!timelineInstance || rawTimelineItems.length === 0) return;
+    
+    // Locate flagged anomaly events
+    const flagged = rawTimelineItems.filter(i => i.is_flagged === true);
+    if (flagged.length > 0) {
+        const times = flagged.map(i => new Date(i.start).getTime());
+        const minTime = Math.min(...times);
+        const maxTime = Math.max(...times);
+        // Add 8-minute padding before and after so rapid bursts spread out across the viewport
+        const pad = 1000 * 60 * 8;
+        timelineInstance.setWindow(new Date(minTime - pad), new Date(maxTime + pad), {
+            animation: { duration: 600, easingFunction: 'easeInOutQuad' }
+        });
+    } else {
+        timelineFit();
+    }
+}
+
+// Zoom into a specific hour span around current viewport center
+function zoomPreset(hours) {
+    if (!timelineInstance || rawTimelineItems.length === 0) return;
+    const range = timelineInstance.getWindow();
+    const midPoint = (range.start.getTime() + range.end.getTime()) / 2;
+    const span = hours * 60 * 60 * 1000;
+    timelineInstance.setWindow(
+        new Date(midPoint - span / 2),
+        new Date(midPoint + span / 2),
+        { animation: { duration: 400, easingFunction: 'easeInOutQuad' } }
+    );
+}
 
 // Real-time Instant Filter Engine
 function performLiveFilter() {

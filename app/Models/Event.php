@@ -48,7 +48,7 @@ class Event
     }
 
     /**
-     * Formats normalized events for vis-timeline JavaScript library
+     * Formats normalized events for vis-timeline JavaScript library with swimlane groups & clean chip styling
      */
     public static function getVisTimelineItems(int $invId): array
     {
@@ -57,22 +57,70 @@ class Event
 
         foreach ($events as $ev) {
             $isAnomaly = ($ev['is_flagged'] > 0);
-            $className = $isAnomaly ? 'vis-item-anomaly' : 'vis-item-normal';
+            $action = strtolower($ev['action']);
+            $status = strtolower($ev['status']);
+            $isFailed = str_contains($status, 'fail') || str_contains($action, 'fail') || str_contains($action, 'blocked') || str_contains($action, 'deny');
 
-            $label = htmlspecialchars($ev['action']) . ' <small>(' . htmlspecialchars($ev['account']) . ')</small>';
-            if ($isAnomaly) {
-                $label = '⚠️ <strong>' . $label . '</strong>';
+            // Categorize into forensic domain swimlanes
+            $category = 'SYSTEM';
+            if (
+                str_contains($action, 'login') ||
+                str_contains($action, 'logout') ||
+                str_contains($action, 'auth') ||
+                str_contains($action, 'password') ||
+                str_contains($action, 'session')
+            ) {
+                $category = 'AUTH';
+            } elseif (
+                str_contains($action, 'firewall') ||
+                str_contains($action, 'connection') ||
+                str_contains($action, 'network') ||
+                str_contains($action, 'egress') ||
+                str_contains($action, 'traffic') ||
+                str_contains($action, 'port') ||
+                str_contains($action, 'dns') ||
+                str_contains($action, 'packet')
+            ) {
+                $category = 'NETWORK';
             }
+
+            // Styled compact chip badge
+            if ($isAnomaly || $isFailed) {
+                $icon = '<i class="bi bi-shield-fill-x text-danger me-1"></i>';
+                $chipClass = 'tl-chip tl-chip-danger';
+                $className = 'vis-item-anomaly vis-pill-danger';
+            } elseif ($category === 'AUTH') {
+                $icon = '<i class="bi bi-person-check-fill text-primary me-1"></i>';
+                $chipClass = 'tl-chip tl-chip-auth';
+                $className = 'vis-item-normal vis-pill-auth';
+            } elseif ($category === 'NETWORK') {
+                $icon = '<i class="bi bi-hdd-network-fill text-warning me-1"></i>';
+                $chipClass = 'tl-chip tl-chip-network';
+                $className = 'vis-item-normal vis-pill-network';
+            } else {
+                $icon = '<i class="bi bi-terminal-fill text-info me-1"></i>';
+                $chipClass = 'tl-chip tl-chip-system';
+                $className = 'vis-item-normal vis-pill-system';
+            }
+
+            $safeAction = htmlspecialchars($ev['action']);
+            $actorStr = ($ev['account'] !== 'unknown' && $ev['account'] !== 'anonymous') ? $ev['account'] : $ev['ip_address'];
+            $safeActor = htmlspecialchars($actorStr);
+
+            $chipHtml = "<div class=\"{$chipClass}\">{$icon}<span class=\"tl-act\">{$safeAction}</span><span class=\"tl-sep\">&bull;</span><span class=\"tl-who\">{$safeActor}</span></div>";
 
             $items[] = [
                 'id' => $ev['id'],
-                'content' => $label,
+                'group' => $category,
+                'category' => $category,
+                'content' => $chipHtml,
                 'start' => $ev['timestamp'],
                 'className' => $className,
                 'title' => "Event #{$ev['id']}: {$ev['action']} by {$ev['account']} from {$ev['ip_address']} [{$ev['timestamp']}]",
                 'account' => $ev['account'],
                 'ip' => $ev['ip_address'],
                 'device' => $ev['device_id'],
+                'action' => $ev['action'],
                 'status' => $ev['status'],
                 'details' => $ev['details'],
                 'is_flagged' => $isAnomaly,
