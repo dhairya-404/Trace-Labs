@@ -28,18 +28,47 @@ class User
 
     public static function seedDefaultUser(): void
     {
-        $user = self::findByEmail('analyst@tracelab.local');
-        if (!$user) {
-            Database::query(
-                "INSERT INTO users (name, email, password_hash, role)
-                 VALUES (:name, :email, :hash, :role)",
-                [
-                    'name' => 'Lead Investigator',
-                    'email' => 'analyst@tracelab.local',
-                    'hash' => password_hash('tracelab2026', PASSWORD_DEFAULT),
-                    'role' => 'Lead Examiner'
-                ]
-            );
+        $users = [
+            [
+                'name' => 'Lead Investigator',
+                'email' => 'analyst@tracelab.local',
+                'hash' => password_hash('tracelab2026', PASSWORD_DEFAULT),
+                'role' => 'Lead Examiner'
+            ],
+            [
+                'name' => 'Alex Rivera',
+                'email' => 'responder@tracelab.local',
+                'hash' => password_hash('responder2026', PASSWORD_DEFAULT),
+                'role' => 'Incident Responder'
+            ],
+            [
+                'name' => 'Dr. Maya Lin',
+                'email' => 'intel@tracelab.local',
+                'hash' => password_hash('intel2026', PASSWORD_DEFAULT),
+                'role' => 'Threat Intel Analyst'
+            ],
+            [
+                'name' => 'Sarah Sterling, Esq.',
+                'email' => 'auditor@tracelab.local',
+                'hash' => password_hash('auditor2026', PASSWORD_DEFAULT),
+                'role' => 'Legal Auditor'
+            ]
+        ];
+
+        foreach ($users as $u) {
+            $existing = self::findByEmail($u['email']);
+            if (!$existing) {
+                Database::query(
+                    "INSERT INTO users (name, email, password_hash, role)
+                     VALUES (:name, :email, :hash, :role)",
+                    [
+                        'name' => $u['name'],
+                        'email' => $u['email'],
+                        'hash' => $u['hash'],
+                        'role' => $u['role']
+                    ]
+                );
+            }
         }
     }
 }

@@ -38,19 +38,16 @@ use Tracelabs\Controllers\TimelineController;
 use Tracelabs\Controllers\GraphController;
 use Tracelabs\Controllers\DetectionController;
 use Tracelabs\Controllers\ReportController;
+use Tracelabs\Controllers\LandingController;
 
 $router = new Router();
 $request = new Request();
 
-// Root route -> redirect to investigations if logged in, otherwise login
-$router->get('/', function ($req) {
-    if (!isset($_SESSION['user_id'])) {
-        header('Location: /login');
-    } else {
-        header('Location: /investigations');
-    }
-    exit;
-});
+// Public SEO & Product Landing Routes
+$router->get('/', [LandingController::class, 'index']);
+$router->get('/playground', [LandingController::class, 'playground']);
+$router->get('/logs', [LandingController::class, 'logsIndex']);
+$router->get('/logs/{slug}', [LandingController::class, 'logsShow']);
 
 // Authentication Routes
 $router->get('/login', [AuthController::class, 'showLogin']);
