@@ -28,9 +28,11 @@
                        class="form-control form-control-cyber" 
                        id="email" 
                        name="email" 
-                       value="<?= \Tracelabs\Core\View::escape($_POST['email'] ?? 'analyst@tracelab.local') ?>" 
-                       placeholder="analyst@organization.local" 
+                       value="<?= \Tracelabs\Core\View::escape($_POST['email'] ?? '') ?>" 
+                       placeholder="analyst@organization.com" 
                        required 
+                       autofocus
+                       autocomplete="off"
                        style="padding-left: 38px;">
                 <i class="bi bi-person-badge position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary" style="font-size: 0.85rem;"></i>
             </div>
@@ -49,10 +51,9 @@
                        class="form-control form-control-cyber" 
                        id="password" 
                        name="password" 
-                       placeholder="Enter security keyphrase..." 
+                       placeholder="Enter security passkey..." 
                        required 
-                       autofocus 
-                       autocomplete="current-password"
+                       autocomplete="new-password"
                        style="padding-left: 38px; padding-right: 42px;">
                 <i class="bi bi-key-fill position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary" style="font-size: 0.85rem;"></i>
                 <button type="button" 
@@ -68,7 +69,7 @@
         <!-- Session Persistence -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="form-check">
-                <input class="form-check-input bg-dark border-secondary" type="checkbox" id="rememberMe" checked>
+                <input class="form-check-input bg-dark border-secondary" type="checkbox" id="rememberMe">
                 <label class="form-check-label text-secondary small font-mono" for="rememberMe" style="font-size: 0.74rem;">
                     Remember workstation session
                 </label>
