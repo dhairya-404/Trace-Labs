@@ -78,6 +78,19 @@
                             <i class="bi bi-folder-check"></i> <?= \Tracelabs\Core\View::escape($investigation['title']) ?>
                         </span>
                         <a href="/investigations" class="btn btn-sm btn-outline-secondary">Switch</a>
+                        
+                        <?php if (isset($_SESSION['user_name'])): ?>
+                            <div class="d-none d-lg-flex align-items-center gap-2 border-start border-secondary ps-3 ms-1">
+                                <div class="d-flex flex-column text-end font-mono" style="line-height: 1.2;">
+                                    <span class="text-light small fw-bold" style="font-size: 0.76rem;"><?= \Tracelabs\Core\View::escape($_SESSION['user_name']) ?></span>
+                                    <span class="text-info" style="font-size: 0.65rem;"><?= \Tracelabs\Core\View::escape($_SESSION['user_role'] ?? 'Investigator') ?></span>
+                                </div>
+                                <span class="badge rounded-circle bg-primary text-white p-0" style="width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: bold;">
+                                    <?= strtoupper(substr($_SESSION['user_name'], 0, 1)) ?>
+                                </span>
+                            </div>
+                        <?php endif; ?>
+
                         <a href="/logout" class="btn btn-sm btn-outline-danger font-mono" title="Lock & Sign Out">
                             <i class="bi bi-box-arrow-right"></i>
                         </a>
@@ -88,11 +101,24 @@
                             <a class="nav-link active" href="/investigations"><i class="bi bi-collection"></i> Workspaces</a>
                         </li>
                     </ul>
-                    <div class="d-flex gap-2">
+                    <div class="d-flex gap-2 align-items-center">
                         <button type="button" class="btn btn-sm btn-outline-warning font-mono" data-bs-toggle="modal" data-bs-target="#demoCheatSheetModal">
                             <i class="bi bi-play-circle-fill me-1"></i> Demo Guide
                         </button>
                         <a href="/investigations/create" class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> New Investigation</a>
+
+                        <?php if (isset($_SESSION['user_name'])): ?>
+                            <div class="d-none d-lg-flex align-items-center gap-2 border-start border-secondary ps-3 ms-1">
+                                <div class="d-flex flex-column text-end font-mono" style="line-height: 1.2;">
+                                    <span class="text-light small fw-bold" style="font-size: 0.76rem;"><?= \Tracelabs\Core\View::escape($_SESSION['user_name']) ?></span>
+                                    <span class="text-info" style="font-size: 0.65rem;"><?= \Tracelabs\Core\View::escape($_SESSION['user_role'] ?? 'Investigator') ?></span>
+                                </div>
+                                <span class="badge rounded-circle bg-primary text-white p-0" style="width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: bold;">
+                                    <?= strtoupper(substr($_SESSION['user_name'], 0, 1)) ?>
+                                </span>
+                            </div>
+                        <?php endif; ?>
+
                         <a href="/logout" class="btn btn-sm btn-outline-danger font-mono" title="Lock & Sign Out">
                             <i class="bi bi-box-arrow-right"></i>
                         </a>
