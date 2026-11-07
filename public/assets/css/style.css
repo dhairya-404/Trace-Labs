@@ -1,68 +1,254 @@
-/* TraceLab Custom Stylesheet */
+/* ==========================================================================
+   TraceLab Cyber-Forensics UI Design System (via ui-ux-pro-max)
+   Theme: OLED Deep Midnight Slate + Electric Cyan & Crimson Anomaly Telemetry
+   Typography: IBM Plex Sans & JetBrains Mono
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 :root {
-    --bg-dark: #090d16;
-    --card-dark: #0f172a;
-    --border-dark: #1e293b;
-    --accent-blue: #38bdf8;
-    --accent-crimson: #f43f5e;
+    --color-background: #0f172a;
+    --color-surface: #1b2336;
+    --color-surface-hover: #222c42;
+    --color-surface-dark: #0b1120;
+    --color-border: #334155;
+    --color-border-subtle: #1e293b;
+    --color-foreground: #f8fafc;
+    --color-muted: #94a3b8;
+    
+    /* Cyber Forensics Accents */
+    --color-primary: #38bdf8;
+    --color-primary-glow: rgba(56, 189, 248, 0.25);
+    --color-accent-green: #22c55e;
+    --color-accent-green-glow: rgba(34, 197, 94, 0.25);
+    --color-accent-amber: #f59e0b;
+    --color-destructive: #ef4444;
+    --color-destructive-glow: rgba(239, 68, 68, 0.35);
+
+    --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 body {
-    background-color: var(--bg-dark);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
     min-height: 100vh;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Helpers */
+.font-mono, code, pre, .font-monospace {
+    font-family: var(--font-mono) !important;
 }
 
 .tracking-wide {
     letter-spacing: 0.08em;
 }
 
-/* Vis Timeline Overrides for Cyber Forensic Styling */
+/* Cards & Elevated Containers */
+.card {
+    background-color: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 8px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-header {
+    background-color: var(--color-surface-dark) !important;
+    border-bottom: 1px solid var(--color-border) !important;
+}
+
+.card.hover-border-primary:hover {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 4px 20px var(--color-primary-glow) !important;
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+
+/* Cyber Badges */
+.badge-cyber {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.35em 0.65em;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.badge-cyber-primary {
+    background-color: rgba(56, 189, 248, 0.15);
+    color: var(--color-primary);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.badge-cyber-danger {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: var(--color-destructive);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    box-shadow: 0 0 8px var(--color-destructive-glow);
+}
+
+.badge-cyber-success {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: var(--color-accent-green);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+/* Buttons */
+.btn {
+    font-family: var(--font-sans);
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.18s ease;
+}
+
+.btn-primary {
+    background-color: #0284c7;
+    border-color: #0284c7;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #0369a1;
+    border-color: #0369a1;
+    box-shadow: 0 0 12px var(--color-primary-glow);
+}
+
+.btn-outline-primary {
+    color: var(--color-primary);
+    border-color: rgba(56, 189, 248, 0.5);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--color-primary);
+    color: #0f172a;
+}
+
+/* Navbar */
+.navbar-cyber {
+    background-color: rgba(11, 17, 32, 0.95) !important;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border) !important;
+}
+
+.nav-link {
+    color: var(--color-muted) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.15s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--color-primary) !important;
+}
+
+/* Interactive Tables */
+.table-cyber {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--color-foreground);
+    --bs-table-hover-bg: rgba(56, 189, 248, 0.05);
+    border-color: var(--color-border);
+}
+
+.table-cyber th {
+    background-color: var(--color-surface-dark);
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.table-cyber td {
+    padding: 0.85rem 1rem;
+    vertical-align: middle;
+}
+
+.table-cyber tr:hover {
+    cursor: pointer;
+}
+
+/* vis-timeline Custom Cyber-Forensic Theme */
 .vis-timeline {
-    border: 1px solid #334155 !important;
-    background-color: #0b1120 !important;
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    border: 1px solid var(--color-border) !important;
+    background-color: var(--color-surface-dark) !important;
+    font-family: var(--font-mono) !important;
     font-size: 11px !important;
+    border-radius: 6px;
 }
 
 .vis-item {
     border-radius: 4px !important;
     font-size: 11px !important;
-    padding: 2px 6px !important;
+    padding: 3px 8px !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer !important;
+}
+
+.vis-item:hover {
+    transform: scale(1.05);
+    z-index: 100 !important;
 }
 
 .vis-item.vis-item-normal {
-    background-color: #0284c7 !important;
-    border-color: #38bdf8 !important;
-    color: #ffffff !important;
+    background-color: #0369a1 !important;
+    border-color: var(--color-primary) !important;
+    color: #f8fafc !important;
 }
 
 .vis-item.vis-item-anomaly {
-    background-color: #e11d48 !important;
+    background-color: #be123c !important;
     border-color: #fda4af !important;
     color: #ffffff !important;
-    font-weight: bold !important;
-    box-shadow: 0 0 10px rgba(244, 63, 94, 0.6) !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 14px var(--color-destructive-glow) !important;
 }
 
 .vis-time-axis .vis-text {
-    color: #94a3b8 !important;
+    color: var(--color-muted) !important;
 }
 
 .vis-time-axis .vis-grid.vis-minor {
-    border-color: #1e293b !important;
+    border-color: var(--color-border-subtle) !important;
 }
 
 .vis-time-axis .vis-grid.vis-major {
-    border-color: #334155 !important;
+    border-color: var(--color-border) !important;
 }
 
-/* Card Hover Effects */
-.hover-border-primary {
-    transition: border-color 0.2s ease, transform 0.2s ease;
+/* Modals */
+.modal-content {
+    background-color: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6) !important;
+    border-radius: 8px;
 }
 
-.hover-border-primary:hover {
-    border-color: #38bdf8 !important;
-    transform: translateY(-2px);
+.modal-header, .modal-footer {
+    background-color: var(--color-surface-dark) !important;
+    border-color: var(--color-border) !important;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-surface-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
 }

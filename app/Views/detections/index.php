@@ -5,11 +5,11 @@
     </div>
     <div class="d-flex gap-2">
         <form action="/investigations/<?= $investigation['id'] ?>/detections/rerun" method="POST">
-            <button type="submit" class="btn btn-outline-primary btn-sm">
-                <i class="bi bi-arrow-repeat"></i> Re-Run Analysis Pipeline
+            <button type="submit" class="btn btn-outline-primary btn-sm font-mono">
+                <i class="bi bi-arrow-repeat"></i> Re-Run Detection Pipeline
             </button>
         </form>
-        <a href="/investigations/<?= $investigation['id'] ?>/report" class="btn btn-primary btn-sm">
+        <a href="/investigations/<?= $investigation['id'] ?>/report" class="btn btn-primary btn-sm font-mono">
             <i class="bi bi-file-earmark-text"></i> Export Final Report &rarr;
         </a>
     </div>
@@ -18,26 +18,26 @@
 <!-- Detection Metrics Banner -->
 <div class="row g-3 mb-4">
     <div class="col-md-6">
-        <div class="card bg-dark border-secondary p-3 shadow-sm">
+        <div class="card p-3 shadow-sm border-start border-danger border-4">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <span class="badge bg-danger mb-1">ENGINE 1 &middot; DETERMINISTIC</span>
-                    <h5 class="fw-bold text-light mb-0">Rule-Based Explainable Flags</h5>
-                    <p class="text-secondary small mb-0 mt-1">Brute-Force &bull; Off-Hours Activity &bull; Destructive Persistence</p>
+                    <span class="badge bg-danger bg-opacity-20 text-danger font-mono mb-1">ENGINE 1 &bull; DETERMINISTIC</span>
+                    <h5 class="fw-bold text-light mb-0 font-mono">Rule-Based Explainable Flags</h5>
+                    <p class="text-secondary small mb-0 mt-1">Brute-Force &bull; Off-Hours Operations &bull; Anti-Forensic Tampering</p>
                 </div>
-                <div class="display-6 fw-bold text-danger"><?= $ruleCount ?></div>
+                <div class="display-6 fw-bold text-danger font-mono"><?= $ruleCount ?></div>
             </div>
         </div>
     </div>
     <div class="col-md-6">
-        <div class="card bg-dark border-secondary p-3 shadow-sm">
+        <div class="card p-3 shadow-sm border-start border-info border-4">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <span class="badge bg-info text-dark mb-1">ENGINE 2 &middot; UNSUPERVISED ML</span>
-                    <h5 class="fw-bold text-light mb-0">Isolation Forest Outlier Scores</h5>
-                    <p class="text-secondary small mb-0 mt-1">FastAPI + scikit-learn &bull; Multi-dimensional deviation</p>
+                    <span class="badge bg-info bg-opacity-20 text-info font-mono mb-1">ENGINE 2 &bull; UNSUPERVISED ML</span>
+                    <h5 class="fw-bold text-light mb-0 font-mono">Isolation Forest Outliers</h5>
+                    <p class="text-secondary small mb-0 mt-1">Python Microservice &bull; Multi-dimensional deviation scoring</p>
                 </div>
-                <div class="display-6 fw-bold text-info"><?= $mlCount ?></div>
+                <div class="display-6 fw-bold text-info font-mono"><?= $mlCount ?></div>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
 <div class="alert alert-secondary bg-black border-secondary d-flex align-items-start gap-3 p-3 mb-4 shadow-sm" role="alert">
     <i class="bi bi-info-circle-fill text-info fs-4 mt-1"></i>
     <div class="small">
-        <strong class="text-light">Methodological Note on Academic Machine Learning Triage:</strong>
+        <strong class="text-light font-mono">Methodological Note on Machine Learning Triage:</strong>
         <p class="text-secondary mb-0 mt-1">
             The Isolation Forest algorithm acts as a specialist screening consultant. It scores statistical rarity in multi-dimensional feature space (off-hours, failure frequency, action risk weight). 
             <strong>Importantly, the ML anomaly score is strictly treated as an investigatory lead ("worth a second look") &mdash; never as definitive proof of malicious activity.</strong>
@@ -56,15 +56,17 @@
 </div>
 
 <!-- Findings List with Plain-English Explanations (Demo Step 5 & 6) -->
-<div class="card bg-dark border-secondary shadow mb-4">
-    <div class="card-header bg-black border-secondary py-3 d-flex justify-content-between align-items-center">
-        <h5 class="fw-bold mb-0"><i class="bi bi-card-checklist text-danger me-2"></i>Flagged Findings & Provenance Trace</h5>
-        <span class="badge bg-secondary"><?= count($findings) ?> Active Leads</span>
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <h5 class="fw-bold mb-0 font-mono"><i class="bi bi-card-checklist text-danger me-2"></i>Flagged Findings & Provenance Trace</h5>
+        <span class="badge bg-secondary font-mono"><?= count($findings) ?> Active Leads</span>
     </div>
     <div class="card-body p-0">
         <?php if (empty($findings)): ?>
             <div class="p-5 text-center text-secondary">
-                <p>No anomalies flagged yet. Ingest an activity log file or run the detection pipeline.</p>
+                <i class="bi bi-check2-circle display-5 d-block mb-3 text-success"></i>
+                <h5 class="text-light font-mono">No Anomalies Detected</h5>
+                <p class="small">The dataset matches baseline normal behavior, or no log files have been ingested yet.</p>
                 <a href="/investigations/<?= $investigation['id'] ?>/import" class="btn btn-sm btn-primary">Go to Ingestion Desk</a>
             </div>
         <?php else: ?>
@@ -73,14 +75,14 @@
                     <div class="list-group-item bg-dark text-light border-secondary p-4">
                         <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-2">
                             <div>
-                                <span class="badge <?= $f['detection_source'] === 'RULE_BASED' ? 'bg-danger' : 'bg-info text-dark' ?> me-2">
+                                <span class="badge <?= $f['detection_source'] === 'RULE_BASED' ? 'bg-danger' : 'bg-info text-dark' ?> me-2 font-mono">
                                     <?= $f['detection_source'] ?>
                                 </span>
-                                <strong class="fs-6 font-monospace text-light"><?= \Tracelabs\Core\View::escape($f['rule_name']) ?></strong>
+                                <strong class="fs-6 font-mono text-light"><?= \Tracelabs\Core\View::escape($f['rule_name']) ?></strong>
                             </div>
-                            <div class="d-flex align-items-center gap-2">
+                            <div class="d-flex align-items-center gap-2 font-mono">
                                 <?php if ($f['ml_anomaly_score'] > 0): ?>
-                                    <span class="badge bg-warning text-dark font-monospace">ML Outlier Score: <?= number_format($f['ml_anomaly_score'], 2) ?></span>
+                                    <span class="badge bg-warning text-dark">Isolation Forest Score: <?= number_format($f['ml_anomaly_score'], 2) ?></span>
                                 <?php endif; ?>
                                 <span class="badge bg-secondary"><?= $f['severity'] ?> SEVERITY</span>
                             </div>
@@ -88,12 +90,12 @@
 
                         <!-- Plain English Reason (Core PDF Requirement!) -->
                         <div class="p-3 bg-black rounded border border-secondary mb-3">
-                            <span class="text-secondary small d-block mb-1 fw-bold text-uppercase">Plain-English Explanation:</span>
+                            <span class="text-secondary small d-block mb-1 fw-bold text-uppercase font-mono">Plain-English Diagnostic:</span>
                             <div class="text-light"><?= \Tracelabs\Core\View::escape($f['plain_english_reason']) ?></div>
                         </div>
 
                         <!-- Full Provenance Link Back to Original Source Record (Core PDF Requirement!) -->
-                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 small text-secondary font-monospace">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 small text-secondary font-mono">
                             <div>
                                 <i class="bi bi-file-earmark-text text-info"></i> Source File: <strong><?= \Tracelabs\Core\View::escape($f['filename']) ?></strong>
                                 (Line #<?= $f['raw_line_number'] ?>) &bull;
@@ -113,16 +115,16 @@
 </div>
 
 <!-- Machine Learning Model Evaluation Report (Academic Requirement in PDF) -->
-<div class="card bg-dark border-secondary shadow">
-    <div class="card-header bg-black border-secondary py-3">
-        <h5 class="fw-bold mb-0"><i class="bi bi-bar-chart-line text-info me-2"></i>Machine Learning Model Evaluation Report</h5>
+<div class="card shadow">
+    <div class="card-header py-3">
+        <h5 class="fw-bold mb-0 font-mono"><i class="bi bi-bar-chart-line text-info me-2"></i>Machine Learning Model Evaluation Report</h5>
     </div>
     <div class="card-body p-4">
         <p class="text-secondary small mb-3">
             Academic benchmark metrics for the scikit-learn Isolation Forest model, demonstrating validation against a labeled ground-truth synthetic log dataset.
         </p>
 
-        <div class="row g-3 font-monospace small">
+        <div class="row g-3 font-mono small">
             <div class="col-md-3">
                 <div class="p-3 bg-black rounded border border-secondary text-center">
                     <div class="text-secondary small mb-1">Precision</div>

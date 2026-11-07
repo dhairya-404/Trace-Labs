@@ -1,0 +1,12 @@
+timestamp,account,ip_address,device_id,action,status,details
+2026-11-06T08:55:12,sarah.jenkins,10.0.1.12,DEV-W11-002,login_success,success,Windows Hello biometric authentication
+2026-11-06T09:02:45,michael.scott,10.0.1.15,DEV-W10-019,login_success,success,Domain controller Kerberos login
+2026-11-06T09:10:00,jim.halpert,10.0.1.22,DEV-W10-044,login_success,success,Domain controller Kerberos login
+2026-11-06T09:30:15,pam.beesly,10.0.1.33,DEV-W11-081,login_success,success,Domain controller Kerberos login
+2026-11-06T10:15:20,sarah.jenkins,10.0.1.12,DEV-W11-002,file_access,success,Opened shared folder \\FILESRV\Accounting\Invoice_Oct.xlsx
+2026-11-06T11:45:00,michael.scott,10.0.1.15,DEV-W10-019,file_access,success,Read standard document \\FILESRV\General\Handbook.pdf
+2026-11-06T13:30:10,jim.halpert,10.0.1.22,DEV-W10-044,file_access,success,Read client contract \\FILESRV\Sales\Q4_Proposals.docx
+2026-11-06T16:55:00,pam.beesly,10.0.1.33,DEV-W11-081,logout,success,Workstation locked and session ended
+2026-11-06T17:05:22,sarah.jenkins,10.0.1.12,DEV-W11-002,logout,success,Session terminated normally
+2026-11-06T17:15:00,michael.scott,10.0.1.15,DEV-W10-019,logout,success,Session terminated normally
+2026-11-06T17:30:10,jim.halpert,10.0.1.22,DEV-W10-044,logout,success,Session terminated normally

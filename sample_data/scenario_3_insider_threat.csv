@@ -1,0 +1,9 @@
+timestamp,account,ip_address,device_id,action,status,details
+2026-11-06T09:30:10,dev.lead,10.0.3.15,MAC-ENG-08,login_success,success,SSH Key authentication to Gitlab-Core
+2026-11-06T11:15:00,dev.lead,10.0.3.15,MAC-ENG-08,file_access,success,git pull origin main on repository payments-service
+2026-11-06T14:20:45,dev.lead,10.0.3.15,MAC-ENG-08,file_access,success,git commit on feature/stripe-webhook
+2026-11-06T17:30:00,dev.lead,10.0.3.15,MAC-ENG-08,logout,success,Session logout recorded
+2026-11-06T23:45:10,dev.lead,172.56.21.90,MAC-ENG-08,login_success,success,Remote VPN connection authenticated from cellular hotspot
+2026-11-06T23:50:22,dev.lead,172.56.21.90,MAC-ENG-08,file_download_bulk,success,Archive cloned: all_customer_tokens_2026.tar.gz (450 MB)
+2026-11-07T00:05:40,dev.lead,172.56.21.90,MAC-ENG-08,data_export,success,S3 bucket sync: aws s3 sync s3://corp-secrets ./local_staging
+2026-11-07T00:15:00,dev.lead,172.56.21.90,MAC-ENG-08,logout,success,Remote VPN tunnel severed

@@ -47,8 +47,10 @@ class ImportController extends Controller
         $sampleType = $request->post('sample_dataset');
         if ($sampleType) {
             $samplePath = match($sampleType) {
-                'auth' => __DIR__ . '/../../sample_data/auth_logs_scenario_alpha.csv',
-                'firewall' => __DIR__ . '/../../sample_data/firewall_traffic_scenario_beta.json',
+                'auth' => __DIR__ . '/../../sample_data/scenario_1_brute_force.csv',
+                'firewall' => __DIR__ . '/../../sample_data/scenario_2_firewall_exfil.json',
+                'insider' => __DIR__ . '/../../sample_data/scenario_3_insider_threat.csv',
+                'baseline' => __DIR__ . '/../../sample_data/scenario_4_clean_baseline.csv',
                 default => null
             };
 

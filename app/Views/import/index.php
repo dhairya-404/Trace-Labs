@@ -1,9 +1,10 @@
 <div class="row g-4">
+    <!-- Left Column: Upload Form & 1-Click Demo Scenarios -->
     <div class="col-lg-7">
-        <div class="card bg-dark border-secondary p-4 shadow-sm mb-4">
-            <h4 class="fw-bold mb-1"><i class="bi bi-file-earmark-arrow-up text-primary me-2"></i>Step 1: Upload & Fingerprint Raw Log Files</h4>
+        <div class="card p-4 shadow-sm mb-4">
+            <h4 class="fw-bold mb-1"><i class="bi bi-file-earmark-arrow-up text-primary me-2"></i>Step 1: Upload & Fingerprint Raw Activity Logs</h4>
             <p class="text-secondary small mb-4">
-                Upload raw CSV or JSON files (e.g. authentication logs, firewall traffic, server access). TraceLab will validate structure, calculate a permanent SHA-256 digital fingerprint, and normalize timestamps and field names into a unified event format.
+                Ingest raw CSV or JSON files (authentication logs, firewall flows, server command access). TraceLab calculates a permanent <strong>SHA-256 digital fingerprint</strong> at the intake boundary, then cleans and standardizes timestamps and disparate column names into a unified event format.
             </p>
 
             <?php if (!empty($error)): ?>
@@ -14,48 +15,98 @@
 
             <form action="/investigations/<?= $investigation['id'] ?>/import" method="POST" enctype="multipart/form-data">
                 <div class="mb-4">
-                    <label for="log_file" class="form-label text-secondary small">Choose Log File (CSV or JSON)</label>
+                    <label for="log_file" class="form-label text-secondary small fw-semibold">Select Log File (.csv or .json)</label>
                     <input class="form-control bg-black text-light border-secondary" type="file" id="log_file" name="log_file" accept=".csv,.json">
-                    <div class="form-text text-secondary small">Accepted formats: .csv, .json with timestamp, user/account, IP, action, status.</div>
+                    <div class="form-text text-secondary small">Supports any standard server/auth export with timestamp, account, IP, action, and status.</div>
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center">
                     <button type="submit" class="btn btn-primary px-4">
-                        <i class="bi bi-cpu me-1"></i> Upload, Hash & Normalize
+                        <i class="bi bi-cpu me-1"></i> Upload, Hash & Ingest
                     </button>
-                    <span class="text-secondary small"><i class="bi bi-shield-check"></i> SHA-256 Verified On Ingestion</span>
+                    <span class="text-secondary small font-mono"><i class="bi bi-shield-check text-success"></i> SHA-256 Non-Repudiation</span>
                 </div>
             </form>
         </div>
 
-        <!-- 1-Click Academic Demo Datasets (Essential for the 5-Minute Demo!) -->
-        <div class="card bg-dark border-primary border-opacity-50 p-4 shadow-sm">
-            <div class="d-flex align-items-center gap-2 mb-2">
-                <span class="badge bg-primary">5-MINUTE DEMO SHORTCUT</span>
-                <h5 class="fw-bold mb-0 text-light">Pre-Packaged Academic Test Datasets</h5>
+        <!-- 4 Pre-Packaged Academic Test Datasets for Examination -->
+        <div class="card p-4 shadow-sm" style="border-color: rgba(56, 189, 248, 0.4) !important;">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary text-dark font-mono fw-bold">1-CLICK DEMO SCENARIOS</span>
+                    <h5 class="fw-bold mb-0 text-light">Pre-Bundled Investigation Datasets</h5>
+                </div>
+                <span class="text-muted small">Ready to test immediately</span>
             </div>
             <p class="text-secondary small mb-3">
-                For examiner demonstration and grading, load realistic simulated enterprise security datasets with pre-injected anomalous attack vectors:
+                Select any simulated enterprise security scenario to instantly demonstrate ingestion, normalization, graph linking, and dual anomaly detection:
             </p>
 
-            <div class="row g-2">
+            <div class="row g-3">
+                <!-- Scenario 1: Brute Force Attack -->
                 <div class="col-md-6">
                     <form action="/investigations/<?= $investigation['id'] ?>/import" method="POST">
                         <input type="hidden" name="sample_dataset" value="auth">
-                        <button type="submit" class="btn btn-outline-info w-100 text-start p-3 h-100">
-                            <div class="fw-bold text-light mb-1"><i class="bi bi-key me-1"></i> Scenario Alpha: Auth Logs</div>
-                            <div class="small text-secondary mb-2">CSV format &bull; 17 normalized events</div>
-                            <div class="badge bg-danger-subtle text-danger">Contains: 5 rapid failed logins + success brute-force + off-hours admin escalation</div>
+                        <button type="submit" class="card bg-black border-secondary w-100 text-start p-3 h-100 hover-border-primary">
+                            <div class="d-flex justify-content-between align-items-start mb-1">
+                                <strong class="text-light"><i class="bi bi-key-fill text-danger me-1"></i> Scenario 1: Brute Force Attack</strong>
+                                <span class="badge bg-secondary font-mono">CSV</span>
+                            </div>
+                            <div class="text-secondary small mb-2">17 records &bull; Remote Authentication</div>
+                            <div class="badge bg-danger bg-opacity-25 text-danger font-mono small text-wrap text-start">
+                                5 rapid failed logins + success from 198.51.100.44 + admin escalation
+                            </div>
                         </button>
                     </form>
                 </div>
+
+                <!-- Scenario 2: Firewall Flow & Exfil -->
                 <div class="col-md-6">
                     <form action="/investigations/<?= $investigation['id'] ?>/import" method="POST">
                         <input type="hidden" name="sample_dataset" value="firewall">
-                        <button type="submit" class="btn btn-outline-warning w-100 text-start p-3 h-100">
-                            <div class="fw-bold text-light mb-1"><i class="bi bi-shield-shaded me-1"></i> Scenario Beta: Firewall Flows</div>
-                            <div class="small text-secondary mb-2">JSON format &bull; 6 normalized events</div>
-                            <div class="badge bg-warning-subtle text-warning">Contains: Inbound SSL VPN handshake + 4.8GB outbound exfiltration + shadow copy purge</div>
+                        <button type="submit" class="card bg-black border-secondary w-100 text-start p-3 h-100 hover-border-primary">
+                            <div class="d-flex justify-content-between align-items-start mb-1">
+                                <strong class="text-light"><i class="bi bi-shield-shaded text-warning me-1"></i> Scenario 2: Firewall Flow & Exfil</strong>
+                                <span class="badge bg-secondary font-mono">JSON</span>
+                            </div>
+                            <div class="text-secondary small mb-2">6 records &bull; Network Traffic Flow</div>
+                            <div class="badge bg-warning bg-opacity-25 text-warning font-mono small text-wrap text-start">
+                                SSL VPN handshake + 4.8 GB outbound egress + VSS shadow copy purge
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Scenario 3: Insider Threat -->
+                <div class="col-md-6">
+                    <form action="/investigations/<?= $investigation['id'] ?>/import" method="POST">
+                        <input type="hidden" name="sample_dataset" value="insider">
+                        <button type="submit" class="card bg-black border-secondary w-100 text-start p-3 h-100 hover-border-primary">
+                            <div class="d-flex justify-content-between align-items-start mb-1">
+                                <strong class="text-light"><i class="bi bi-person-x-fill text-info me-1"></i> Scenario 3: Insider Threat</strong>
+                                <span class="badge bg-secondary font-mono">CSV</span>
+                            </div>
+                            <div class="text-secondary small mb-2">8 records &bull; Midnight Git/S3 Theft</div>
+                            <div class="badge bg-info bg-opacity-25 text-info font-mono small text-wrap text-start">
+                                Resigning engineer syncing token archives to personal S3 at 11:45 PM
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Scenario 4: Clean Baseline Normal Day -->
+                <div class="col-md-6">
+                    <form action="/investigations/<?= $investigation['id'] ?>/import" method="POST">
+                        <input type="hidden" name="sample_dataset" value="baseline">
+                        <button type="submit" class="card bg-black border-secondary w-100 text-start p-3 h-100 hover-border-primary">
+                            <div class="d-flex justify-content-between align-items-start mb-1">
+                                <strong class="text-light"><i class="bi bi-check2-circle text-success me-1"></i> Scenario 4: Clean Normal Day</strong>
+                                <span class="badge bg-secondary font-mono">CSV</span>
+                            </div>
+                            <div class="text-secondary small mb-2">11 records &bull; Standard 9-5 Working Day</div>
+                            <div class="badge bg-success bg-opacity-25 text-success font-mono small text-wrap text-start">
+                                Tests false positive resilience &bull; Clean normal activity with 0 flags
+                            </div>
                         </button>
                     </form>
                 </div>
@@ -63,29 +114,30 @@
         </div>
     </div>
 
-    <!-- Right Side: Ingestion Ledger & Fingerprint Manifest -->
+    <!-- Right Column: Evidence Fingerprint Manifest -->
     <div class="col-lg-5">
-        <div class="card bg-dark border-secondary h-100 shadow-sm">
-            <div class="card-header bg-black border-secondary py-3">
-                <h5 class="fw-bold mb-0"><i class="bi bi-fingerprint text-info me-2"></i>Evidence Fingerprint Manifest</h5>
+        <div class="card h-100 shadow-sm">
+            <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                <h5 class="fw-bold mb-0 font-mono"><i class="bi bi-fingerprint text-info me-2"></i>Evidence Fingerprint Manifest</h5>
+                <span class="badge bg-dark border border-secondary"><?= count($files) ?> Stored</span>
             </div>
             <div class="card-body p-3">
                 <p class="text-secondary small mb-3">
-                    Calculated cryptographic hash guarantees original log file immutability and non-repudiation.
+                    Calculated cryptographic hash guarantees original log file immutability and judicial non-repudiation.
                 </p>
 
                 <?php if (empty($files)): ?>
-                    <div class="p-4 text-center text-secondary border border-secondary border-dashed rounded">
-                        <i class="bi bi-file-earmark-lock display-6 d-block mb-2"></i>
-                        No files in evidence ledger yet.<br>Upload a file or click one of the demo datasets.
+                    <div class="p-5 text-center text-secondary border border-secondary border-dashed rounded">
+                        <i class="bi bi-file-earmark-lock display-5 d-block mb-3 text-secondary"></i>
+                        No files in evidence ledger yet.<br>Click any of the 4 demo scenarios on the left to start!
                     </div>
                 <?php else: ?>
                     <div class="d-flex flex-column gap-3">
                         <?php foreach ($files as $f): ?>
                             <div class="p-3 bg-black rounded border border-secondary">
                                 <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <strong class="text-light"><?= \Tracelabs\Core\View::escape($f['filename']) ?></strong>
-                                    <span class="badge bg-secondary"><?= $f['file_format'] ?></span>
+                                    <strong class="text-light font-mono"><?= \Tracelabs\Core\View::escape($f['filename']) ?></strong>
+                                    <span class="badge bg-secondary font-mono"><?= $f['file_format'] ?></span>
                                 </div>
                                 <div class="text-secondary small mb-2">
                                     <span><?= number_format($f['file_size'] / 1024, 1) ?> KB</span> &bull; 
@@ -93,7 +145,7 @@
                                     <span><?= $f['uploaded_at'] ?></span>
                                 </div>
                                 <div class="small text-secondary mb-1">SHA-256 Fingerprint:</div>
-                                <div class="p-2 bg-dark rounded font-monospace small text-primary text-break border border-secondary">
+                                <div class="p-2 bg-dark rounded font-mono small text-primary text-break border border-secondary">
                                     <?= $f['sha256_hash'] ?>
                                 </div>
                             </div>

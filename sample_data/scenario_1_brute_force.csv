@@ -1,0 +1,18 @@
+timestamp,account,ip_address,device_id,action,status,details
+2026-11-06T09:00:15,alice.miller,10.0.1.45,DEV-W10-091,login_success,success,Kerberos Ticket Granted via DC01
+2026-11-06T09:02:40,bob.chen,10.0.1.72,DEV-W11-104,login_success,success,Kerberos Ticket Granted via DC01
+2026-11-06T09:15:22,claire.morris,10.0.2.19,DEV-MBP-012,login_success,success,SSO Okta Authentication Validated
+2026-11-06T10:45:00,david.kim,10.0.1.88,DEV-W10-055,login_success,success,Standard workstation session start
+2026-11-06T11:30:10,alice.miller,10.0.1.45,DEV-W10-091,file_access,success,Read \\SHARE\Marketing\Q4_Roadmap.pdf
+2026-11-06T14:10:05,bob.chen,10.0.1.72,DEV-W11-104,file_access,success,Read \\SHARE\Engineering\Design_Doc_v3.md
+2026-11-06T17:55:00,alice.miller,10.0.1.45,DEV-W10-091,logout,success,Session terminated normally
+2026-11-06T18:05:12,bob.chen,10.0.1.72,DEV-W11-104,logout,success,Session terminated normally
+2026-11-07T02:14:05,admin.finance,198.51.100.44,DEV-EXT-999,login_failed,failure,Pre-authentication failed for admin.finance (Bad password attempt 1)
+2026-11-07T02:14:22,admin.finance,198.51.100.44,DEV-EXT-999,login_failed,failure,Pre-authentication failed for admin.finance (Bad password attempt 2)
+2026-11-07T02:14:41,admin.finance,198.51.100.44,DEV-EXT-999,login_failed,failure,Pre-authentication failed for admin.finance (Bad password attempt 3)
+2026-11-07T02:15:02,admin.finance,198.51.100.44,DEV-EXT-999,login_failed,failure,Pre-authentication failed for admin.finance (Bad password attempt 4)
+2026-11-07T02:15:19,admin.finance,198.51.100.44,DEV-EXT-999,login_failed,failure,Pre-authentication failed for admin.finance (Bad password attempt 5)
+2026-11-07T02:15:45,admin.finance,198.51.100.44,DEV-EXT-999,login_success,success,Authentication accepted for admin.finance from external IP
+2026-11-07T02:22:10,admin.finance,198.51.100.44,DEV-EXT-999,privilege_escalation,success,User added to Enterprise Administrators security group
+2026-11-07T02:35:40,admin.finance,198.51.100.44,DEV-EXT-999,data_export,success,Bulk database query executed: SELECT * FROM payroll_records_2026
+2026-11-07T03:00:15,admin.finance,198.51.100.44,DEV-EXT-999,logout,success,Session disconnected
