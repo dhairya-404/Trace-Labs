@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /investigations
+Disallow: /api/
+
+Sitemap: https://trace-labs.vercel.app/sitemap.xml
