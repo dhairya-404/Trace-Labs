@@ -38,14 +38,15 @@
 
         .auth-container {
             width: 100%;
-            max-width: 420px;
+            max-width: 440px;
         }
 
         .auth-card {
             background: #111827;
             border: 1px solid #1f2937;
-            border-radius: 12px;
-            padding: 36px;
+            border-radius: 14px;
+            padding: 32px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
         }
 
         .font-mono {
@@ -53,19 +54,19 @@
         }
 
         .form-control-cyber {
-            background-color: rgba(2, 6, 23, 0.65) !important;
-            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            background-color: #080d1a !important;
+            border: 1px solid #1e293b !important;
             color: #f8fafc !important;
-            border-radius: 10px;
-            padding: 12px 16px;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            transition: all 0.15s ease;
         }
 
         .form-control-cyber:focus {
-            background-color: rgba(2, 6, 23, 0.9) !important;
-            border-color: var(--accent-cyan) !important;
-            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15) !important;
+            background-color: #0c1424 !important;
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
             outline: none;
         }
 
@@ -87,13 +88,52 @@
         }
 
         .user-pill {
-            background: rgba(2, 6, 23, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 12px 14px;
+            background: #080d1a;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 10px 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 12px;
+        }
+
+        .badge-verified {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 9999px;
+            font-size: 0.72rem;
+            font-family: var(--font-mono);
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            color: #4ade80;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .demo-key-card {
+            background: #080d1a;
+            border: 1px dashed #334155;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .demo-key-card:hover {
+            background: #0f172a;
+            border-color: #38bdf8;
+        }
+
+        .btn-xs-fill {
+            font-size: 0.72rem;
+            font-family: var(--font-mono);
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 3px 8px;
+            border-radius: 6px;
+            white-space: nowrap;
         }
     </style>
 </head>
