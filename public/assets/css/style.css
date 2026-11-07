@@ -645,6 +645,50 @@ div.vis-tooltip,
     letter-spacing: 0.02em;
 }
 
+/* Bulletproof High-Contrast Cyber Badges */
+.badge.bg-danger,
+.badge.text-danger.bg-danger,
+.badge.bg-danger-subtle.text-danger,
+.badge-cyber-danger {
+    background-color: rgba(239, 68, 68, 0.18) !important;
+    color: #fee2e2 !important;
+    border: 1px solid rgba(239, 68, 68, 0.5) !important;
+}
+
+.badge-cyber-score-danger {
+    background-color: rgba(239, 68, 68, 0.25) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(239, 68, 68, 0.65) !important;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.4) !important;
+}
+
+.badge.bg-warning,
+.badge.text-warning.bg-warning,
+.badge.bg-warning-subtle.text-warning,
+.badge-cyber-warning {
+    background-color: rgba(245, 158, 11, 0.18) !important;
+    color: #fef08a !important;
+    border: 1px solid rgba(245, 158, 11, 0.5) !important;
+}
+
+.badge.bg-info,
+.badge.text-info.bg-info,
+.badge.bg-info-subtle.text-info,
+.badge-cyber-info {
+    background-color: rgba(56, 189, 248, 0.18) !important;
+    color: #e0f2fe !important;
+    border: 1px solid rgba(56, 189, 248, 0.5) !important;
+}
+
+.badge.bg-success,
+.badge.text-success.bg-success,
+.badge.bg-success-subtle.text-success,
+.badge-cyber-success {
+    background-color: rgba(16, 185, 129, 0.18) !important;
+    color: #d1fae5 !important;
+    border: 1px solid rgba(16, 185, 129, 0.5) !important;
+}
+
 /* Brand Mark Glow & Identity Refinement */
 .navbar-brand svg,
 .navbar-brand img,

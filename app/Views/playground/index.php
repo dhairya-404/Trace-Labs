@@ -52,7 +52,9 @@
             <div class="card h-100 shadow p-3">
                 <div class="d-flex justify-content-between align-items-center pb-2 mb-3 border-bottom border-secondary border-opacity-30 font-mono small">
                     <span class="text-light fw-bold"><i class="bi bi-shield-check text-success me-1"></i> Evidence Digest &amp; Metadata</span>
-                    <span class="badge bg-success bg-opacity-20 text-success border border-success border-opacity-40">CLIENT-SIDE VERIFIED</span>
+                    <span class="badge badge-cyber-success font-mono d-inline-flex align-items-center gap-1" style="background: rgba(16, 185, 129, 0.18) !important; color: #a7f3d0 !important; border: 1px solid rgba(16, 185, 129, 0.5) !important;">
+                        <i class="bi bi-shield-check text-success"></i> CLIENT-SIDE VERIFIED
+                    </span>
                 </div>
 
                 <div class="mb-3">

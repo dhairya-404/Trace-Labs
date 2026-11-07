@@ -45,7 +45,10 @@
                 <div class="card p-3 shadow-lg" style="background: #090e1a !important; border: 1px solid rgba(56, 189, 248, 0.25) !important; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 30px rgba(56, 189, 248, 0.1) !important;">
                     <div class="d-flex justify-content-between align-items-center pb-2 mb-3 border-bottom border-secondary border-opacity-40 font-mono small">
                         <span class="text-danger fw-bold"><i class="bi bi-shield-fill-exclamation me-1"></i> INCIDENT #1 TRIAGE WINDOW</span>
-                        <span class="badge bg-danger bg-opacity-20 text-danger border border-danger border-opacity-40">CRITICAL BREACH</span>
+                        <span class="badge badge-cyber-danger font-mono d-inline-flex align-items-center gap-1" style="background: rgba(239, 68, 68, 0.18) !important; color: #fee2e2 !important; border: 1px solid rgba(239, 68, 68, 0.5) !important; font-size: 0.72rem; letter-spacing: 0.05em; padding: 4px 10px;">
+                            <span class="rounded-circle d-inline-block bg-danger" style="width: 6px; height: 6px; box-shadow: 0 0 6px #ef4444;"></span>
+                            CRITICAL BREACH
+                        </span>
                     </div>
 
                     <div class="mb-3">
@@ -86,7 +89,9 @@
 
                     <div class="d-flex justify-content-between align-items-center font-mono small text-secondary">
                         <span>Isolation Forest ML Outlier Score:</span>
-                        <span class="badge bg-danger bg-opacity-20 text-danger border border-danger border-opacity-40 font-mono fs-6 py-1 px-2">0.941 / 1.00</span>
+                        <span class="badge badge-cyber-score-danger font-mono py-1 px-3 d-inline-flex align-items-center gap-1" style="background: rgba(239, 68, 68, 0.22) !important; color: #ffffff !important; border: 1px solid rgba(239, 68, 68, 0.6) !important; font-size: 0.85rem; font-weight: 700; text-shadow: 0 0 8px rgba(239, 68, 68, 0.6);">
+                            <i class="bi bi-exclamation-triangle-fill text-danger me-1" style="font-size: 0.75rem;"></i>0.941 / 1.00 &bull; ANOMALOUS
+                        </span>
                     </div>
                 </div>
             </div>
