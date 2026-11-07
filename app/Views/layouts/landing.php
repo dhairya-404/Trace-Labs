@@ -102,7 +102,14 @@
     <nav class="navbar navbar-expand-lg navbar-dark nav-landing sticky-top py-3">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2 font-mono" href="/">
-                <img src="/favicon.svg" alt="TraceLab Mark" width="28" height="28" class="rounded-2" style="border: 1px solid rgba(56, 189, 248, 0.4); box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);">
+                <svg width="28" height="28" viewBox="0 0 64 64" fill="none" class="rounded-2" style="border: 1px solid rgba(56, 189, 248, 0.4); box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);">
+                    <rect width="64" height="64" rx="14" fill="#070c18"/>
+                    <circle cx="32" cy="32" r="22" stroke="#334155" stroke-width="2" stroke-dasharray="8 6"/>
+                    <path d="M 32 16 A 16 16 0 1 1 16 32" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="32" cy="32" r="6" fill="#38bdf8"/>
+                    <circle cx="32" cy="32" r="3" fill="#ffffff"/>
+                    <line x1="32" y1="32" x2="48" y2="16" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+                </svg>
                 <span class="fw-bold tracking-wide text-light">TRACELAB</span>
                 <span class="badge border border-secondary text-secondary font-mono small py-0 px-1">v1.0</span>
             </a>
@@ -169,7 +176,14 @@
             <div class="row g-4 mb-4">
                 <div class="col-lg-5">
                     <div class="d-flex align-items-center gap-2 font-mono mb-2">
-                        <img src="/favicon.svg" alt="TraceLab Mark" width="28" height="28" class="rounded-2" style="border: 1px solid rgba(56, 189, 248, 0.3);">
+                        <svg width="28" height="28" viewBox="0 0 64 64" fill="none" class="rounded-2" style="border: 1px solid rgba(56, 189, 248, 0.4);">
+                            <rect width="64" height="64" rx="14" fill="#070c18"/>
+                            <circle cx="32" cy="32" r="22" stroke="#334155" stroke-width="2" stroke-dasharray="8 6"/>
+                            <path d="M 32 16 A 16 16 0 1 1 16 32" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+                            <circle cx="32" cy="32" r="6" fill="#38bdf8"/>
+                            <circle cx="32" cy="32" r="3" fill="#ffffff"/>
+                            <line x1="32" y1="32" x2="48" y2="16" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
                         <span class="fw-bold fs-5 text-light">TRACELAB</span>
                     </div>
                     <p class="text-secondary small mb-3" style="max-width: 420px;">

@@ -31,7 +31,14 @@
     <nav class="navbar navbar-expand-lg navbar-dark navbar-cyber px-3 py-2 sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center gap-2 font-mono text-uppercase" href="/investigations">
-                <img src="/favicon.svg" alt="TraceLab Mark" width="24" height="24" class="rounded" style="border: 1px solid rgba(56, 189, 248, 0.4); box-shadow: 0 0 8px rgba(56, 189, 248, 0.25);">
+                <svg width="24" height="24" viewBox="0 0 64 64" fill="none" class="rounded" style="border: 1px solid rgba(56, 189, 248, 0.4); box-shadow: 0 0 8px rgba(56, 189, 248, 0.25);">
+                    <rect width="64" height="64" rx="14" fill="#070c18"/>
+                    <circle cx="32" cy="32" r="22" stroke="#334155" stroke-width="2" stroke-dasharray="8 6"/>
+                    <path d="M 32 16 A 16 16 0 1 1 16 32" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="32" cy="32" r="6" fill="#38bdf8"/>
+                    <circle cx="32" cy="32" r="3" fill="#ffffff"/>
+                    <line x1="32" y1="32" x2="48" y2="16" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+                </svg>
                 <span class="text-light fw-bold">TRACELAB</span>
                 <span class="badge border border-secondary text-secondary font-mono small py-0 px-1">v1.0</span>
             </a>

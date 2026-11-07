@@ -1,15 +1,39 @@
 <div class="auth-card">
-    <!-- Brand Header (Refined High-Precision DFIR Identity) -->
+    <!-- Brand Header (Bulletproof Inline Forensic Telemetry Emblem) -->
     <div class="text-center mb-4">
         <div class="position-relative d-inline-flex align-items-center justify-content-center mb-3">
             <div class="brand-glow"></div>
-            <img src="/favicon.svg" alt="TraceLab Mark" width="56" height="56" class="rounded-3 position-relative" style="border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.25);">
+            <svg class="rounded-3 position-relative" width="56" height="56" viewBox="0 0 64 64" fill="none" style="border: 1px solid rgba(56, 189, 248, 0.4); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.25);">
+                <defs>
+                    <linearGradient id="loginGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#38bdf8"/>
+                        <stop offset="50%" stop-color="#0284c7"/>
+                        <stop offset="100%" stop-color="#2563eb"/>
+                    </linearGradient>
+                    <radialGradient id="loginGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+                        <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+                <rect width="64" height="64" rx="14" fill="#070c18"/>
+                <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" stroke="#1e293b" stroke-width="1.5"/>
+                <circle cx="32" cy="32" r="24" fill="url(#loginGlow)"/>
+                <line x1="32" y1="12" x2="32" y2="52" stroke="#1e293b" stroke-width="1" stroke-dasharray="2 2"/>
+                <line x1="12" y1="32" x2="52" y2="32" stroke="#1e293b" stroke-width="1" stroke-dasharray="2 2"/>
+                <circle cx="32" cy="32" r="22" stroke="#334155" stroke-width="1.5" stroke-dasharray="8 6"/>
+                <path d="M 32 16 A 16 16 0 1 1 16 32" stroke="url(#loginGrad)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 22 32 A 10 10 0 0 1 32 22" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="32" cy="32" r="5" fill="url(#loginGrad)"/>
+                <circle cx="32" cy="32" r="2.5" fill="#ffffff"/>
+                <line x1="32" y1="32" x2="48" y2="16" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="48" cy="16" r="2" fill="#38bdf8"/>
+            </svg>
         </div>
         <div class="d-flex align-items-center justify-content-center gap-2 mb-1">
             <h3 class="fw-bold tracking-wider font-mono mb-0 text-light fs-3" style="letter-spacing: 0.08em;">TRACELAB</h3>
             <span class="badge border border-info border-opacity-30 bg-info bg-opacity-10 text-info font-mono" style="font-size: 0.65rem;">v1.0</span>
         </div>
-        <p class="text-secondary small mb-0" style="font-size: 0.8rem; letter-spacing: 0.02em;">Digital Forensics &amp; Activity Investigation Platform</p>
+        <p class="text-secondary small mb-0 font-sans" style="font-size: 0.8rem; letter-spacing: 0.02em;">Digital Forensics &amp; Activity Investigation Platform</p>
     </div>
 
     <?php if (!empty($error)): ?>
