@@ -231,89 +231,151 @@
     </div>
 </section>
 
-<!-- Editions & SaaS Pricing Tiers (From Scaling Blueprint) -->
+<!-- Editions & SaaS Pricing Tiers -->
 <section class="py-5" id="pricing">
     <div class="container py-4">
-        <div class="text-center mb-5 reveal">
-            <span class="badge border border-primary text-primary font-mono px-3 py-1 mb-2">SCALING TIERS</span>
-            <h2 class="fw-bold font-sans text-light">Deployment Editions &amp; Enterprise Roadmap</h2>
-            <p class="text-secondary mx-auto" style="max-width: 600px;">
-                From local investigator workbenches to high-throughput enterprise security operation centers.
+        <div class="text-center mb-4 reveal">
+            <span class="badge border border-info text-info bg-info bg-opacity-10 font-mono px-3 py-1 mb-2">TRANSPARENT FORENSIC PRICING</span>
+            <h2 class="fw-bold font-sans text-light">Simple, Fair Plans for Every Investigation Desk</h2>
+            <p class="text-secondary mx-auto font-sans" style="max-width: 620px;">
+                Start analyzing digital event logs immediately for free, or upgrade for cloud synchronization, automated court reports, and multi-analyst SOC collaboration.
             </p>
+        </div>
+
+        <!-- Monthly vs. Annual Billing Cycle Toggle -->
+        <div class="d-flex justify-content-center align-items-center gap-3 mb-5 reveal">
+            <span class="font-mono small text-secondary" id="labelMonthly">Billed Monthly</span>
+            <div class="form-check form-switch m-0 d-flex align-items-center">
+                <input class="form-check-input" type="checkbox" id="pricingBillingToggle" onchange="togglePricingCycle(this.checked)" style="width: 2.75em; height: 1.4em; cursor: pointer; background-color: #1e293b; border-color: #38bdf8;">
+            </div>
+            <span class="font-mono small text-light fw-bold" id="labelAnnual">
+                Billed Annually 
+                <span class="badge border border-success border-opacity-40 text-success bg-success bg-opacity-10 ms-1 py-1 px-2">Save 25%</span>
+            </span>
         </div>
 
         <div class="row g-4 align-items-stretch">
             <!-- Tier 1: Community -->
             <div class="col-lg-4 reveal delay-1">
-                <div class="feature-card d-flex flex-column">
+                <div class="feature-card d-flex flex-column h-100" style="border-radius: 12px;">
                     <div class="border-bottom border-secondary border-opacity-25 pb-3 mb-3">
-                        <span class="badge bg-secondary-subtle text-secondary font-mono mb-2">OPEN CORE</span>
+                        <span class="badge border border-secondary text-secondary font-mono mb-2">OPEN CORE</span>
                         <h4 class="fw-bold text-light mb-1 font-sans">Community Edition</h4>
                         <div class="h2 fw-bold text-light my-2 font-mono">$0 <small class="fs-6 text-secondary font-sans">/ forever</small></div>
-                        <p class="text-secondary small mb-0">For solo examiners, students, and independent security researchers.</p>
+                        <p class="text-secondary small mb-0">For solo examiners, cybersecurity students, and independent security researchers.</p>
                     </div>
                     <ul class="list-unstyled small text-secondary d-flex flex-column gap-2 mb-4 font-mono">
-                        <li><i class="bi bi-check2 text-success me-2"></i>Self-Hosted (Local / Docker)</li>
-                        <li><i class="bi bi-check2 text-success me-2"></i>Up to 250,000 events / case</li>
-                        <li><i class="bi bi-check2 text-success me-2"></i>SHA-256 Non-Repudiation</li>
-                        <li><i class="bi bi-check2 text-success me-2"></i>vis-timeline Swimlanes</li>
+                        <li><i class="bi bi-check2 text-success me-2"></i>Self-Hosted (Local PHP / Docker)</li>
+                        <li><i class="bi bi-check2 text-success me-2"></i>Up to 250,000 raw events / case</li>
+                        <li><i class="bi bi-check2 text-success me-2"></i>SHA-256 Non-Repudiation Digest</li>
+                        <li><i class="bi bi-check2 text-success me-2"></i>vis-timeline Multi-Swimlane Engine</li>
                         <li><i class="bi bi-check2 text-success me-2"></i>Cytoscape.js Entity Graph</li>
-                        <li><i class="bi bi-check2 text-success me-2"></i>Isolation Forest ML Engine</li>
+                        <li><i class="bi bi-check2 text-success me-2"></i>Isolation Forest ML Anomaly Engine</li>
+                        <li><i class="bi bi-check2 text-success me-2"></i>MIT Open Source License</li>
                     </ul>
-                    <a href="https://github.com/dhairya-404/Trace-Labs" target="_blank" rel="noopener" class="btn btn-outline-secondary font-mono w-100 mt-auto">
-                        <i class="bi bi-github me-1"></i> Star on GitHub
+                    <a href="/playground" class="btn btn-outline-secondary font-mono w-100 mt-auto">
+                        <i class="bi bi-play-circle me-1"></i> Try Free in Playground
                     </a>
                 </div>
             </div>
 
-            <!-- Tier 2: Team Pro -->
+            <!-- Tier 2: Professional Examiner -->
             <div class="col-lg-4 reveal delay-2">
-                <div class="feature-card border-primary d-flex flex-column position-relative shadow" style="background: #0d1527;">
+                <div class="feature-card d-flex flex-column position-relative shadow-lg h-100" style="background: linear-gradient(180deg, #0e1a33 0%, #070c18 100%) !important; border: 1px solid #38bdf8 !important; border-radius: 12px; box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.9), 0 0 25px rgba(56, 189, 248, 0.2) !important;">
                     <div class="position-absolute top-0 end-0 translate-middle-y me-3">
-                        <span class="badge bg-primary font-mono px-3 py-1 text-light shadow">MOST POPULAR</span>
+                        <span class="badge font-mono px-3 py-1 text-light shadow" style="background: linear-gradient(90deg, #0284c7 0%, #2563eb 100%); border: 1px solid #60a5fa;">MOST POPULAR</span>
                     </div>
                     <div class="border-bottom border-primary border-opacity-25 pb-3 mb-3">
-                        <span class="badge bg-primary-subtle text-primary font-mono mb-2">CSIRT &amp; SOC TEAMS</span>
-                        <h4 class="fw-bold text-light mb-1 font-sans">Team Pro</h4>
-                        <div class="h2 fw-bold text-primary my-2 font-mono">$79 <small class="fs-6 text-secondary font-sans">/ analyst / mo</small></div>
-                        <p class="text-secondary small mb-0">For incident response teams needing shared real-time collaboration.</p>
+                        <span class="badge border border-info text-info bg-info bg-opacity-10 font-mono mb-2">SOLO EXAMINER &amp; DFIR</span>
+                        <h4 class="fw-bold text-light mb-1 font-sans">Professional Examiner</h4>
+                        <div class="h2 fw-bold text-info my-2 font-mono">
+                            <span id="priceProVal">$19</span> <small class="fs-6 text-secondary font-sans" id="priceProPeriod">/ mo</small>
+                        </div>
+                        <p class="text-secondary small mb-0">For freelance digital forensics examiners, private investigators, and consultants.</p>
                     </div>
                     <ul class="list-unstyled small text-secondary d-flex flex-column gap-2 mb-4 font-mono">
-                        <li><i class="bi bi-check2 text-primary me-2"></i>Everything in Community</li>
-                        <li><i class="bi bi-check2 text-primary me-2"></i>Hosted Cloud VPC Deployment</li>
-                        <li><i class="bi bi-check2 text-primary me-2"></i>Multi-Analyst Live Collaboration</li>
-                        <li><i class="bi bi-check2 text-primary me-2"></i>Continuous Syslog Ingestion</li>
-                        <li><i class="bi bi-check2 text-primary me-2"></i>Sigma YAML Threat Rule Importer</li>
-                        <li><i class="bi bi-check2 text-primary me-2"></i>Court-Ready PDF Incident Dossiers</li>
+                        <li><i class="bi bi-check2 text-info me-2"></i>Everything in Community</li>
+                        <li><i class="bi bi-check2 text-info me-2"></i>Up to 5,000,000 events / case</li>
+                        <li><i class="bi bi-check2 text-info me-2"></i>Hosted Cloud Workspace Synchronization</li>
+                        <li><i class="bi bi-check2 text-info me-2"></i>One-Click Court-Ready PDF Incident Reports</li>
+                        <li><i class="bi bi-check2 text-info me-2"></i>Custom Isolation Forest Sensitivity Tuning</li>
+                        <li><i class="bi bi-check2 text-info me-2"></i>Automated Syslog &amp; Access Log Parsing</li>
+                        <li><i class="bi bi-check2 text-info me-2"></i>Direct JSON / CSV Incident Data Export</li>
                     </ul>
-                    <a href="/login" class="btn btn-primary font-mono w-100 mt-auto">
-                        Start Team Investigation &rarr;
+                    <a href="/login" class="btn btn-cyber-primary font-mono w-100 mt-auto py-2">
+                        Start 14-Day Free Trial &rarr;
                     </a>
                 </div>
             </div>
 
-            <!-- Tier 3: Enterprise -->
+            <!-- Tier 3: Team SOC & MSSP -->
             <div class="col-lg-4 reveal delay-3">
-                <div class="feature-card d-flex flex-column">
+                <div class="feature-card d-flex flex-column h-100" style="border-radius: 12px;">
                     <div class="border-bottom border-secondary border-opacity-25 pb-3 mb-3">
-                        <span class="badge bg-warning-subtle text-warning font-mono mb-2">COMPLIANCE &amp; MSSP</span>
-                        <h4 class="fw-bold text-light mb-1 font-sans">Enterprise SaaS</h4>
-                        <div class="h2 fw-bold text-light my-2 font-mono">Custom <small class="fs-6 text-secondary font-sans">/ annual</small></div>
-                        <p class="text-secondary small mb-0">For enterprises, MSSPs, and legal firms needing SOC2 compliance.</p>
+                        <span class="badge border border-warning text-warning bg-warning bg-opacity-10 font-mono mb-2">CSIRT &amp; MSSP DESK</span>
+                        <h4 class="fw-bold text-light mb-1 font-sans">Team SOC &amp; Enterprise</h4>
+                        <div class="h2 fw-bold text-warning my-2 font-mono">
+                            <span id="priceEntVal">$49</span> <small class="fs-6 text-secondary font-sans" id="priceEntPeriod">/ analyst / mo</small>
+                        </div>
+                        <p class="text-secondary small mb-0">For corporate security response teams, managed SOCs, and legal auditing firms.</p>
                     </div>
                     <ul class="list-unstyled small text-secondary d-flex flex-column gap-2 mb-4 font-mono">
+                        <li><i class="bi bi-check2 text-warning me-2"></i>Everything in Professional</li>
                         <li><i class="bi bi-check2 text-warning me-2"></i>Unlimited Ingestion Volume</li>
-                        <li><i class="bi bi-check2 text-warning me-2"></i>SAML SSO / Okta / Azure AD</li>
-                        <li><i class="bi bi-check2 text-warning me-2"></i>WORM Immutable Storage Vault</li>
-                        <li><i class="bi bi-check2 text-warning me-2"></i>Custom Baseline ML Model Training</li>
-                        <li><i class="bi bi-check2 text-warning me-2"></i>SOC2 Type II &bull; ISO 27001 Package</li>
-                        <li><i class="bi bi-check2 text-warning me-2"></i>Dedicated Forensic Architect Support</li>
+                        <li><i class="bi bi-check2 text-warning me-2"></i>Multi-Analyst Real-Time Live Rooms</li>
+                        <li><i class="bi bi-check2 text-warning me-2"></i>Continuous Daemon Syslog &amp; Kafka Ingestion</li>
+                        <li><i class="bi bi-check2 text-warning me-2"></i>Sigma YAML Threat Detection Rule Importer</li>
+                        <li><i class="bi bi-check2 text-warning me-2"></i>SAML SSO / Okta / Azure AD Zero-Trust Auth</li>
+                        <li><i class="bi bi-check2 text-warning me-2"></i>Dedicated Forensics Architect &amp; 99.9% SLA</li>
                     </ul>
-                    <a href="mailto:contact@tracelab.local" class="btn btn-outline-warning font-mono w-100 mt-auto">
-                        Contact Enterprise Sales
+                    <a href="mailto:dspats1975@gmail.com?subject=TraceLab%20Team%20SOC%20Inquiry" class="btn btn-outline-warning font-mono w-100 mt-auto">
+                        <i class="bi bi-envelope me-1"></i> Contact Enterprise Sales
                     </a>
                 </div>
             </div>
         </div>
+
+        <!-- Trust & Assurance Badges Below Pricing -->
+        <div class="row g-3 mt-4 pt-4 border-top border-secondary border-opacity-25 text-center font-mono small text-secondary">
+            <div class="col-md-3 col-6">
+                <i class="bi bi-shield-check text-success me-1"></i> No Credit Card for Free Tier
+            </div>
+            <div class="col-md-3 col-6">
+                <i class="bi bi-lightning-charge text-info me-1"></i> Instant 14-Day Pro Access
+            </div>
+            <div class="col-md-3 col-6">
+                <i class="bi bi-arrow-repeat text-warning me-1"></i> Cancel or Switch Anytime
+            </div>
+            <div class="col-md-3 col-6">
+                <i class="bi bi-mortarboard text-primary me-1"></i> 100% Free for Students &amp; Edu
+            </div>
+        </div>
     </div>
 </section>
+
+<script>
+function togglePricingCycle(isAnnual) {
+    const proPrice = document.getElementById('priceProVal');
+    const proPeriod = document.getElementById('priceProPeriod');
+    const entPrice = document.getElementById('priceEntVal');
+    const entPeriod = document.getElementById('priceEntPeriod');
+    const labelMonthly = document.getElementById('labelMonthly');
+    const labelAnnual = document.getElementById('labelAnnual');
+
+    if (isAnnual) {
+        if (proPrice) proPrice.innerText = '$14';
+        if (proPeriod) proPeriod.innerHTML = '/ mo <span class="d-block small text-muted font-sans" style="font-size: 0.72rem;">billed annually ($168/yr)</span>';
+        if (entPrice) entPrice.innerText = '$39';
+        if (entPeriod) entPeriod.innerHTML = '/ analyst / mo <span class="d-block small text-muted font-sans" style="font-size: 0.72rem;">billed annually ($468/yr)</span>';
+        if (labelAnnual) labelAnnual.classList.add('text-info');
+        if (labelMonthly) labelMonthly.classList.remove('text-light');
+    } else {
+        if (proPrice) proPrice.innerText = '$19';
+        if (proPeriod) proPeriod.innerText = '/ mo';
+        if (entPrice) entPrice.innerText = '$49';
+        if (entPeriod) entPeriod.innerText = '/ analyst / mo';
+        if (labelAnnual) labelAnnual.classList.remove('text-info');
+        if (labelMonthly) labelMonthly.classList.add('text-light');
+    }
+}
+</script>
