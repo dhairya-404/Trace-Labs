@@ -100,9 +100,170 @@
             -webkit-backdrop-filter: blur(18px) !important;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
+
+        /* ----------------------------------------------------------------------
+           Smooth Scrolling & Top Cyber Telemetry Progress Bar
+           ---------------------------------------------------------------------- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        #scrollProgressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, #38bdf8 0%, #3b82f6 50%, #818cf8 100%);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.8), 0 0 4px #38bdf8;
+            z-index: 99999;
+            transition: width 0.08s ease-out;
+            pointer-events: none;
+        }
+
+        /* ----------------------------------------------------------------------
+           Hero Entrance Keyframe Animations (Triggered on Landing Entry)
+           ---------------------------------------------------------------------- */
+        @keyframes heroBadgeFadeIn {
+            0% { opacity: 0; transform: translateY(-16px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heroTitleReveal {
+            0% { opacity: 0; transform: translateY(28px); filter: blur(6px); }
+            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @keyframes heroSubtitleFade {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heroButtonsPop {
+            0% { opacity: 0; transform: translateY(18px) scale(0.97); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes heroCardSlideIn {
+            0% { opacity: 0; transform: translateX(45px) translateY(12px) scale(0.95); filter: blur(8px); }
+            100% { opacity: 1; transform: translateX(0) translateY(0) scale(1); filter: blur(0); }
+        }
+
+        @keyframes swimlaneItemScan {
+            0% { opacity: 0; transform: translateX(-24px); filter: brightness(1.6); }
+            70% { opacity: 1; transform: translateX(4px); }
+            100% { opacity: 1; transform: translateX(0); filter: brightness(1); }
+        }
+
+        @keyframes ambientCardPulse {
+            0%, 100% { box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.9), 0 0 25px rgba(56, 189, 248, 0.12); }
+            50% { box-shadow: 0 24px 50px -8px rgba(0, 0, 0, 0.95), 0 0 40px rgba(56, 189, 248, 0.22); }
+        }
+
+        @keyframes beaconBlink {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.35; transform: scale(0.8); }
+        }
+
+        /* Hero Animation Utility Classes */
+        .anim-hero-badge {
+            animation: heroBadgeFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+        }
+
+        .anim-hero-title {
+            animation: heroTitleReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+
+        .anim-hero-sub {
+            animation: heroSubtitleFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+        }
+
+        .anim-hero-cta {
+            animation: heroButtonsPop 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        .anim-hero-bullets {
+            animation: heroSubtitleFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+        }
+
+        .anim-hero-mockup {
+            animation: heroCardSlideIn 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both, ambientCardPulse 6s ease-in-out 1.25s infinite;
+        }
+
+        /* Sequential Swimlane Rows In Mockup Desk */
+        .swimlane-anim-1 { animation: swimlaneItemScan 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both; }
+        .swimlane-anim-2 { animation: swimlaneItemScan 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both; }
+        .swimlane-anim-3 { animation: swimlaneItemScan 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.05s both; }
+        .swimlane-anim-4 { animation: swimlaneItemScan 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.25s both; }
+
+        .anim-beacon {
+            animation: beaconBlink 1.8s ease-in-out infinite;
+        }
+
+        /* ----------------------------------------------------------------------
+           Scroll-Driven Reveal Classes (IntersectionObserver)
+           ---------------------------------------------------------------------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.94);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Staggered Delay Helpers */
+        .delay-1 { transition-delay: 0.08s; }
+        .delay-2 { transition-delay: 0.16s; }
+        .delay-3 { transition-delay: 0.24s; }
+        .delay-4 { transition-delay: 0.32s; }
+        .delay-5 { transition-delay: 0.40s; }
+        .delay-6 { transition-delay: 0.48s; }
+
+        /* Accessibility: respect user prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            .anim-hero-badge,
+            .anim-hero-title,
+            .anim-hero-sub,
+            .anim-hero-cta,
+            .anim-hero-bullets,
+            .anim-hero-mockup,
+            .swimlane-anim-1,
+            .swimlane-anim-2,
+            .swimlane-anim-3,
+            .swimlane-anim-4,
+            .reveal,
+            .reveal-scale {
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
+                transition: none !important;
+                filter: none !important;
+            }
+            #scrollProgressBar {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body class="text-light" style="background-color: var(--bg-page);">
+    <!-- Top Telemetry Scroll Progress Indicator -->
+    <div id="scrollProgressBar"></div>
 
     <!-- Top Public Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark nav-landing sticky-top py-3">
@@ -251,5 +412,57 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- vis-timeline JS -->
     <script src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
+
+    <!-- Smooth Scrolling & Telemetry Scroll Reveals Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Scroll Progress Bar Tracking
+        const progressBar = document.getElementById('scrollProgressBar');
+        if (progressBar) {
+            let ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                        if (docHeight > 0) {
+                            const pct = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+                            progressBar.style.width = pct + '%';
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+        }
+
+        // 2. Hardware-Accelerated IntersectionObserver for Scroll Reveals
+        const revealElements = document.querySelectorAll('.reveal, .reveal-scale');
+        if ('IntersectionObserver' in window) {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -40px 0px',
+                threshold: 0.08
+            };
+
+            const observer = new IntersectionObserver(function(entries, obs) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(function(el) {
+                observer.observe(el);
+            });
+        } else {
+            revealElements.forEach(function(el) {
+                el.classList.add('revealed');
+            });
+        }
+    });
+    </script>
 </body>
 </html>

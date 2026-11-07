@@ -1,21 +1,21 @@
 <!-- Hero Section -->
-<section class="landing-hero">
+<section class="landing-hero overflow-hidden">
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-7">
-                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3 border border-info border-opacity-30 font-mono small" style="background: rgba(56, 189, 248, 0.08);">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3 border border-info border-opacity-30 font-mono small anim-hero-badge" style="background: rgba(56, 189, 248, 0.08);">
                     <i class="bi bi-shield-check text-info"></i>
                     <span class="text-info fw-semibold" style="letter-spacing: 0.04em;">OPEN SOURCE DFIR &amp; ANOMALY TRIAGE WORKBENCH</span>
                 </div>
-                <h1 class="display-4 fw-bold text-light mb-3 font-sans" style="letter-spacing: -0.03em;">
+                <h1 class="display-4 fw-bold text-light mb-3 font-sans anim-hero-title" style="letter-spacing: -0.03em;">
                     A Detective's Desk for <br>
                     <span style="background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 50%, #a78bfa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Digital Activity Logs</span>
                 </h1>
-                <p class="lead text-secondary mb-4 font-sans" style="font-size: 1.15rem; line-height: 1.6; max-width: 620px;">
+                <p class="lead text-secondary mb-4 font-sans anim-hero-sub" style="font-size: 1.15rem; line-height: 1.6; max-width: 620px;">
                     Ingest messy server, login, and firewall records. Compute immutable <strong>SHA-256 fingerprints</strong>, reconstruct <strong>synchronized timeline swimlanes</strong>, map <strong>entity relationship topologies</strong>, and triage threats with <strong>hybrid rules + Isolation Forest ML</strong>.
                 </p>
 
-                <div class="d-flex align-items-center gap-3 flex-wrap mb-4">
+                <div class="d-flex align-items-center gap-3 flex-wrap mb-4 anim-hero-cta">
                     <a href="/playground" class="btn btn-cyber-primary px-4 py-2 font-mono fw-bold">
                         <i class="bi bi-play-circle-fill me-1"></i> Try Live Playground (Free)
                     </a>
@@ -27,7 +27,7 @@
                     </a>
                 </div>
 
-                <div class="row g-2 pt-3 border-top border-secondary border-opacity-25 font-mono small text-secondary">
+                <div class="row g-2 pt-3 border-top border-secondary border-opacity-25 font-mono small text-secondary anim-hero-bullets">
                     <div class="col-sm-4 d-flex align-items-center gap-2">
                         <i class="bi bi-check-circle-fill text-success"></i> <span>SHA-256 Chain of Custody</span>
                     </div>
@@ -42,11 +42,11 @@
 
             <div class="col-lg-5">
                 <!-- Visual Interactive Mockup Card -->
-                <div class="card p-3 shadow-lg" style="background: #090e1a !important; border: 1px solid rgba(56, 189, 248, 0.25) !important; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 30px rgba(56, 189, 248, 0.1) !important;">
+                <div class="card p-3 shadow-lg anim-hero-mockup" style="background: #090e1a !important; border: 1px solid rgba(56, 189, 248, 0.25) !important; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 30px rgba(56, 189, 248, 0.1) !important;">
                     <div class="d-flex justify-content-between align-items-center pb-2 mb-3 border-bottom border-secondary border-opacity-40 font-mono small">
                         <span class="text-danger fw-bold"><i class="bi bi-shield-fill-exclamation me-1"></i> INCIDENT #1 TRIAGE WINDOW</span>
                         <span class="badge badge-cyber-danger font-mono d-inline-flex align-items-center gap-1" style="background: rgba(239, 68, 68, 0.18) !important; color: #fee2e2 !important; border: 1px solid rgba(239, 68, 68, 0.5) !important; font-size: 0.72rem; letter-spacing: 0.05em; padding: 4px 10px;">
-                            <span class="rounded-circle d-inline-block bg-danger" style="width: 6px; height: 6px; box-shadow: 0 0 6px #ef4444;"></span>
+                            <span class="rounded-circle d-inline-block bg-danger anim-beacon" style="width: 6px; height: 6px; box-shadow: 0 0 6px #ef4444;"></span>
                             CRITICAL BREACH
                         </span>
                     </div>
@@ -64,22 +64,22 @@
                             <span class="text-warning">Sat 7 Nov 02:14 UTC</span>
                         </div>
                         <div class="d-flex flex-column gap-2 font-mono small">
-                            <div class="p-2 rounded border border-danger border-opacity-40 d-flex align-items-center gap-2" style="background: rgba(239, 68, 68, 0.08); font-size: 0.74rem;">
+                            <div class="p-2 rounded border border-danger border-opacity-40 d-flex align-items-center gap-2 swimlane-anim-1" style="background: rgba(239, 68, 68, 0.08); font-size: 0.74rem;">
                                 <i class="bi bi-x-octagon-fill text-danger"></i>
                                 <span class="text-light">login_failed</span>
                                 <span class="text-secondary">&bull; admin.finance (198.51.100.44)</span>
                             </div>
-                            <div class="p-2 rounded border border-danger border-opacity-40 d-flex align-items-center gap-2" style="background: rgba(239, 68, 68, 0.08); font-size: 0.74rem;">
+                            <div class="p-2 rounded border border-danger border-opacity-40 d-flex align-items-center gap-2 swimlane-anim-2" style="background: rgba(239, 68, 68, 0.08); font-size: 0.74rem;">
                                 <i class="bi bi-x-octagon-fill text-danger"></i>
                                 <span class="text-light">login_failed</span>
                                 <span class="text-secondary">&bull; admin.finance (198.51.100.44)</span>
                             </div>
-                            <div class="p-2 rounded border border-primary border-opacity-40 d-flex align-items-center gap-2" style="background: rgba(59, 130, 246, 0.1); font-size: 0.74rem;">
+                            <div class="p-2 rounded border border-primary border-opacity-40 d-flex align-items-center gap-2 swimlane-anim-3" style="background: rgba(59, 130, 246, 0.1); font-size: 0.74rem;">
                                 <i class="bi bi-shield-lock-fill text-primary"></i>
                                 <span class="text-info fw-bold">login_success</span>
                                 <span class="text-secondary">&bull; admin.finance (COMPROMISED)</span>
                             </div>
-                            <div class="p-2 rounded border border-warning border-opacity-40 d-flex align-items-center gap-2" style="background: rgba(245, 158, 11, 0.08); font-size: 0.74rem;">
+                            <div class="p-2 rounded border border-warning border-opacity-40 d-flex align-items-center gap-2 swimlane-anim-4" style="background: rgba(245, 158, 11, 0.08); font-size: 0.74rem;">
                                 <i class="bi bi-arrow-up-right-circle-fill text-warning"></i>
                                 <span class="text-warning">data_export</span>
                                 <span class="text-secondary">&bull; 4.8 GB outbound egress stream</span>
@@ -102,7 +102,7 @@
 <!-- 5 Forensic Capabilities Grid -->
 <section class="py-5" id="features">
     <div class="container py-4">
-        <div class="text-center mb-5">
+        <div class="text-center mb-5 reveal">
             <span class="badge border border-primary text-primary font-mono px-3 py-1 mb-2">ENGINEERING CAPABILITIES</span>
             <h2 class="fw-bold font-sans text-light">Built for Incident Responders &amp; Forensic Examiners</h2>
             <p class="text-secondary mx-auto" style="max-width: 600px;">
@@ -112,7 +112,7 @@
 
         <div class="row g-4">
             <!-- Feature 1 -->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 reveal delay-1">
                 <div class="feature-card">
                     <div class="d-flex align-items-center gap-3 mb-3">
                         <div class="p-2 rounded bg-primary bg-opacity-10 border border-primary text-primary fs-4">
@@ -128,7 +128,7 @@
             </div>
 
             <!-- Feature 2 -->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 reveal delay-2">
                 <div class="feature-card">
                     <div class="d-flex align-items-center gap-3 mb-3">
                         <div class="p-2 rounded bg-info bg-opacity-10 border border-info text-info fs-4">
@@ -144,7 +144,7 @@
             </div>
 
             <!-- Feature 3 -->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 reveal delay-3">
                 <div class="feature-card">
                     <div class="d-flex align-items-center gap-3 mb-3">
                         <div class="p-2 rounded bg-warning bg-opacity-10 border border-warning text-warning fs-4">
@@ -160,7 +160,7 @@
             </div>
 
             <!-- Feature 4 -->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 reveal delay-4">
                 <div class="feature-card">
                     <div class="d-flex align-items-center gap-3 mb-3">
                         <div class="p-2 rounded bg-danger bg-opacity-10 border border-danger text-danger fs-4">
@@ -176,7 +176,7 @@
             </div>
 
             <!-- Feature 5 -->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 reveal delay-5">
                 <div class="feature-card">
                     <div class="d-flex align-items-center gap-3 mb-3">
                         <div class="p-2 rounded bg-success bg-opacity-10 border border-success text-success fs-4">
@@ -192,7 +192,7 @@
             </div>
 
             <!-- Feature 6 -->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 reveal delay-6">
                 <div class="feature-card">
                     <div class="d-flex align-items-center gap-3 mb-3">
                         <div class="p-2 rounded bg-primary bg-opacity-10 border border-primary text-primary fs-4">
@@ -212,7 +212,7 @@
 
 <!-- Call to Action Banner -->
 <section class="py-5 border-top border-bottom border-secondary border-opacity-25" style="background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08) 0%, #030712 70%);">
-    <div class="container text-center py-4">
+    <div class="container text-center py-4 reveal-scale">
         <h2 class="fw-bold font-sans text-light mb-3">Ready to Analyze Evidence in Seconds?</h2>
         <p class="text-secondary mb-4 mx-auto font-sans" style="max-width: 600px;">
             Test with our free client-side browser playground, or initialize a full workspace with our 4 pre-packaged cyber attack evaluation scenarios.
@@ -234,7 +234,7 @@
 <!-- Editions & SaaS Pricing Tiers (From Scaling Blueprint) -->
 <section class="py-5" id="pricing">
     <div class="container py-4">
-        <div class="text-center mb-5">
+        <div class="text-center mb-5 reveal">
             <span class="badge border border-primary text-primary font-mono px-3 py-1 mb-2">SCALING TIERS</span>
             <h2 class="fw-bold font-sans text-light">Deployment Editions &amp; Enterprise Roadmap</h2>
             <p class="text-secondary mx-auto" style="max-width: 600px;">
@@ -244,7 +244,7 @@
 
         <div class="row g-4 align-items-stretch">
             <!-- Tier 1: Community -->
-            <div class="col-lg-4">
+            <div class="col-lg-4 reveal delay-1">
                 <div class="feature-card d-flex flex-column">
                     <div class="border-bottom border-secondary border-opacity-25 pb-3 mb-3">
                         <span class="badge bg-secondary-subtle text-secondary font-mono mb-2">OPEN CORE</span>
@@ -267,7 +267,7 @@
             </div>
 
             <!-- Tier 2: Team Pro -->
-            <div class="col-lg-4">
+            <div class="col-lg-4 reveal delay-2">
                 <div class="feature-card border-primary d-flex flex-column position-relative shadow" style="background: #0d1527;">
                     <div class="position-absolute top-0 end-0 translate-middle-y me-3">
                         <span class="badge bg-primary font-mono px-3 py-1 text-light shadow">MOST POPULAR</span>
@@ -293,7 +293,7 @@
             </div>
 
             <!-- Tier 3: Enterprise -->
-            <div class="col-lg-4">
+            <div class="col-lg-4 reveal delay-3">
                 <div class="feature-card d-flex flex-column">
                     <div class="border-bottom border-secondary border-opacity-25 pb-3 mb-3">
                         <span class="badge bg-warning-subtle text-warning font-mono mb-2">COMPLIANCE &amp; MSSP</span>
