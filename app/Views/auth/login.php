@@ -18,54 +18,43 @@
     <?php endif; ?>
 
     <form action="/login" method="POST" autocomplete="off">
-        <!-- Pre-Verified Identity Card (No Overflows) -->
+        <!-- Analyst Email / Account Input -->
         <div class="mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-1">
-                <label class="form-label text-secondary small font-mono mb-0" style="font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase;">
-                    Investigator Identity
-                </label>
-                <span class="text-muted font-mono" style="font-size: 0.68rem;">Auto-Assigned</span>
+            <label for="email" class="form-label text-secondary small font-mono mb-1" style="font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase;">
+                Analyst Identity / Email
+            </label>
+            <div class="position-relative">
+                <input type="email" 
+                       class="form-control form-control-cyber" 
+                       id="email" 
+                       name="email" 
+                       value="<?= \Tracelabs\Core\View::escape($_POST['email'] ?? 'analyst@tracelab.local') ?>" 
+                       placeholder="analyst@organization.local" 
+                       required 
+                       style="padding-left: 38px;">
+                <i class="bi bi-person-badge position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary" style="font-size: 0.85rem;"></i>
             </div>
-            <div class="user-pill">
-                <div class="d-flex align-items-center gap-2" style="min-width: 0;">
-                    <div class="position-relative flex-shrink-0">
-                        <div class="rounded-circle d-flex align-items-center justify-content-center text-info fw-bold font-mono" 
-                             style="width: 34px; height: 34px; background: #0f172a; border: 1px solid #1e293b; font-size: 0.82rem;">
-                            DF
-                        </div>
-                        <span class="position-absolute bottom-0 end-0 rounded-circle bg-success" style="width: 8px; height: 8px; border: 2px solid #080d1a;"></span>
-                    </div>
-                    <div class="overflow-hidden" style="min-width: 0;">
-                        <div class="fw-semibold text-light text-truncate" style="font-size: 0.85rem;">Lead Examiner</div>
-                        <div class="font-mono text-muted text-truncate" style="font-size: 0.74rem;">analyst@tracelab.local</div>
-                    </div>
-                </div>
-                <span class="badge-verified">
-                    <i class="bi bi-shield-check"></i>
-                    <span>Authorized</span>
-                </span>
-            </div>
-            <input type="hidden" name="email" value="analyst@tracelab.local">
         </div>
 
         <!-- Clearance Passkey Input -->
         <div class="mb-3">
             <div class="d-flex justify-content-between align-items-center mb-1">
-                <label for="password" class="form-label text-secondary small font-mono mb-0" style="font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase;">
+                <label for="password" class="form-label text-secondary small font-mono mb-0" style="font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase;">
                     Security Passkey
                 </label>
-                <span class="text-muted font-mono" style="font-size: 0.68rem;">Manual Entry Required</span>
+                <span class="text-muted font-mono" style="font-size: 0.68rem;">Encrypted Entry</span>
             </div>
             <div class="position-relative">
                 <input type="password" 
                        class="form-control form-control-cyber" 
                        id="password" 
                        name="password" 
-                       placeholder="Enter passkey..." 
+                       placeholder="Enter security keyphrase..." 
                        required 
                        autofocus 
-                       autocomplete="new-password"
-                       style="padding-right: 42px;">
+                       autocomplete="current-password"
+                       style="padding-left: 38px; padding-right: 42px;">
+                <i class="bi bi-key-fill position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary" style="font-size: 0.85rem;"></i>
                 <button type="button" 
                         class="btn position-absolute top-50 end-0 translate-middle-y text-secondary pe-3 border-0 bg-transparent" 
                         onclick="togglePassword()" 
@@ -76,35 +65,30 @@
             </div>
         </div>
 
-        <!-- 1-Click Demo Auto-fill Helper Card -->
-        <div class="demo-key-card p-2 px-3 rounded-3 mb-3 d-flex align-items-center justify-content-between" 
-             id="demoKeyBox"
-             onclick="fillPasskey()" 
-             role="button" 
-             title="Click to fill password automatically">
-            <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-key-fill text-warning"></i>
-                <div class="font-mono small">
-                    <span class="text-secondary" style="font-size: 0.72rem;">Clearance Key:</span>
-                    <code class="text-info fw-bold ms-1" style="font-size: 0.8rem;">tracelab2026</code>
-                </div>
+        <!-- Session Persistence -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="form-check">
+                <input class="form-check-input bg-dark border-secondary" type="checkbox" id="rememberMe" checked>
+                <label class="form-check-label text-secondary small font-mono" for="rememberMe" style="font-size: 0.74rem;">
+                    Remember workstation session
+                </label>
             </div>
-            <span class="btn-xs-fill" id="fillStatusText">
-                <i class="bi bi-box-arrow-in-down-left me-1"></i> Auto-fill
+            <span class="badge border border-secondary text-secondary font-mono" style="font-size: 0.66rem;">
+                <i class="bi bi-shield-check text-success me-1"></i>Zero Trust
             </span>
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-cyber-primary w-100 d-flex align-items-center justify-content-center gap-2 mb-2">
+        <button type="submit" class="btn btn-cyber-primary w-100 d-flex align-items-center justify-content-center gap-2 mb-2 py-2">
             <span>Unlock Investigation Desk</span>
             <i class="bi bi-arrow-right"></i>
         </button>
     </form>
 
-    <!-- Subtle Footer Verification -->
-    <div class="text-center pt-2">
+    <!-- Subtle Enterprise Footer Verification -->
+    <div class="text-center pt-3 mt-2 border-top border-secondary border-opacity-25">
         <span class="text-muted font-mono" style="font-size: 0.7rem;">
-            <i class="bi bi-shield-lock me-1"></i> End-to-End Cryptographic Provenance
+            <i class="bi bi-shield-lock text-info me-1"></i> End-to-End Cryptographic Provenance &bull; SHA-256 Non-Repudiation
         </span>
     </div>
 </div>
@@ -121,20 +105,6 @@ function togglePassword() {
         input.type = 'password';
         icon.classList.remove('bi-eye-slash');
         icon.classList.add('bi-eye');
-    }
-}
-
-function fillPasskey() {
-    const input = document.getElementById('password');
-    const statusText = document.getElementById('fillStatusText');
-    input.value = 'tracelab2026';
-    input.focus();
-    
-    if (statusText) {
-        statusText.innerHTML = '<i class="bi bi-check-lg text-success me-1"></i> Filled!';
-        setTimeout(() => {
-            statusText.innerHTML = '<i class="bi bi-box-arrow-in-down-left me-1"></i> Auto-fill';
-        }, 1800);
     }
 }
 </script>

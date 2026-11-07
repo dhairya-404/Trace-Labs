@@ -32,8 +32,8 @@ class AuthController extends Controller
             session_start();
         }
 
-        $email = (string)$request->post('email', 'analyst@tracelab.local');
-        $password = (string)$request->post('password', 'tracelab2026');
+        $email = trim((string)$request->post('email', ''));
+        $password = (string)$request->post('password', '');
 
         User::seedDefaultUser();
         $user = User::authenticate($email, $password);
@@ -48,7 +48,7 @@ class AuthController extends Controller
 
         $this->view('auth/login', [
             'pageTitle' => 'Sign In // TraceLab',
-            'error' => 'Invalid analyst credentials. (Hint: analyst@tracelab.local / tracelab2026)'
+            'error' => 'Invalid analyst identity or security passkey. Please verify your credentials.'
         ], 'auth');
     }
 
