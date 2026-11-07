@@ -19,7 +19,7 @@
             <h1 class="display-5 fw-bold text-light mb-3 font-sans"><?= \Tracelabs\Core\View::escape($article['title']) ?></h1>
             <p class="lead text-secondary mb-4 font-sans"><?= \Tracelabs\Core\View::escape($article['description']) ?></p>
 
-            <div class="card bg-black border-secondary p-3 mb-4 font-mono small">
+            <div class="card p-3 mb-4 font-mono small" style="background: #060a14 !important; border: 1px solid rgba(255, 255, 255, 0.08) !important;">
                 <div class="text-secondary mb-1">Standard Schema Header &amp; Canonical Fields:</div>
                 <code class="text-info text-break"><?= \Tracelabs\Core\View::escape($article['schema']) ?></code>
             </div>
@@ -32,7 +32,7 @@
 
             <!-- Sample Attack Snippet -->
             <h3 class="fw-bold text-light font-sans mt-5 mb-3">2. Raw Attack Log Snippet</h3>
-            <div class="card bg-black border-secondary p-3 mb-4">
+            <div class="card p-3 mb-4" style="background: #060a14 !important; border: 1px solid rgba(255, 255, 255, 0.08) !important;">
                 <pre class="font-mono small text-light mb-0" style="overflow-x: auto;"><?= \Tracelabs\Core\View::escape($article['sample_snippet']) ?></pre>
             </div>
 
@@ -49,7 +49,7 @@
                     Copy the snippet above and paste it directly into our client-side playground to see real-time SHA-256 fingerprinting and timeline swimlanes.
                 </p>
                 <div>
-                    <a href="/playground" class="btn btn-warning font-mono fw-bold text-dark px-3 me-2">
+                    <a href="/playground" class="btn btn-cyber-primary font-mono px-3 me-2">
                         <i class="bi bi-play-circle-fill me-1"></i> Open in Live Playground
                     </a>
                     <a href="/login" class="btn btn-outline-primary font-mono px-3">
@@ -61,7 +61,7 @@
 
         <!-- Right Sidebar (Metadata & Related Guides) -->
         <div class="col-lg-4">
-            <div class="card bg-black border-secondary p-4 mb-4">
+            <div class="card p-4 mb-4" style="background: #060a14 !important; border: 1px solid rgba(255, 255, 255, 0.08) !important;">
                 <h5 class="fw-bold text-light font-sans mb-3 border-bottom border-secondary border-opacity-50 pb-2">Log Quick Facts</h5>
                 <ul class="list-unstyled font-mono small text-secondary d-flex flex-column gap-2 mb-0">
                     <li><strong class="text-light">Source:</strong> <?= \Tracelabs\Core\View::escape($article['source']) ?></li>
@@ -72,7 +72,7 @@
                 </ul>
             </div>
 
-            <div class="card bg-black border-secondary p-4">
+            <div class="card p-4" style="background: #060a14 !important; border: 1px solid rgba(255, 255, 255, 0.08) !important;">
                 <h5 class="fw-bold text-light font-sans mb-3 border-bottom border-secondary border-opacity-50 pb-2">More SIEM Guides</h5>
                 <ul class="list-unstyled font-mono small d-flex flex-column gap-3 mb-0">
                     <li><a href="/logs/windows-event-4624-logon-analyzer" class="text-info text-decoration-none">Windows Event 4624/4625 &rarr;</a></li>

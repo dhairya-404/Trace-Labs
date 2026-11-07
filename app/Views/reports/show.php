@@ -120,42 +120,42 @@
     </div>
 </section>
 
-<!-- 4. Academic Limitations & Future Work (Explicitly in the PDF!) -->
+<!-- 4. Operational Scope, Boundary Conditions & Architectural Roadmap -->
 <section class="mb-5">
-    <h4 class="fw-bold border-bottom pb-2 mb-3 text-primary">4. Academic Scope, Limitations & Future Enhancements</h4>
+    <h4 class="fw-bold border-bottom pb-2 mb-3 text-primary">4. Operational Scope, Boundary Conditions &amp; Architectural Roadmap</h4>
     <div class="row g-3 small">
         <div class="col-md-6">
             <div class="p-3 border rounded bg-light h-100">
-                <h6 class="fw-bold text-dark"><i class="bi bi-shield-slash text-warning me-1"></i> Current Scope & Limitations</h6>
+                <h6 class="fw-bold text-dark"><i class="bi bi-shield-check text-primary me-1"></i> Operational Scope &amp; Boundaries</h6>
                 <ul class="mb-0 ps-3 text-secondary">
-                    <li><strong>Student Prototype:</strong> Designed as an investigatory assist workbench, not for legally certified evidence testimony.</li>
-                    <li><strong>Heuristic Context:</strong> Operates strictly on synthetic/fictionalized enterprise security datasets without live endpoint agent polling.</li>
-                    <li><strong>Feature Constraints:</strong> Anomaly detection relies on 6 dimensional feature extractions (frequency, entropy, temporal delta).</li>
+                    <li><strong>Forensic Triage Engine:</strong> Designed as an investigatory correlation desk to accelerate DFIR triage and timeline reconstruction.</li>
+                    <li><strong>Intake Provenance:</strong> Guarantees cryptographic immutability using SHA-256 digital fingerprinting at intake boundary.</li>
+                    <li><strong>Dual-Engine Calibration:</strong> Combines deterministic rule explanations with multi-dimensional Isolation Forest machine learning.</li>
                 </ul>
             </div>
         </div>
         <div class="col-md-6">
             <div class="p-3 border rounded bg-light h-100">
-                <h6 class="fw-bold text-dark"><i class="bi bi-rocket-takeoff text-primary me-1"></i> Future Roadmap Recommendations</h6>
+                <h6 class="fw-bold text-dark"><i class="bi bi-rocket-takeoff text-primary me-1"></i> Enterprise Roadmap &amp; Integration</h6>
                 <ul class="mb-0 ps-3 text-secondary">
-                    <li><strong>Real-Time Syslog/Kafka Ingestion:</strong> Connect live streaming pipelines for instantaneous event streaming.</li>
-                    <li><strong>Deep Graph Neural Networks (GNN):</strong> Train unsupervised graph autoencoders to detect lateral movement across subnets.</li>
-                    <li><strong>STIX/TAXII Integration:</strong> Bi-directional synchronization with automated Threat Intelligence feeds (AlienVault, MISP).</li>
+                    <li><strong>Real-Time Syslog/Kafka Streaming:</strong> Continuous daemon intake for live multi-server event ingestion.</li>
+                    <li><strong>Graph Neural Networks (GNN):</strong> Topological link prediction to discover stealthy lateral movement across subnets.</li>
+                    <li><strong>STIX/TAXII Feeds:</strong> Automated IOC indicator synchronization with MISP and AlienVault OTX feeds.</li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Sign-off Block -->
+<!-- Official Forensic Sign-off Block -->
 <div class="border-top pt-4 mt-5 text-secondary small font-monospace d-flex justify-content-between align-items-center">
     <div>
-        <div>Approved for Academic Evaluation: <strong>TraceLab 6th-Semester Capstone</strong></div>
-        <div>System Engine: PHP 8.3 MVC &middot; vis-timeline &middot; Cytoscape.js &middot; FastAPI / scikit-learn</div>
+        <div>Official Incident Forensic Review: <strong>TraceLab Incident Investigation Desk</strong></div>
+        <div>System Engine: PHP 8.3 MVC &middot; vis-timeline &middot; Cytoscape.js &middot; FastAPI / scikit-learn Isolation Forest</div>
     </div>
     <div class="text-end">
-        <div class="border-top border-dark pt-1" style="width: 200px;">
-            Investigator Signature
+        <div class="border-top border-dark pt-1" style="width: 220px;">
+            Lead Forensic Examiner Signature
         </div>
     </div>
 </div>

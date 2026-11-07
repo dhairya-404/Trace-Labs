@@ -3,23 +3,23 @@
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-7">
-                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3 border border-primary border-opacity-50 font-mono small" style="background: rgba(37, 99, 235, 0.1);">
-                    <i class="bi bi-shield-check text-primary"></i>
-                    <span class="text-info">OPEN SOURCE DFIR &amp; ANOMALY TRIAGE WORKBENCH</span>
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3 border border-info border-opacity-30 font-mono small" style="background: rgba(56, 189, 248, 0.08);">
+                    <i class="bi bi-shield-check text-info"></i>
+                    <span class="text-info fw-semibold" style="letter-spacing: 0.04em;">OPEN SOURCE DFIR &amp; ANOMALY TRIAGE WORKBENCH</span>
                 </div>
-                <h1 class="display-4 fw-bold text-light mb-3 font-sans">
+                <h1 class="display-4 fw-bold text-light mb-3 font-sans" style="letter-spacing: -0.03em;">
                     A Detective's Desk for <br>
-                    <span class="text-primary">Digital Activity Logs</span>
+                    <span style="background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 50%, #a78bfa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Digital Activity Logs</span>
                 </h1>
-                <p class="lead text-secondary mb-4 font-sans" style="font-size: 1.15rem; line-height: 1.6;">
-                    Ingest messy, disparate server, login, and firewall records. Compute immutable <strong>SHA-256 fingerprints</strong>, reconstruct <strong>synchronized timeline swimlanes</strong>, map <strong>entity relationship topologies</strong>, and triage threats with <strong>hybrid rules + Isolation Forest ML</strong>.
+                <p class="lead text-secondary mb-4 font-sans" style="font-size: 1.15rem; line-height: 1.6; max-width: 620px;">
+                    Ingest messy server, login, and firewall records. Compute immutable <strong>SHA-256 fingerprints</strong>, reconstruct <strong>synchronized timeline swimlanes</strong>, map <strong>entity relationship topologies</strong>, and triage threats with <strong>hybrid rules + Isolation Forest ML</strong>.
                 </p>
 
                 <div class="d-flex align-items-center gap-3 flex-wrap mb-4">
-                    <a href="/playground" class="btn btn-warning px-4 py-2 font-mono fw-bold text-dark shadow">
+                    <a href="/playground" class="btn btn-cyber-primary px-4 py-2 font-mono fw-bold">
                         <i class="bi bi-play-circle-fill me-1"></i> Try Live Playground (Free)
                     </a>
-                    <a href="/login" class="btn btn-primary px-4 py-2 font-mono fw-bold shadow">
+                    <a href="/login" class="btn btn-primary px-4 py-2 font-mono fw-bold">
                         <i class="bi bi-folder2-open me-1"></i> Launch Investigation Desk &rarr;
                     </a>
                     <a href="https://github.com/dhairya-404/Trace-Labs" target="_blank" rel="noopener" class="btn btn-outline-secondary px-3 py-2 font-mono">
@@ -27,7 +27,7 @@
                     </a>
                 </div>
 
-                <div class="row g-2 pt-2 border-top border-secondary border-opacity-25 font-mono small text-secondary">
+                <div class="row g-2 pt-3 border-top border-secondary border-opacity-25 font-mono small text-secondary">
                     <div class="col-sm-4 d-flex align-items-center gap-2">
                         <i class="bi bi-check-circle-fill text-success"></i> <span>SHA-256 Chain of Custody</span>
                     </div>
@@ -42,43 +42,51 @@
 
             <div class="col-lg-5">
                 <!-- Visual Interactive Mockup Card -->
-                <div class="card bg-black border-secondary shadow-lg p-3">
-                    <div class="d-flex justify-content-between align-items-center pb-2 mb-3 border-bottom border-secondary border-opacity-50 font-mono small">
-                        <span class="text-danger fw-bold"><i class="bi bi-shield-exclamation me-1"></i> INCIDENT #1 TRIAGE WINDOW</span>
-                        <span class="badge bg-danger-subtle text-danger">CRITICAL</span>
+                <div class="card p-3 shadow-lg" style="background: #090e1a !important; border: 1px solid rgba(56, 189, 248, 0.25) !important; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 30px rgba(56, 189, 248, 0.1) !important;">
+                    <div class="d-flex justify-content-between align-items-center pb-2 mb-3 border-bottom border-secondary border-opacity-40 font-mono small">
+                        <span class="text-danger fw-bold"><i class="bi bi-shield-fill-exclamation me-1"></i> INCIDENT #1 TRIAGE WINDOW</span>
+                        <span class="badge bg-danger bg-opacity-20 text-danger border border-danger border-opacity-40">CRITICAL BREACH</span>
                     </div>
 
                     <div class="mb-3">
-                        <div class="small text-secondary font-mono mb-1">Cryptographic Fingerprint:</div>
-                        <div class="p-2 rounded bg-dark border border-secondary font-mono small text-info text-truncate">
-                            e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+                        <div class="small text-secondary font-mono mb-1" style="font-size: 0.72rem;">Cryptographic Fingerprint:</div>
+                        <div class="p-2 rounded font-mono small text-info text-truncate border border-secondary border-opacity-40" style="background: #050811; font-size: 0.75rem;">
+                            <i class="bi bi-fingerprint text-info me-1"></i>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
                         </div>
                     </div>
 
-                    <div class="p-3 rounded mb-3 border border-secondary" style="background: #090e17;">
-                        <div class="d-flex justify-content-between align-items-center small font-mono text-secondary mb-2">
-                            <span>TIMELINE SWIMLANE</span>
+                    <div class="p-3 rounded mb-3 border border-secondary border-opacity-30" style="background: #060913;">
+                        <div class="d-flex justify-content-between align-items-center small font-mono text-secondary mb-2" style="font-size: 0.72rem;">
+                            <span>CHRONOLOGICAL SWIMLANES</span>
                             <span class="text-warning">Sat 7 Nov 02:14 UTC</span>
                         </div>
                         <div class="d-flex flex-column gap-2 font-mono small">
-                            <div class="p-1 px-2 rounded border border-danger text-danger" style="background: #1f0b0e;">
-                                🛑 login_failed &bull; admin.finance (198.51.100.44)
+                            <div class="p-2 rounded border border-danger border-opacity-40 d-flex align-items-center gap-2" style="background: rgba(239, 68, 68, 0.08); font-size: 0.74rem;">
+                                <i class="bi bi-x-octagon-fill text-danger"></i>
+                                <span class="text-light">login_failed</span>
+                                <span class="text-secondary">&bull; admin.finance (198.51.100.44)</span>
                             </div>
-                            <div class="p-1 px-2 rounded border border-danger text-danger" style="background: #1f0b0e;">
-                                🛑 login_failed &bull; admin.finance (198.51.100.44)
+                            <div class="p-2 rounded border border-danger border-opacity-40 d-flex align-items-center gap-2" style="background: rgba(239, 68, 68, 0.08); font-size: 0.74rem;">
+                                <i class="bi bi-x-octagon-fill text-danger"></i>
+                                <span class="text-light">login_failed</span>
+                                <span class="text-secondary">&bull; admin.finance (198.51.100.44)</span>
                             </div>
-                            <div class="p-1 px-2 rounded border border-primary text-info" style="background: #0c182b;">
-                                🔵 login_success &bull; admin.finance (COMPROMISED)
+                            <div class="p-2 rounded border border-primary border-opacity-40 d-flex align-items-center gap-2" style="background: rgba(59, 130, 246, 0.1); font-size: 0.74rem;">
+                                <i class="bi bi-shield-lock-fill text-primary"></i>
+                                <span class="text-info fw-bold">login_success</span>
+                                <span class="text-secondary">&bull; admin.finance (COMPROMISED)</span>
                             </div>
-                            <div class="p-1 px-2 rounded border border-warning text-warning" style="background: #1a1608;">
-                                🟡 data_export &bull; 4.8 GB outbound egress
+                            <div class="p-2 rounded border border-warning border-opacity-40 d-flex align-items-center gap-2" style="background: rgba(245, 158, 11, 0.08); font-size: 0.74rem;">
+                                <i class="bi bi-arrow-up-right-circle-fill text-warning"></i>
+                                <span class="text-warning">data_export</span>
+                                <span class="text-secondary">&bull; 4.8 GB outbound egress stream</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center font-mono small text-secondary">
-                        <span>Isolation Forest ML Score:</span>
-                        <span class="badge bg-danger font-mono fs-6">0.941 / 1.00</span>
+                        <span>Isolation Forest ML Outlier Score:</span>
+                        <span class="badge bg-danger bg-opacity-20 text-danger border border-danger border-opacity-40 font-mono fs-6 py-1 px-2">0.941 / 1.00</span>
                     </div>
                 </div>
             </div>
@@ -198,14 +206,14 @@
 </section>
 
 <!-- Call to Action Banner -->
-<section class="py-5 bg-black border-top border-bottom border-secondary border-opacity-25">
+<section class="py-5 border-top border-bottom border-secondary border-opacity-25" style="background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08) 0%, #030712 70%);">
     <div class="container text-center py-4">
         <h2 class="fw-bold font-sans text-light mb-3">Ready to Analyze Evidence in Seconds?</h2>
         <p class="text-secondary mb-4 mx-auto font-sans" style="max-width: 600px;">
-            Test with our free interactive browser playground, or initialize a full workspace with our 4 pre-packaged cyber attack evaluation scenarios.
+            Test with our free client-side browser playground, or initialize a full workspace with our 4 pre-packaged cyber attack evaluation scenarios.
         </p>
         <div class="d-flex justify-content-center gap-3 flex-wrap">
-            <a href="/playground" class="btn btn-warning px-4 py-2 font-mono fw-bold text-dark">
+            <a href="/playground" class="btn btn-cyber-primary px-4 py-2 font-mono fw-bold">
                 <i class="bi bi-play-circle-fill me-1"></i> Open Log Playground
             </a>
             <a href="/login" class="btn btn-primary px-4 py-2 font-mono fw-bold">

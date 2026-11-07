@@ -67,36 +67,42 @@
 
     <style>
         .landing-hero {
-            background-color: #080c14;
-            border-bottom: 1px solid #1f2937;
-            padding: 70px 0 60px;
+            background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(14, 165, 233, 0.15), transparent 75%), linear-gradient(180deg, #070c1a 0%, #030712 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 85px 0 70px;
+            position: relative;
         }
         .feature-card {
-            background-color: #111827;
-            border: 1px solid #1f2937;
-            border-radius: 10px;
-            padding: 24px;
+            background: linear-gradient(180deg, rgba(13, 21, 39, 0.75) 0%, rgba(7, 11, 22, 0.85) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 28px;
             height: 100%;
-            transition: transform 0.15s ease, border-color 0.15s ease;
+            box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
         }
         .feature-card:hover {
-            transform: translateY(-2px);
-            border-color: #3b82f6;
+            transform: translateY(-3px);
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.18);
         }
         .stat-box {
-            background-color: #090e17;
-            border: 1px solid #1e293b;
-            border-radius: 8px;
-            padding: 16px;
+            background: rgba(8, 13, 26, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 18px;
             text-align: center;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
         .nav-landing {
-            background-color: #0b0f19;
-            border-bottom: 1px solid #1f2937;
+            background: rgba(5, 9, 18, 0.85) !important;
+            backdrop-filter: blur(18px) !important;
+            -webkit-backdrop-filter: blur(18px) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
     </style>
 </head>
-<body class="bg-dark text-light">
+<body class="text-light" style="background-color: var(--bg-page);">
 
     <!-- Top Public Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark nav-landing sticky-top py-3">
@@ -235,7 +241,7 @@
                     &copy; 2026 <strong>TraceLab</strong> &mdash; Maintained by <a href="https://github.com/dhairya-404" target="_blank" rel="noopener" class="text-info text-decoration-none">Dhairya Patel</a>.
                 </div>
                 <div>
-                    6th-Semester Degree Capstone Project &bull; Built with Pure PHP 8.3 MVC &bull; Python ML
+                    High-Fidelity Forensic Incident Response &bull; Built with Pure PHP 8.3 MVC &bull; scikit-learn ML
                 </div>
             </div>
         </div>

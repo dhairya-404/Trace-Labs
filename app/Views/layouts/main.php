@@ -77,8 +77,8 @@
                         </li>
                     </ul>
                     <div class="d-flex align-items-center gap-2">
-                        <!-- 5-Minute Demo Quick Assistant Modal Trigger -->
-                        <button type="button" class="btn btn-sm btn-outline-warning font-mono" data-bs-toggle="modal" data-bs-target="#demoCheatSheetModal">
+                        <!-- Interactive Forensic Walkthrough Modal Trigger -->
+                        <button type="button" class="btn btn-sm btn-outline-info font-mono" data-bs-toggle="modal" data-bs-target="#demoCheatSheetModal">
                             <i class="bi bi-play-circle-fill me-1"></i> Demo Guide
                         </button>
                         <span class="badge border border-info-subtle text-info font-mono py-1 px-2 d-none d-xl-inline">
@@ -109,7 +109,7 @@
                         </li>
                     </ul>
                     <div class="d-flex gap-2 align-items-center">
-                        <button type="button" class="btn btn-sm btn-outline-warning font-mono" data-bs-toggle="modal" data-bs-target="#demoCheatSheetModal">
+                        <button type="button" class="btn btn-sm btn-outline-info font-mono" data-bs-toggle="modal" data-bs-target="#demoCheatSheetModal">
                             <i class="bi bi-play-circle-fill me-1"></i> Demo Guide
                         </button>
                         <a href="/investigations/create" class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> New Investigation</a>
@@ -141,10 +141,20 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-top border-secondary-subtle py-3 text-secondary small bg-black mt-5">
-        <div class="container-fluid px-md-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <span><strong>TraceLab</strong> &mdash; 6th Semester Degree Capstone &bull; Activity Log Normalization, Entity-Linking & Anomaly Triage</span>
-            <span class="font-mono text-muted small">PHP 8.3 MVC &middot; SQLite &middot; vis-timeline &middot; Cytoscape.js &middot; FastAPI (Isolation Forest)</span>
+    <footer class="py-4 text-secondary small mt-5" style="background: #030712; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+        <div class="container-fluid px-md-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div class="d-flex align-items-center gap-2">
+                <span class="font-mono fw-bold text-light" style="letter-spacing: 0.05em;">TRACELAB</span>
+                <span class="text-muted">&bull;</span>
+                <span class="text-secondary">High-Fidelity Cyber-Forensics &amp; Digital Investigation Platform</span>
+            </div>
+            <div class="d-flex align-items-center gap-3 font-mono text-muted" style="font-size: 0.75rem;">
+                <span><i class="bi bi-shield-lock-fill text-info me-1"></i> SHA-256 Provenance</span>
+                <span>&bull;</span>
+                <span>Deterministic Heuristics + Isolation Forest ML</span>
+                <span>&bull;</span>
+                <span class="text-secondary">Zero-Trust Telemetry</span>
+            </div>
         </div>
     </footer>
 

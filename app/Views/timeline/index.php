@@ -31,17 +31,21 @@ $flaggedCount = count(array_filter($events, fn($e) => !empty($e['is_flagged'])))
     </div>
 </div>
 
-<!-- Prominent Active Security Threat Alert Banner -->
+<!-- Prominent Active Security Threat Alert Banner (SOC Tier-1 Active Incident) -->
 <?php if ($flaggedCount > 0): ?>
-    <div class="alert alert-danger bg-danger bg-opacity-10 border-danger d-flex align-items-center justify-content-between p-3 mb-4 shadow-sm rounded flex-wrap gap-3">
+    <div class="alert p-3 mb-4 rounded-3 d-flex align-items-center justify-content-between flex-wrap gap-3 shadow-lg" 
+         style="background: linear-gradient(90deg, rgba(69, 10, 10, 0.45) 0%, rgba(20, 5, 8, 0.6) 100%) !important; border: 1px solid rgba(239, 68, 68, 0.45) !important; box-shadow: 0 10px 30px -5px rgba(239, 68, 68, 0.15) !important;">
         <div class="d-flex align-items-center gap-3">
-            <div class="p-2 bg-danger bg-opacity-25 rounded border border-danger text-danger fs-3">
-                <i class="bi bi-shield-fill-exclamation"></i>
+            <div class="p-2 rounded-2 text-danger fs-3 d-flex align-items-center justify-content-center" 
+                 style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); width: 44px; height: 44px;">
+                <i class="bi bi-shield-fill-exclamation text-danger"></i>
             </div>
             <div>
-                <strong class="text-danger font-mono d-block fs-6">🚨 <?= $flaggedCount ?> CRITICAL SECURITY THREAT ALERTS ON TIMELINE</strong>
+                <strong class="text-danger font-mono d-block fs-6" style="letter-spacing: 0.04em;">
+                    <i class="bi bi-exclamation-triangle-fill text-danger me-1"></i> <?= $flaggedCount ?> CRITICAL SECURITY THREAT ALERTS ON TIMELINE
+                </strong>
                 <span class="text-secondary small font-mono">
-                    Incident window active on <strong class="text-light">Saturday 7 Nov (Today's Threat Window) &bull; 02:14 &ndash; 03:25 UTC</strong>: Credential stuffing, outbound exfiltration & shadow copy deletion.
+                    Incident window active on <strong class="text-light">Saturday 7 Nov &bull; 02:14 &ndash; 03:25 UTC</strong>: Credential stuffing, outbound exfiltration &amp; shadow copy deletion.
                 </span>
             </div>
         </div>
@@ -100,26 +104,26 @@ $flaggedCount = count(array_filter($events, fn($e) => !empty($e['is_flagged'])))
             </div>
         </div>
     </div>
-    <div class="card-body p-2 bg-black">
-        <div id="visualization" style="height: 350px; width: 100%;"></div>
+    <div class="card-body p-2" style="background: #050812;">
+        <div id="visualization" style="height: 360px; width: 100%;"></div>
     </div>
 </div>
 
 <!-- Dynamic Real-Time Live Search & Instant Filter Bar -->
-<div class="card p-3 mb-4 shadow-sm border-secondary">
+<div class="card p-3 mb-4 shadow-sm">
     <div class="row g-2 align-items-center">
         <!-- Live Instant Search Input -->
         <div class="col-lg-6">
             <div class="input-group">
-                <span class="input-group-text bg-black border-secondary text-info font-mono">
+                <span class="input-group-text bg-black text-info font-mono" style="border-color: rgba(255, 255, 255, 0.1);">
                     <i class="bi bi-search"></i>
                 </span>
                 <input type="text" 
                        id="liveSearchInput" 
-                       class="form-control bg-dark text-light border-secondary font-mono" 
+                       class="form-control font-mono" 
                        placeholder="Search events by user (e.g. 'alice'), IP, or action..." 
                        autocomplete="off">
-                <button class="btn btn-outline-secondary border-secondary" type="button" id="clearSearchBtn" onclick="clearLiveSearch()" style="display: none;" title="Clear search (Esc)">
+                <button class="btn btn-outline-secondary" type="button" id="clearSearchBtn" onclick="clearLiveSearch()" style="display: none;" title="Clear search (Esc)">
                     <i class="bi bi-x-lg"></i>
                 </button>
             </div>

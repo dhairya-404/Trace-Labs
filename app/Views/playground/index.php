@@ -22,8 +22,8 @@
     <div class="row g-4 mb-4">
         <!-- Left: Input & Preset Selector -->
         <div class="col-lg-5">
-            <div class="card bg-black border-secondary h-100 shadow">
-                <div class="card-header bg-dark border-secondary d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+            <div class="card h-100 shadow">
+                <div class="card-header d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
                     <span class="font-mono small text-light fw-bold"><i class="bi bi-terminal me-1 text-info"></i> Raw Log Input</span>
                     <!-- Quick Snippet Presets -->
                     <div class="btn-group btn-group-sm">
@@ -33,13 +33,13 @@
                     </div>
                 </div>
                 <div class="card-body p-3 d-flex flex-column">
-                    <textarea id="rawLogInput" class="form-control bg-dark text-light border-secondary font-mono small flex-grow-1" rows="12" placeholder="timestamp,account,ip_address,action,status&#10;2026-11-07 02:14:05,admin.finance,198.51.100.44,login_failed,failed&#10;2026-11-07 02:14:22,admin.finance,198.51.100.44,login_failed,failed&#10;2026-11-07 02:15:45,admin.finance,198.51.100.44,login_success,success" style="resize: none; font-size: 0.82rem;"></textarea>
+                    <textarea id="rawLogInput" class="form-control font-mono small flex-grow-1" rows="12" placeholder="timestamp,account,ip_address,action,status&#10;2026-11-07 02:14:05,admin.finance,198.51.100.44,login_failed,failed&#10;2026-11-07 02:14:22,admin.finance,198.51.100.44,login_failed,failed&#10;2026-11-07 02:15:45,admin.finance,198.51.100.44,login_success,success" style="resize: none; font-size: 0.82rem;"></textarea>
                     
                     <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-secondary border-opacity-25">
                         <button type="button" class="btn btn-outline-secondary btn-sm font-mono" onclick="clearPlayground()">
                             <i class="bi bi-trash3 me-1"></i> Clear
                         </button>
-                        <button type="button" class="btn btn-warning btn-sm font-mono fw-bold text-dark px-3" onclick="processPlayground()">
+                        <button type="button" class="btn btn-cyber-primary btn-sm font-mono fw-bold px-3" onclick="processPlayground()">
                             <i class="bi bi-lightning-charge-fill me-1"></i> Parse &amp; Render Timeline
                         </button>
                     </div>
@@ -49,34 +49,34 @@
 
         <!-- Right: Real-time Cryptographic Provenance & Stats -->
         <div class="col-lg-7">
-            <div class="card bg-black border-secondary h-100 shadow p-3">
-                <div class="d-flex justify-content-between align-items-center pb-2 mb-3 border-bottom border-secondary border-opacity-50 font-mono small">
+            <div class="card h-100 shadow p-3">
+                <div class="d-flex justify-content-between align-items-center pb-2 mb-3 border-bottom border-secondary border-opacity-30 font-mono small">
                     <span class="text-light fw-bold"><i class="bi bi-shield-check text-success me-1"></i> Evidence Digest &amp; Metadata</span>
-                    <span class="badge bg-success-subtle text-success border border-success-subtle">CLIENT-SIDE VERIFIED</span>
+                    <span class="badge bg-success bg-opacity-20 text-success border border-success border-opacity-40">CLIENT-SIDE VERIFIED</span>
                 </div>
 
                 <div class="mb-3">
-                    <label class="text-secondary small font-mono mb-1 d-block">SHA-256 Evidence Non-Repudiation Fingerprint:</label>
-                    <div class="p-2 rounded bg-dark border border-secondary font-mono small text-info text-break" id="playgroundSha256">
+                    <label class="text-secondary small font-mono mb-1 d-block" style="font-size: 0.72rem;">SHA-256 Evidence Non-Repudiation Fingerprint:</label>
+                    <div class="p-2 rounded font-mono small text-info text-break border border-secondary border-opacity-30" id="playgroundSha256" style="background: #050812; font-size: 0.78rem;">
                         e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
                     </div>
                 </div>
 
                 <div class="row g-2 mb-3 font-mono text-center small">
                     <div class="col-4">
-                        <div class="p-2 rounded bg-dark border border-secondary">
+                        <div class="stat-box">
                             <div class="text-secondary" style="font-size: 0.72rem;">Parsed Events</div>
                             <div class="fs-5 fw-bold text-light" id="statEventsCount">0</div>
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="p-2 rounded bg-dark border border-secondary">
+                        <div class="stat-box">
                             <div class="text-secondary" style="font-size: 0.72rem;">Unique Entities</div>
                             <div class="fs-5 fw-bold text-warning" id="statEntitiesCount">0</div>
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="p-2 rounded bg-dark border border-secondary">
+                        <div class="stat-box">
                             <div class="text-secondary" style="font-size: 0.72rem;">Potential Threats</div>
                             <div class="fs-5 fw-bold text-danger" id="statThreatsCount">0</div>
                         </div>
@@ -95,23 +95,23 @@
     </div>
 
     <!-- Live Interactive Timeline Canvas -->
-    <div class="card bg-black border-secondary shadow mb-4">
-        <div class="card-header bg-dark border-secondary d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+    <div class="card shadow mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
             <div class="d-flex align-items-center gap-2 font-mono small">
-                <span class="badge bg-primary text-dark fw-bold">vis-timeline</span>
+                <span class="badge bg-primary text-light fw-bold">vis-timeline</span>
                 <span class="text-secondary">Interactive Chronological Swimlanes</span>
             </div>
             <div class="d-flex align-items-center gap-2">
                 <button type="button" class="btn btn-xs btn-outline-secondary font-mono" onclick="timelinePlaygroundFit()"><i class="bi bi-arrows-angle-expand"></i> Fit All</button>
             </div>
         </div>
-        <div class="card-body p-2">
+        <div class="card-body p-2" style="background: #050812;">
             <div id="playgroundTimeline" style="height: 280px; width: 100%;"></div>
         </div>
     </div>
 
     <!-- CTA Card -->
-    <div class="card p-4 text-center border-primary border-opacity-50 shadow" style="background: #0d1527;">
+    <div class="card p-4 text-center shadow-lg" style="background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.1) 0%, #070c18 80%); border: 1px solid rgba(56, 189, 248, 0.25);">
         <h4 class="fw-bold text-light font-sans mb-2">Need Topological Entity Graphing &amp; Isolation Forest ML?</h4>
         <p class="text-secondary small mx-auto mb-3 font-sans" style="max-width: 600px;">
             The playground gives you instant timeline reconstruction. The full TraceLab Investigation Desk connects accounts to foreign IPs with Cytoscape.js, runs unsupervised Python ML triage, and exports official PDF incident dossiers.
