@@ -18,7 +18,7 @@
         <p class="text-secondary small mb-0">Interactive <code>vis-timeline</code> engine consolidating messy multi-source logs into a singular, synchronized time sequence.</p>
     </div>
     <div class="d-flex gap-2">
-        <a href="/investigations/<?= $investigation['id'] ?>/graph" class="btn btn-outline-warning btn-sm">
+        <a href="/investigations/<?= $investigation['id'] ?>/graph" class="btn btn-outline-warning btn-sm font-mono">
             <i class="bi bi-diagram-3"></i> View Entity Graph &rarr;
         </a>
     </div>
@@ -28,7 +28,7 @@
 <div class="card mb-4 shadow">
     <div class="card-header d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
         <div class="d-flex align-items-center gap-2 small">
-            <span class="badge bg-primary font-mono">vis-timeline</span>
+            <span class="badge bg-primary text-dark font-mono fw-bold">vis-timeline</span>
             <span class="text-secondary">Scroll to zoom &bull; Drag to pan &bull; Click event to inspect provenance</span>
         </div>
         <!-- Timeline Navigation Controls -->
@@ -51,51 +51,66 @@
     </div>
 </div>
 
-<!-- Search & Filter Controls -->
-<div class="card p-3 mb-4">
-    <form method="GET" action="/investigations/<?= $investigation['id'] ?>/timeline" class="row g-2 align-items-center">
-        <div class="col-md-3">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text bg-black border-secondary text-secondary"><i class="bi bi-person"></i></span>
-                <input type="text" name="account" class="form-control bg-dark text-light border-secondary" placeholder="Filter Account (e.g. admin.finance)" value="<?= \Tracelabs\Core\View::escape($filters['account'] ?? '') ?>">
+<!-- Dynamic Real-Time Live Search & Instant Filter Bar -->
+<div class="card p-3 mb-4 shadow-sm border-secondary">
+    <div class="row g-2 align-items-center">
+        <!-- Live Instant Search Input -->
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-text bg-black border-secondary text-info font-mono">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input type="text" 
+                       id="liveSearchInput" 
+                       class="form-control bg-dark text-light border-secondary font-mono" 
+                       placeholder="Dynamic search by account (e.g. 'alice'), IP, action, or device..." 
+                       autocomplete="off">
+                <button class="btn btn-outline-secondary border-secondary" type="button" id="clearSearchBtn" onclick="clearLiveSearch()" style="display: none;" title="Clear search (Esc)">
+                    <i class="bi bi-x-lg"></i>
+                </button>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text bg-black border-secondary text-secondary"><i class="bi bi-globe"></i></span>
-                <input type="text" name="ip" class="form-control bg-dark text-light border-secondary" placeholder="Filter IP (e.g. 198.51.100.44)" value="<?= \Tracelabs\Core\View::escape($filters['ip'] ?? '') ?>">
-            </div>
+
+        <!-- Quick 1-Click Filter Preset Chips -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-lg-end gap-1 flex-wrap">
+            <span class="text-secondary small font-mono me-1 d-none d-md-inline">Quick:</span>
+            <button type="button" class="btn btn-xs btn-outline-secondary font-mono py-1 px-2" onclick="setQuickSearch('alice')">alice</button>
+            <button type="button" class="btn btn-xs btn-outline-secondary font-mono py-1 px-2" onclick="setQuickSearch('admin.finance')">admin.finance</button>
+            <button type="button" class="btn btn-xs btn-outline-secondary font-mono py-1 px-2" onclick="setQuickSearch('198.51')">198.51.x</button>
+            <button type="button" class="btn btn-xs btn-outline-secondary font-mono py-1 px-2" onclick="setQuickSearch('login_failed')">failed_logins</button>
+            <button type="button" class="btn btn-xs btn-outline-danger font-mono py-1 px-2" id="flaggedOnlyBtn" onclick="toggleFlaggedOnly()">⚠️ Flagged Only</button>
+            <button type="button" class="btn btn-xs btn-outline-info font-mono py-1 px-2" onclick="clearLiveSearch()">Reset</button>
         </div>
-        <div class="col-md-3">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text bg-black border-secondary text-secondary"><i class="bi bi-activity"></i></span>
-                <input type="text" name="action" class="form-control bg-dark text-light border-secondary" placeholder="Filter Action (e.g. login, export)" value="<?= \Tracelabs\Core\View::escape($filters['action'] ?? '') ?>">
-            </div>
-        </div>
-        <div class="col-md-3 d-flex gap-2">
-            <button type="submit" class="btn btn-sm btn-primary flex-grow-1"><i class="bi bi-funnel"></i> Apply Filter</button>
-            <a href="/investigations/<?= $investigation['id'] ?>/timeline" class="btn btn-sm btn-outline-secondary">Reset</a>
-        </div>
-    </form>
+    </div>
+
+    <!-- Real-time Synchronization Status Bar -->
+    <div class="d-flex justify-content-between align-items-center mt-2 px-1 font-mono small text-secondary">
+        <span id="matchCounterText" class="text-light">
+            Showing all <strong class="text-info"><?= count($events) ?></strong> events
+        </span>
+        <span class="text-muted small" style="font-size: 0.72rem;">
+            <i class="bi bi-lightning-charge-fill text-warning me-1"></i> Live filter synced with vis-timeline
+        </span>
+    </div>
 </div>
 
 <!-- Normalized Events Tabular View with Provenance Links -->
 <div class="card shadow">
     <div class="card-header py-3 d-flex justify-content-between align-items-center">
         <h5 class="fw-bold mb-0 font-mono">
-            <i class="bi bi-list-columns-reverse text-info me-2"></i>Normalized Event Sequence (<?= count($events) ?> records)
+            <i class="bi bi-list-columns-reverse text-info me-2"></i>Normalized Event Sequence
         </h5>
-        <span class="text-secondary small">Click any row to open the Event Provenance Inspector</span>
+        <span class="text-secondary small font-mono">Click any row to open the Event Provenance Inspector</span>
     </div>
     <div class="card-body p-0">
         <?php if (empty($events)): ?>
             <div class="p-5 text-center text-secondary">
-                <p>No events found matching the filter criteria.</p>
-                <a href="/investigations/<?= $investigation['id'] ?>/timeline" class="btn btn-sm btn-outline-secondary">Clear Filters</a>
+                <p>No events found in this investigation workspace yet.</p>
+                <a href="/investigations/<?= $investigation['id'] ?>/import" class="btn btn-sm btn-primary">Go to Ingestion Desk</a>
             </div>
         <?php else: ?>
             <div class="table-responsive">
-                <table class="table table-cyber table-hover mb-0 align-middle">
+                <table class="table table-cyber table-hover mb-0 align-middle" id="eventsTable">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -109,22 +124,29 @@
                             <th>Provenance</th>
                         </tr>
                     </thead>
-                    <tbody class="font-mono small">
+                    <tbody class="font-mono small" id="eventsTableBody">
                         <?php foreach ($events as $ev): ?>
-                            <tr class="<?= $ev['is_flagged'] ? 'table-danger bg-danger bg-opacity-10 border-start border-danger border-3' : '' ?>" 
+                            <tr class="event-row <?= $ev['is_flagged'] ? 'table-danger bg-danger bg-opacity-10 border-start border-danger border-3 is-flagged-row' : '' ?>" 
+                                data-id="<?= $ev['id'] ?>"
+                                data-account="<?= strtolower($ev['account']) ?>"
+                                data-ip="<?= strtolower($ev['ip_address']) ?>"
+                                data-device="<?= strtolower($ev['device_id']) ?>"
+                                data-action="<?= strtolower($ev['action']) ?>"
+                                data-details="<?= strtolower(htmlspecialchars($ev['details'], ENT_QUOTES)) ?>"
+                                data-flagged="<?= $ev['is_flagged'] ? '1' : '0' ?>"
                                 onclick="openEventModal(<?= $ev['id'] ?>)">
                                 <td><?= $ev['id'] ?></td>
-                                <td class="text-info"><?= $ev['timestamp'] ?></td>
-                                <td class="fw-semibold text-light"><?= \Tracelabs\Core\View::escape($ev['account']) ?></td>
-                                <td>
+                                <td class="text-info col-ts"><?= $ev['timestamp'] ?></td>
+                                <td class="fw-semibold text-light col-account"><?= \Tracelabs\Core\View::escape($ev['account']) ?></td>
+                                <td class="col-ip">
                                     <?php if (!str_starts_with($ev['ip_address'], '10.') && $ev['ip_address'] !== '127.0.0.1' && $ev['ip_address'] !== '0.0.0.0'): ?>
                                         <span class="badge bg-danger-subtle text-danger"><?= $ev['ip_address'] ?></span>
                                     <?php else: ?>
                                         <span class="text-secondary"><?= $ev['ip_address'] ?></span>
                                     <?php endif; ?>
                                 </td>
-                                <td class="text-secondary"><?= \Tracelabs\Core\View::escape($ev['device_id']) ?></td>
-                                <td>
+                                <td class="text-secondary col-device"><?= \Tracelabs\Core\View::escape($ev['device_id']) ?></td>
+                                <td class="col-action">
                                     <span class="badge <?= in_array($ev['action'], ['privilege_escalation', 'data_export', 'shadow_copy_delete', 'file_download_bulk']) ? 'bg-danger' : 'bg-secondary' ?>">
                                         <?= \Tracelabs\Core\View::escape($ev['action']) ?>
                                     </span>
@@ -150,6 +172,15 @@
                                 </td>
                             </tr>
                         <?php endforeach; ?>
+                        
+                        <!-- Empty match message (hidden by default) -->
+                        <tr id="noMatchRow" style="display: none;">
+                            <td colspan="9" class="text-center py-5 text-secondary">
+                                <i class="bi bi-search display-6 d-block mb-2 text-muted"></i>
+                                <div class="text-light fw-bold font-mono">No events match your search query</div>
+                                <div class="small text-muted mt-1">Try another keyword or <button type="button" class="btn btn-link p-0 text-info font-mono small" onclick="clearLiveSearch()">click here to reset</button>.</div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -177,8 +208,13 @@
 
 <script>
 let timelineInstance = null;
+let timelineDataSet = null;
+let rawTimelineItems = [];
+const totalEventsCount = <?= count($events) ?>;
+let filterFlaggedOnly = false;
 
 document.addEventListener('DOMContentLoaded', function() {
+    // 1. Initialize vis-timeline
     const container = document.getElementById('visualization');
     if (container) {
         fetch('/investigations/<?= $investigation['id'] ?>/timeline/data')
@@ -189,7 +225,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
 
-                const items = new vis.DataSet(data);
+                rawTimelineItems = data;
+                timelineDataSet = new vis.DataSet(data);
+                
                 const options = {
                     height: '270px',
                     stack: true,
@@ -200,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     orientation: 'top'
                 };
 
-                timelineInstance = new vis.Timeline(container, items, options);
+                timelineInstance = new vis.Timeline(container, timelineDataSet, options);
                 
                 timelineInstance.on('select', function(properties) {
                     if (properties.items.length > 0) {
@@ -210,7 +248,151 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(err => console.error('Timeline error:', err));
     }
+
+    // 2. Setup Real-time Dynamic Live Search Listener
+    const searchInput = document.getElementById('liveSearchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            performLiveFilter();
+        });
+
+        // Esc key to clear
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                clearLiveSearch();
+            }
+        });
+    }
 });
+
+// Real-time Instant Filter Engine
+function performLiveFilter() {
+    const searchInput = document.getElementById('liveSearchInput');
+    const query = (searchInput.value || '').trim().toLowerCase();
+    const clearBtn = document.getElementById('clearSearchBtn');
+    const counterText = document.getElementById('matchCounterText');
+    const noMatchRow = document.getElementById('noMatchRow');
+
+    // Toggle clear button
+    clearBtn.style.display = (query.length > 0 || filterFlaggedOnly) ? 'inline-block' : 'none';
+
+    let visibleCount = 0;
+    const rows = document.querySelectorAll('.event-row');
+
+    rows.forEach(row => {
+        const account = row.getAttribute('data-account') || '';
+        const ip = row.getAttribute('data-ip') || '';
+        const device = row.getAttribute('data-device') || '';
+        const action = row.getAttribute('data-action') || '';
+        const details = row.getAttribute('data-details') || '';
+        const isFlagged = row.getAttribute('data-flagged') === '1';
+
+        // Check search match
+        const matchesQuery = !query || 
+            account.includes(query) || 
+            ip.includes(query) || 
+            device.includes(query) || 
+            action.includes(query) || 
+            details.includes(query);
+
+        // Check flagged-only filter
+        const matchesFlagged = !filterFlaggedOnly || isFlagged;
+
+        if (matchesQuery && matchesFlagged) {
+            row.style.display = '';
+            visibleCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+
+    // Handle empty table state
+    if (noMatchRow) {
+        noMatchRow.style.display = (visibleCount === 0) ? '' : 'none';
+    }
+
+    // Update Counter Feedback
+    if (query || filterFlaggedOnly) {
+        counterText.innerHTML = `Showing <strong class="text-warning">${visibleCount}</strong> of ${totalEventsCount} events ${query ? `matching "<span class="text-info">${escapeHtml(query)}</span>"` : ''} ${filterFlaggedOnly ? '<span class="badge bg-danger ms-1">Flagged Only</span>' : ''}`;
+    } else {
+        counterText.innerHTML = `Showing all <strong class="text-info">${totalEventsCount}</strong> events`;
+    }
+
+    // 3. Synchronize with vis-timeline visualization dynamically
+    if (timelineInstance && timelineDataSet && rawTimelineItems.length > 0) {
+        const filteredTimelineData = rawTimelineItems.filter(item => {
+            const acc = (item.account || '').toLowerCase();
+            const ip = (item.ip || '').toLowerCase();
+            const act = (item.action || item.content || '').toLowerCase();
+            const det = (item.details || item.title || '').toLowerCase();
+            const dev = (item.device || '').toLowerCase();
+            const isFlag = item.is_flagged === true;
+
+            const matchesQuery = !query || 
+                acc.includes(query) || 
+                ip.includes(query) || 
+                act.includes(query) || 
+                det.includes(query) || 
+                dev.includes(query);
+
+            const matchesFlagged = !filterFlaggedOnly || isFlag;
+
+            return matchesQuery && matchesFlagged;
+        });
+
+        timelineDataSet.clear();
+        timelineDataSet.add(filteredTimelineData);
+
+        if (filteredTimelineData.length > 0) {
+            timelineInstance.fit({ animation: { duration: 350, easingFunction: 'easeInOutQuad' } });
+        }
+    }
+}
+
+// Quick Preset Filter setter
+function setQuickSearch(val) {
+    const input = document.getElementById('liveSearchInput');
+    input.value = val;
+    input.focus();
+    performLiveFilter();
+}
+
+// Toggle Flagged-Only Filter
+function toggleFlaggedOnly() {
+    filterFlaggedOnly = !filterFlaggedOnly;
+    const btn = document.getElementById('flaggedOnlyBtn');
+    if (filterFlaggedOnly) {
+        btn.classList.remove('btn-outline-danger');
+        btn.classList.add('btn-danger', 'text-light');
+    } else {
+        btn.classList.remove('btn-danger', 'text-light');
+        btn.classList.add('btn-outline-danger');
+    }
+    performLiveFilter();
+}
+
+// Reset / Clear Live Search
+function clearLiveSearch() {
+    const input = document.getElementById('liveSearchInput');
+    input.value = '';
+    filterFlaggedOnly = false;
+    const btn = document.getElementById('flaggedOnlyBtn');
+    if (btn) {
+        btn.classList.remove('btn-danger', 'text-light');
+        btn.classList.add('btn-outline-danger');
+    }
+    performLiveFilter();
+    input.focus();
+}
+
+function escapeHtml(text) {
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 function timelineZoom(percentage) {
     if (timelineInstance) {
