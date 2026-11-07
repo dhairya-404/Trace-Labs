@@ -18,26 +18,26 @@
 <!-- Detection Metrics Banner -->
 <div class="row g-3 mb-4">
     <div class="col-md-6">
-        <div class="card p-3 shadow-sm border-start border-danger border-4">
+        <div class="card p-3">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <span class="badge bg-danger bg-opacity-20 text-danger font-mono mb-1">ENGINE 1 &bull; DETERMINISTIC</span>
-                    <h5 class="fw-bold text-light mb-0 font-mono">Rule-Based Explainable Flags</h5>
-                    <p class="text-secondary small mb-0 mt-1">Brute-Force &bull; Off-Hours Operations &bull; Anti-Forensic Tampering</p>
+                    <span class="badge border border-secondary text-secondary font-mono mb-1">DETERMINISTIC RULES</span>
+                    <h5 class="fw-semibold text-light mb-0 font-mono">Rule-Based Flags</h5>
+                    <p class="text-secondary small mb-0 mt-1">Brute-Force &bull; Off-Hours Operations &bull; Tampering</p>
                 </div>
-                <div class="display-6 fw-bold text-danger font-mono"><?= $ruleCount ?></div>
+                <div class="fs-2 fw-semibold text-danger font-mono"><?= $ruleCount ?></div>
             </div>
         </div>
     </div>
     <div class="col-md-6">
-        <div class="card p-3 shadow-sm border-start border-info border-4">
+        <div class="card p-3">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <span class="badge bg-info bg-opacity-20 text-info font-mono mb-1">ENGINE 2 &bull; UNSUPERVISED ML</span>
-                    <h5 class="fw-bold text-light mb-0 font-mono">Isolation Forest Outliers</h5>
-                    <p class="text-secondary small mb-0 mt-1">Python Microservice &bull; Multi-dimensional deviation scoring</p>
+                    <span class="badge border border-secondary text-secondary font-mono mb-1">UNSUPERVISED ML</span>
+                    <h5 class="fw-semibold text-light mb-0 font-mono">Isolation Forest Outliers</h5>
+                    <p class="text-secondary small mb-0 mt-1">Multi-dimensional statistical deviation</p>
                 </div>
-                <div class="display-6 fw-bold text-info font-mono"><?= $mlCount ?></div>
+                <div class="fs-2 fw-semibold text-info font-mono"><?= $mlCount ?></div>
             </div>
         </div>
     </div>

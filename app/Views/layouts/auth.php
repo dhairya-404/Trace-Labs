@@ -32,55 +32,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow-x: hidden;
             margin: 0;
             padding: 24px;
         }
 
-        /* Subtle ambient glow & grid backdrop */
-        body::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(circle at 50% 15%, rgba(56, 189, 248, 0.09) 0%, transparent 45%),
-                radial-gradient(circle at 85% 80%, rgba(99, 102, 241, 0.07) 0%, transparent 40%),
-                radial-gradient(circle at 15% 85%, rgba(14, 165, 233, 0.05) 0%, transparent 35%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
         .auth-container {
             width: 100%;
-            max-width: 440px;
-            position: relative;
-            z-index: 1;
+            max-width: 420px;
         }
 
         .auth-card {
-            background: var(--surface-glass);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--border-subtle);
-            border-radius: 18px;
-            padding: 40px;
-            box-shadow: 
-                0 0 0 1px rgba(255, 255, 255, 0.04),
-                0 25px 60px -15px rgba(0, 0, 0, 0.7);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Top accent hairline */
-        .auth-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 20%;
-            right: 20%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6), transparent);
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            padding: 36px;
         }
 
         .font-mono {
@@ -105,28 +70,20 @@
         }
 
         .btn-cyber-primary {
-            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-            border: 1px solid rgba(56, 189, 248, 0.4);
+            background: #2563eb;
+            border: 1px solid #2563eb;
             color: #ffffff;
-            font-weight: 600;
-            border-radius: 10px;
-            padding: 12px;
-            font-size: 0.95rem;
-            letter-spacing: 0.02em;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+            font-weight: 500;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            transition: background-color 0.15s ease;
         }
 
         .btn-cyber-primary:hover {
-            background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
-            border-color: var(--accent-cyan);
+            background: #1d4ed8;
+            border-color: #1d4ed8;
             color: #ffffff;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35);
-        }
-
-        .btn-cyber-primary:active {
-            transform: translateY(0);
         }
 
         .user-pill {

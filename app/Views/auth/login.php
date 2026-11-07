@@ -2,7 +2,7 @@
     <!-- Brand Header -->
     <div class="text-center mb-4">
         <div class="d-inline-flex align-items-center justify-content-center rounded-3 p-2 mb-3" 
-             style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(99, 102, 241, 0.1)); border: 1px solid rgba(56, 189, 248, 0.3);">
+             style="background: #111827; border: 1px solid #1f2937;">
             <i class="bi bi-radar text-info fs-3"></i>
         </div>
         <h3 class="fw-bold tracking-wide font-mono mb-1 text-light">TRACELAB</h3>

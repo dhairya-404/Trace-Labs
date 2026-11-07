@@ -30,13 +30,13 @@
         </div>
 
         <!-- 4 Pre-Packaged Academic Test Datasets for Examination -->
-        <div class="card p-4 shadow-sm" style="border-color: rgba(56, 189, 248, 0.4) !important;">
+        <div class="card p-4 mb-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="d-flex align-items-center gap-2">
-                    <span class="badge bg-primary text-dark font-mono fw-bold">1-CLICK DEMO SCENARIOS</span>
-                    <h5 class="fw-bold mb-0 text-light">Pre-Bundled Investigation Datasets</h5>
+                    <span class="badge bg-secondary font-mono">DEMO SCENARIOS</span>
+                    <h5 class="fw-semibold mb-0 text-light">Pre-Bundled Datasets</h5>
                 </div>
-                <span class="text-muted small">Ready to test immediately</span>
+                <span class="text-muted small font-mono">Ready to test</span>
             </div>
             <p class="text-secondary small mb-3">
                 Select any simulated enterprise security scenario to instantly demonstrate ingestion, normalization, graph linking, and dual anomaly detection:
