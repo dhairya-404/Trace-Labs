@@ -72,6 +72,9 @@
                             <i class="bi bi-folder-check"></i> <?= \Tracelabs\Core\View::escape($investigation['title']) ?>
                         </span>
                         <a href="/investigations" class="btn btn-sm btn-outline-secondary">Switch</a>
+                        <a href="/logout" class="btn btn-sm btn-outline-danger font-mono" title="Lock & Sign Out">
+                            <i class="bi bi-box-arrow-right"></i>
+                        </a>
                     </div>
                 <?php else: ?>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -84,6 +87,9 @@
                             <i class="bi bi-play-circle-fill me-1"></i> Demo Guide
                         </button>
                         <a href="/investigations/create" class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> New Investigation</a>
+                        <a href="/logout" class="btn btn-sm btn-outline-danger font-mono" title="Lock & Sign Out">
+                            <i class="bi bi-box-arrow-right"></i>
+                        </a>
                     </div>
                 <?php endif; ?>
             </div>

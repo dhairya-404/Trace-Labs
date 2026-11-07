@@ -42,9 +42,13 @@ use Tracelabs\Controllers\ReportController;
 $router = new Router();
 $request = new Request();
 
-// Root route -> redirect to investigations or login
+// Root route -> redirect to investigations if logged in, otherwise login
 $router->get('/', function ($req) {
-    header('Location: /investigations');
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: /login');
+    } else {
+        header('Location: /investigations');
+    }
     exit;
 });
 
