@@ -2,6 +2,33 @@
 $flaggedCount = count(array_filter($events, fn($e) => !empty($e['is_flagged'])));
 ?>
 
+<style>
+/* Flagged Incident Event Rows: Sleek Obsidian-Crimson */
+#eventsTable tr.is-flagged-row,
+#eventsTable tr.is-flagged-row > td,
+#eventsTable tr.table-danger,
+#eventsTable tr.table-danger > td {
+    background-color: #16080b !important;
+    --bs-table-bg: #16080b !important;
+    --bs-table-color: #f1f5f9 !important;
+    color: #f1f5f9 !important;
+    border-bottom: 1px solid rgba(239, 68, 68, 0.25) !important;
+}
+
+#eventsTable tr.is-flagged-row > td:first-child,
+#eventsTable tr.table-danger > td:first-child {
+    border-left: 3px solid #ef4444 !important;
+}
+
+#eventsTable tr.is-flagged-row:hover,
+#eventsTable tr.is-flagged-row:hover > td,
+#eventsTable tr.table-danger:hover,
+#eventsTable tr.table-danger:hover > td {
+    background-color: #240d13 !important;
+    --bs-table-hover-bg: #240d13 !important;
+}
+</style>
+
 <!-- Ingestion Confirmation Alert (Step 2 in Demo Flow) -->
 <?php if (!empty($importedSha256)): ?>
     <div class="alert alert-success border-success bg-dark text-light d-flex align-items-center justify-content-between p-3 mb-4 shadow" role="alert">
@@ -186,7 +213,7 @@ $flaggedCount = count(array_filter($events, fn($e) => !empty($e['is_flagged'])))
                     </thead>
                     <tbody class="font-mono small" id="eventsTableBody">
                         <?php foreach ($events as $ev): ?>
-                            <tr class="event-row <?= $ev['is_flagged'] ? 'table-danger bg-danger bg-opacity-10 border-start border-danger border-3 is-flagged-row' : '' ?>" 
+                            <tr class="event-row <?= $ev['is_flagged'] ? 'is-flagged-row' : '' ?>" 
                                 data-id="<?= $ev['id'] ?>"
                                 data-account="<?= strtolower($ev['account']) ?>"
                                 data-ip="<?= strtolower($ev['ip_address']) ?>"
@@ -200,29 +227,29 @@ $flaggedCount = count(array_filter($events, fn($e) => !empty($e['is_flagged'])))
                                 <td class="fw-semibold text-light col-account"><?= \Tracelabs\Core\View::escape($ev['account']) ?></td>
                                 <td class="col-ip">
                                     <?php if (!str_starts_with($ev['ip_address'], '10.') && $ev['ip_address'] !== '127.0.0.1' && $ev['ip_address'] !== '0.0.0.0'): ?>
-                                        <span class="badge bg-danger-subtle text-danger"><?= $ev['ip_address'] ?></span>
+                                        <span class="badge badge-cyber-danger font-mono"><?= $ev['ip_address'] ?></span>
                                     <?php else: ?>
                                         <span class="text-secondary"><?= $ev['ip_address'] ?></span>
                                     <?php endif; ?>
                                 </td>
                                 <td class="text-secondary col-device"><?= \Tracelabs\Core\View::escape($ev['device_id']) ?></td>
                                 <td class="col-action">
-                                    <span class="badge <?= in_array($ev['action'], ['privilege_escalation', 'data_export', 'shadow_copy_delete', 'file_download_bulk']) ? 'bg-danger' : 'bg-secondary' ?>">
+                                    <span class="badge <?= in_array($ev['action'], ['privilege_escalation', 'data_export', 'shadow_copy_delete', 'file_download_bulk']) ? 'badge-cyber-danger' : 'border border-secondary border-opacity-40 text-secondary bg-dark' ?> font-mono">
                                         <?= \Tracelabs\Core\View::escape($ev['action']) ?>
                                     </span>
                                 </td>
                                 <td>
-                                    <span class="badge <?= str_contains($ev['status'], 'fail') ? 'bg-danger-subtle text-danger' : 'bg-success-subtle text-success' ?>">
+                                    <span class="badge <?= str_contains($ev['status'], 'fail') ? 'badge-cyber-danger' : 'badge-cyber-success' ?> font-mono">
                                         <?= \Tracelabs\Core\View::escape($ev['status']) ?>
                                     </span>
                                 </td>
                                 <td>
                                     <?php if ($ev['is_flagged']): ?>
-                                        <span class="badge bg-danger text-light" title="<?= \Tracelabs\Core\View::escape($ev['flag_rule']) ?>">
+                                        <span class="badge badge-cyber-danger font-mono d-inline-flex align-items-center gap-1" title="<?= \Tracelabs\Core\View::escape($ev['flag_rule']) ?>">
                                             <i class="bi bi-exclamation-triangle-fill"></i> Flagged
                                         </span>
                                     <?php else: ?>
-                                        <span class="badge bg-secondary-subtle text-secondary">Normal</span>
+                                        <span class="badge border border-secondary border-opacity-30 text-muted font-mono">Normal</span>
                                     <?php endif; ?>
                                 </td>
                                 <td>

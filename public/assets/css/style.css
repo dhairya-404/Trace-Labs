@@ -310,8 +310,32 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.table-cyber tr.table-danger {
-    background-color: rgba(239, 68, 68, 0.08) !important;
+/* Flagged Threat Rows in Tables */
+.table-cyber tr.is-flagged-row,
+.table-cyber tr.is-flagged-row > td,
+.table-cyber tr.is-flagged-row > th,
+.table-cyber tr.table-danger,
+.table-cyber tr.table-danger > td,
+.table-cyber tr.table-danger > th {
+    background-color: #16080b !important;
+    --bs-table-bg: #16080b !important;
+    --bs-table-color: #f1f5f9 !important;
+    --bs-table-border-color: rgba(239, 68, 68, 0.25) !important;
+    color: #f1f5f9 !important;
+    border-bottom: 1px solid rgba(239, 68, 68, 0.25) !important;
+}
+
+.table-cyber tr.is-flagged-row > td:first-child,
+.table-cyber tr.table-danger > td:first-child {
+    border-left: 3px solid #ef4444 !important;
+}
+
+.table-cyber tr.is-flagged-row:hover,
+.table-cyber tr.is-flagged-row:hover > td,
+.table-cyber tr.table-danger:hover,
+.table-cyber tr.table-danger:hover > td {
+    background-color: #240d13 !important;
+    --bs-table-hover-bg: #240d13 !important;
 }
 
 /* High-Clarity Form Controls */
