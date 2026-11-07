@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= \Tracelabs\Core\View::escape($pageTitle ?? 'TraceLab // Forensic Detective') ?></title>
+    <title><?= \Tracelabs\Core\View::escape($pageTitle ?? 'TraceLab — Forensic Investigation Desk') ?></title>
     
+    <!-- Favicon & Brand Marks -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+
     <!-- Google Fonts: IBM Plex Sans & JetBrains Mono (ui-ux-pro-max design system) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +31,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark navbar-cyber px-3 py-2 sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center gap-2 font-mono text-uppercase" href="/investigations">
-                <span class="text-light fw-bold"><i class="bi bi-radar text-info me-1"></i>TRACELAB</span>
+                <img src="/favicon.svg" alt="TraceLab Mark" width="24" height="24" class="rounded" style="border: 1px solid rgba(56, 189, 248, 0.4); box-shadow: 0 0 8px rgba(56, 189, 248, 0.25);">
+                <span class="text-light fw-bold">TRACELAB</span>
                 <span class="badge border border-secondary text-secondary font-mono small py-0 px-1">v1.0</span>
             </a>
             

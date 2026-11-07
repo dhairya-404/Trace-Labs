@@ -21,7 +21,7 @@ class AuthController extends Controller
         }
 
         $this->view('auth/login', [
-            'pageTitle' => 'Sign In // TraceLab',
+            'pageTitle' => 'Sign In — TraceLab',
             'error' => null
         ], 'auth');
     }
@@ -47,7 +47,7 @@ class AuthController extends Controller
         }
 
         $this->view('auth/login', [
-            'pageTitle' => 'Sign In // TraceLab',
+            'pageTitle' => 'Sign In — TraceLab',
             'error' => 'Invalid analyst identity or security passkey. Please verify your credentials.'
         ], 'auth');
     }

@@ -85,7 +85,7 @@ class EvidenceController extends Controller
         $chain = EvidenceModel::getCustodyChain($id);
 
         $this->view('evidence/custody', [
-            'pageTitle' => "Chain of Custody // {$evidence['evidence_tag']}",
+            'pageTitle' => "Chain of Custody — {$evidence['evidence_tag']}",
             'evidence' => $evidence,
             'chain' => $chain
         ]);

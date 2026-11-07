@@ -30,7 +30,7 @@ class TimelineController extends Controller
         $files = Investigation::getFiles($id);
 
         $this->view('timeline/index', [
-            'pageTitle' => "Timeline Reconstruction // {$investigation['title']}",
+            'pageTitle' => "Timeline — {$investigation['title']}",
             'investigation' => $investigation,
             'events' => $events,
             'files' => $files,

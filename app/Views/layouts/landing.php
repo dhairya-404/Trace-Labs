@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= \Tracelabs\Core\View::escape($pageTitle ?? 'TraceLab // Digital Activity Log Normalization, Timeline Reconstruction & Anomaly Triage') ?></title>
+    <title><?= \Tracelabs\Core\View::escape($pageTitle ?? 'TraceLab — Digital Forensics & Activity Investigation Platform') ?></title>
     
+    <!-- Favicon & Brand Marks -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+
     <!-- Comprehensive SEO Meta Tags -->
     <meta name="description" content="<?= \Tracelabs\Core\View::escape($metaDescription ?? 'TraceLab is an open-source forensic detective workbench that normalizes heterogeneous activity logs, reconstructs chronological timeline swimlanes, maps entity relationships, and triages threats with hybrid rules and Isolation Forest ML.') ?>">
     <meta name="keywords" content="<?= \Tracelabs\Core\View::escape($metaKeywords ?? 'digital forensics, log normalization, timeline reconstruction, SIEM, incident response, DFIR, entity linking, anomaly detection, isolation forest, cyber investigation') ?>">
@@ -12,7 +17,7 @@
     <link rel="canonical" href="https://trace-labs.vercel.app<?= \Tracelabs\Core\View::escape($_SERVER['REQUEST_URI'] ?? '') ?>">
 
     <!-- OpenGraph Social Sharing Cards (LinkedIn, Facebook, Discord, Slack) -->
-    <meta property="og:title" content="<?= \Tracelabs\Core\View::escape($pageTitle ?? 'TraceLab // Digital Activity Forensics & Anomaly Triage') ?>">
+    <meta property="og:title" content="<?= \Tracelabs\Core\View::escape($pageTitle ?? 'TraceLab — Digital Activity Forensics & Anomaly Triage') ?>">
     <meta property="og:description" content="<?= \Tracelabs\Core\View::escape($metaDescription ?? 'Ingest messy server logs, calculate SHA-256 digital fingerprints, reconstruct synchronized timelines, and triage anomalies with explainable rules + ML.') ?>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://trace-labs.vercel.app<?= \Tracelabs\Core\View::escape($_SERVER['REQUEST_URI'] ?? '') ?>">
@@ -20,7 +25,7 @@
 
     <!-- Twitter Card Meta -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<?= \Tracelabs\Core\View::escape($pageTitle ?? 'TraceLab // Digital Activity Forensics & Anomaly Triage') ?>">
+    <meta name="twitter:title" content="<?= \Tracelabs\Core\View::escape($pageTitle ?? 'TraceLab — Digital Activity Forensics & Anomaly Triage') ?>">
     <meta name="twitter:description" content="<?= \Tracelabs\Core\View::escape($metaDescription ?? 'The detective desk for digital event logs: timeline reconstruction, entity graphs, and dual-engine anomaly triage.') ?>">
 
     <!-- Schema.org JSON-LD Structured Data for Google Rich Snippets -->
@@ -97,7 +102,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark nav-landing sticky-top py-3">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2 font-mono" href="/">
-                <i class="bi bi-radar text-info fs-4"></i>
+                <img src="/favicon.svg" alt="TraceLab Mark" width="28" height="28" class="rounded-2" style="border: 1px solid rgba(56, 189, 248, 0.4); box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);">
                 <span class="fw-bold tracking-wide text-light">TRACELAB</span>
                 <span class="badge border border-secondary text-secondary font-mono small py-0 px-1">v1.0</span>
             </a>
@@ -164,7 +169,7 @@
             <div class="row g-4 mb-4">
                 <div class="col-lg-5">
                     <div class="d-flex align-items-center gap-2 font-mono mb-2">
-                        <i class="bi bi-radar text-info fs-4"></i>
+                        <img src="/favicon.svg" alt="TraceLab Mark" width="28" height="28" class="rounded-2" style="border: 1px solid rgba(56, 189, 248, 0.3);">
                         <span class="fw-bold fs-5 text-light">TRACELAB</span>
                     </div>
                     <p class="text-secondary small mb-3" style="max-width: 420px;">

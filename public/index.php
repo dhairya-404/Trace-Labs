@@ -11,6 +11,31 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// 1.1 Direct static asset dispatch for edge & serverless compatibility
+$requestPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+if ($requestPath === '/favicon.svg' || $requestPath === '/favicon.ico') {
+    header('Content-Type: image/svg+xml');
+    header('Cache-Control: public, max-age=86400');
+    if (file_exists(__DIR__ . '/favicon.svg')) {
+        readfile(__DIR__ . '/favicon.svg');
+        exit;
+    }
+}
+if ($requestPath === '/robots.txt') {
+    header('Content-Type: text/plain');
+    if (file_exists(__DIR__ . '/robots.txt')) {
+        readfile(__DIR__ . '/robots.txt');
+        exit;
+    }
+}
+if ($requestPath === '/sitemap.xml') {
+    header('Content-Type: application/xml');
+    if (file_exists(__DIR__ . '/sitemap.xml')) {
+        readfile(__DIR__ . '/sitemap.xml');
+        exit;
+    }
+}
+
 // 2. PSR-4 Class Autoloader for Pure PHP Architecture
 spl_autoload_register(function (string $class) {
     $prefix = 'Tracelabs\\';

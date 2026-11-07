@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= \Tracelabs\Core\View::escape($pageTitle ?? 'Sign In // TraceLab') ?></title>
+    <title><?= \Tracelabs\Core\View::escape($pageTitle ?? 'Sign In — TraceLab') ?></title>
+    
+    <!-- Favicon & Brand Marks -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +31,9 @@
 
         body {
             background-color: var(--bg-midnight);
+            background-image: 
+                radial-gradient(circle at 50% 15%, rgba(14, 165, 233, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
             font-family: var(--font-sans);
             color: #f8fafc;
             min-height: 100vh;
@@ -42,11 +50,25 @@
         }
 
         .auth-card {
-            background: #111827;
-            border: 1px solid #1f2937;
+            background: #0f172a;
+            border: 1px solid #1e293b;
             border-radius: 14px;
             padding: 32px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.04);
+            position: relative;
+        }
+
+        .brand-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.45) 0%, rgba(2, 132, 199, 0.15) 55%, transparent 75%);
+            filter: blur(12px);
+            z-index: 0;
+            pointer-events: none;
         }
 
         .font-mono {

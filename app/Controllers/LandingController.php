@@ -66,7 +66,7 @@ class LandingController extends Controller
     public function index(Request $request): void
     {
         $this->view('landing/index', [
-            'pageTitle' => 'TraceLab // Digital Activity Log Normalization, Timeline Reconstruction & Anomaly Triage',
+            'pageTitle' => 'TraceLab — Digital Activity Forensics & Incident Triage Platform',
             'metaDescription' => 'The forensic detective desk for digital event logs. Ingest heterogeneous logs, compute SHA-256 non-repudiation digests, reconstruct timeline swimlanes, and triage threats with hybrid rules + ML.',
             'metaKeywords' => 'digital forensics, log normalization, timeline reconstruction, SIEM, incident response, DFIR, entity linking, anomaly detection, isolation forest'
         ], 'landing');
@@ -75,7 +75,7 @@ class LandingController extends Controller
     public function playground(Request $request): void
     {
         $this->view('playground/index', [
-            'pageTitle' => 'Interactive Log Timeline Playground // TraceLab DFIR',
+            'pageTitle' => 'Interactive SIEM Log Playground — TraceLab',
             'metaDescription' => 'Free client-side security utility. Paste raw server or firewall logs to calculate instant SHA-256 evidence digests and render interactive chronological timeline swimlanes.',
             'metaKeywords' => 'free log parser, log timeline generator, SHA256 log hash, forensic playground, DFIR tool, vis-timeline online'
         ], 'landing');
@@ -84,7 +84,7 @@ class LandingController extends Controller
     public function logsIndex(Request $request): void
     {
         $this->view('logs/index', [
-            'pageTitle' => 'SIEM Log Format Directory // TraceLab Forensic Analyzers',
+            'pageTitle' => 'SIEM Log Format Directory — TraceLab',
             'metaDescription' => 'Explore in-depth technical guides, raw schema breakdowns, and timeline patterns for Windows Event 4624, Palo Alto Firewalls, SSH auth logs, and Apache web access.',
             'metaKeywords' => 'windows event 4624, palo alto firewall logs, ssh auth log, apache access log, SIEM log formats, log normalization guides'
         ], 'landing');
@@ -101,7 +101,7 @@ class LandingController extends Controller
         $article = self::$articles[$slug];
 
         $this->view('logs/show', [
-            'pageTitle' => "{$article['title']} // TraceLab SIEM Directory",
+            'pageTitle' => "{$article['title']} — TraceLab",
             'metaDescription' => $article['description'],
             'metaKeywords' => "{$article['slug']}, {$article['category']}, {$article['target_swimlane']}, forensic log analysis",
             'article' => $article

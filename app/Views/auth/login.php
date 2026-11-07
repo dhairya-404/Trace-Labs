@@ -1,12 +1,15 @@
 <div class="auth-card">
-    <!-- Brand Header -->
+    <!-- Brand Header (Refined High-Precision DFIR Identity) -->
     <div class="text-center mb-4">
-        <div class="d-inline-flex align-items-center justify-content-center rounded-3 p-2 mb-2" 
-             style="background: #080d1a; border: 1px solid #1e293b; width: 44px; height: 44px;">
-            <i class="bi bi-radar text-info fs-4"></i>
+        <div class="position-relative d-inline-flex align-items-center justify-content-center mb-3">
+            <div class="brand-glow"></div>
+            <img src="/favicon.svg" alt="TraceLab Mark" width="56" height="56" class="rounded-3 position-relative" style="border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.25);">
         </div>
-        <h3 class="fw-bold tracking-wide font-mono mb-1 text-light">TRACELAB</h3>
-        <p class="text-secondary small mb-0" style="font-size: 0.8rem;">Digital Forensics & Activity Investigation Platform</p>
+        <div class="d-flex align-items-center justify-content-center gap-2 mb-1">
+            <h3 class="fw-bold tracking-wider font-mono mb-0 text-light fs-3" style="letter-spacing: 0.08em;">TRACELAB</h3>
+            <span class="badge border border-info border-opacity-30 bg-info bg-opacity-10 text-info font-mono" style="font-size: 0.65rem;">v1.0</span>
+        </div>
+        <p class="text-secondary small mb-0" style="font-size: 0.8rem; letter-spacing: 0.02em;">Digital Forensics &amp; Activity Investigation Platform</p>
     </div>
 
     <?php if (!empty($error)): ?>

@@ -32,7 +32,7 @@ class DetectionController extends Controller
         }
 
         $this->view('detections/index', [
-            'pageTitle' => "Detections & Anomaly Scoring // {$investigation['title']}",
+            'pageTitle' => "Anomaly Triage — {$investigation['title']}",
             'investigation' => $investigation,
             'findings' => $findings,
             'ruleCount' => $ruleCount,

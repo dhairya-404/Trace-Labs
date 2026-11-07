@@ -473,3 +473,16 @@ div.vis-tooltip,
     font-size: 0.72rem;
     border-radius: 4px;
 }
+
+/* Brand Mark Glow & Identity Refinement */
+.navbar-brand img,
+.brand-mark img {
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.navbar-brand:hover img,
+.brand-mark:hover img {
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.45) !important;
+    transform: scale(1.05);
+}

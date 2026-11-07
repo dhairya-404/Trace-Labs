@@ -29,7 +29,7 @@ class ReportController extends Controller
         $evalReport = MLServiceClient::getEvaluationReport();
 
         $this->view('reports/show', [
-            'pageTitle' => "Final Investigation Report // {$investigation['title']}",
+            'pageTitle' => "Investigation Dossier — {$investigation['title']}",
             'investigation' => $investigation,
             'files' => $files,
             'findings' => $findings,

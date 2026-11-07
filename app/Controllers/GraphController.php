@@ -23,7 +23,7 @@ class GraphController extends Controller
         $entities = Entity::getByInvestigation($id);
 
         $this->view('graph/index', [
-            'pageTitle' => "Entity Relationship Graph // {$investigation['title']}",
+            'pageTitle' => "Entity Graph — {$investigation['title']}",
             'investigation' => $investigation,
             'entities' => $entities
         ]);

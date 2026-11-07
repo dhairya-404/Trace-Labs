@@ -66,7 +66,7 @@ class InvestigationController extends Controller
         $events = Event::getByInvestigation($id);
 
         $this->view('investigations/show', [
-            'pageTitle' => "Workspace // {$investigation['title']}",
+            'pageTitle' => "Workspace: {$investigation['title']} — TraceLab",
             'investigation' => $investigation,
             'files' => $files,
             'findings' => $findings,

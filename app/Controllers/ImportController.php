@@ -25,7 +25,7 @@ class ImportController extends Controller
         $files = Investigation::getFiles($id);
 
         $this->view('import/index', [
-            'pageTitle' => "Import & Normalize Logs // {$investigation['title']}",
+            'pageTitle' => "Log Ingestion — {$investigation['title']}",
             'investigation' => $investigation,
             'files' => $files,
             'summary' => null,
