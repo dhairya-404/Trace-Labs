@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= \Tracelabs\Core\View::escape($pageTitle ?? 'TraceLab — Digital Forensics & Activity Investigation Platform') ?></title>
     
-    <!-- Favicon & Brand Marks -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="alternate icon" href="/favicon.svg">
-    <link rel="apple-touch-icon" href="/favicon.svg">
+    <!-- Favicon & Brand Marks (Data URI Instant Tab Render + SVG + PNG + ICO) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Crect width='64' height='64' rx='14' fill='%23070c18'/%3E%3Ccircle cx='32' cy='32' r='22' stroke='%23334155' stroke-width='2' stroke-dasharray='8 6'/%3E%3Cpath d='M 32 16 A 16 16 0 1 1 16 32' stroke='%2338bdf8' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M 22 32 A 10 10 0 0 1 32 22' stroke='%2300f0ff' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%2338bdf8'/%3E%3Ccircle cx='32' cy='32' r='2.5' fill='%23ffffff'/%3E%3Cline x1='32' y1='32' x2='48' y2='16' stroke='%2338bdf8' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon.png">
 
     <!-- Comprehensive SEO Meta Tags -->
     <meta name="description" content="<?= \Tracelabs\Core\View::escape($metaDescription ?? 'TraceLab is an open-source forensic detective workbench that normalizes heterogeneous activity logs, reconstructs chronological timeline swimlanes, maps entity relationships, and triages threats with hybrid rules and Isolation Forest ML.') ?>">
@@ -303,8 +304,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/#pricing">
-                            <i class="bi bi-tag me-1"></i> Editions
+                        <a class="nav-link" href="/#inquire">
+                            <i class="bi bi-shield-shaded me-1"></i> Inquire Investigation
                         </a>
                     </li>
                     <li class="nav-item">
@@ -372,7 +373,7 @@
                         <li><a href="/playground" class="text-secondary text-decoration-none hover-text-light">Live Playground</a></li>
                         <li><a href="/#features" class="text-secondary text-decoration-none hover-text-light">Dual Anomaly Engine</a></li>
                         <li><a href="/#features" class="text-secondary text-decoration-none hover-text-light">Entity Graph</a></li>
-                        <li><a href="/#pricing" class="text-secondary text-decoration-none hover-text-light">Editions & SaaS</a></li>
+                        <li><a href="/#inquire" class="text-secondary text-decoration-none hover-text-light">Inquire Investigation / Retain DFIR</a></li>
                     </ul>
                 </div>
 

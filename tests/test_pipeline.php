@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 spl_autoload_register(function (string $class) {
     $prefix = 'Tracelabs\\';
-    $baseDir = __DIR__ . '/app/';
+    $baseDir = dirname(__DIR__) . '/app/';
     $len = strlen($prefix);
     if (strncmp($prefix, $class, $len) !== 0) return;
     $file = $baseDir . str_replace('\\', '/', substr($class, $len)) . '.php';
@@ -39,12 +39,12 @@ if (!$inv) {
 echo "[2/6] Investigation Workspace #{$invId}: OK\n";
 
 // 3. Process CSV log file
-$csvResult = LogNormalizer::process($invId, __DIR__ . '/sample_data/auth_logs_scenario_alpha.csv', 'auth_logs_scenario_alpha.csv');
+$csvResult = LogNormalizer::process($invId, dirname(__DIR__) . '/sample_data/auth_logs_scenario_alpha.csv', 'auth_logs_scenario_alpha.csv');
 echo "[3/6] File Normalization Complete: {$csvResult['total_events']} events\n";
 echo "      Calculated SHA-256 Fingerprint: {$csvResult['sha256_hash']}\n";
 
 // 4. Process JSON log file
-$jsonResult = LogNormalizer::process($invId, __DIR__ . '/sample_data/firewall_traffic_scenario_beta.json', 'firewall_traffic_scenario_beta.json');
+$jsonResult = LogNormalizer::process($invId, dirname(__DIR__) . '/sample_data/firewall_traffic_scenario_beta.json', 'firewall_traffic_scenario_beta.json');
 echo "[4/6] JSON File Normalization Complete: {$jsonResult['total_events']} events\n";
 echo "      Calculated SHA-256 Fingerprint: {$jsonResult['sha256_hash']}\n";
 
