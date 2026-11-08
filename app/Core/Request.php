@@ -13,7 +13,8 @@ class Request
 
     public function __construct()
     {
-        $this->method = strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
+        $rawMethod = strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
+        $this->method = ($rawMethod === 'HEAD') ? 'GET' : $rawMethod;
         
         $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
         $uriParts = explode('?', $requestUri, 2);
