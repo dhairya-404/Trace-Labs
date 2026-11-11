@@ -70,6 +70,8 @@ $request = new Request();
 
 // Public SEO & Product Landing Routes
 $router->get('/', [LandingController::class, 'index']);
+$router->get('/health', [LandingController::class, 'health']);
+$router->get('/api/health', [LandingController::class, 'health']);
 $router->get('/playground', [LandingController::class, 'playground']);
 $router->get('/logs', [LandingController::class, 'logsIndex']);
 $router->get('/logs/{slug}', [LandingController::class, 'logsShow']);

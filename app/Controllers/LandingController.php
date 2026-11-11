@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tracelabs\Controllers;
 
 use Tracelabs\Core\Controller;
+use Tracelabs\Core\Database;
 use Tracelabs\Core\Request;
 
 class LandingController extends Controller
@@ -106,5 +107,29 @@ class LandingController extends Controller
             'metaKeywords' => "{$article['slug']}, {$article['category']}, {$article['target_swimlane']}, forensic log analysis",
             'article' => $article
         ], 'landing');
+    }
+
+    /**
+     * Lightweight readiness and telemetry health-check endpoint for uptime probes.
+     */
+    public function health(Request $request): void
+    {
+        $dbHealthy = false;
+        try {
+            Database::getConnection()->query('SELECT 1');
+            $dbHealthy = true;
+        } catch (\Throwable $e) {
+            $dbHealthy = false;
+        }
+
+        $statusCode = $dbHealthy ? 200 : 503;
+        $this->json([
+            'status' => $dbHealthy ? 'healthy' : 'degraded',
+            'service' => 'tracelab-forensics',
+            'version' => '1.0.0',
+            'php_version' => PHP_VERSION,
+            'database' => $dbHealthy ? 'connected' : 'unavailable',
+            'timestamp_utc' => gmdate('Y-m-d\TH:i:s\Z'),
+        ], $statusCode);
     }
 }
